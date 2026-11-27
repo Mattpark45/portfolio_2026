@@ -3,8 +3,7 @@ import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const repo = join(dirname(fileURLToPath(import.meta.url)), '..');
-const root = join(repo, 'public');
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const fails = [];
 const ok = (cond, msg) => { if (!cond) fails.push(msg); };
 
@@ -18,8 +17,8 @@ function walk(dir) {
 const htmlFiles = walk(root).filter((p) => p.endsWith('.html'));
 const sitePages = htmlFiles.filter((p) => !relative(root, p).startsWith('portfolio') && !p.endsWith('404.html'));
 
-const header = readFileSync(join(repo, 'partials/header.html'), 'utf8').trim();
-const footer = readFileSync(join(repo, 'partials/footer.html'), 'utf8').trim();
+const header = readFileSync(join(root, 'partials/header.html'), 'utf8').trim();
+const footer = readFileSync(join(root, 'partials/footer.html'), 'utf8').trim();
 
 // 미심의 상태에서 공개 페이지에 쓰지 않는 표현 (금융상품명·권유·수익/혜택 약속·소속 전산·과거 소속)
 const FORBIDDEN = [
@@ -30,12 +29,16 @@ const FORBIDDEN = [
 const PLACEHOLDER = ['교체 필요', '교체 권장', 'TODO', 'lorem', 'placeholder', 'example.com'];
 const ALLOWED_HOSTS = new Set(['ebook.icm.re.kr', 'cdn.jsdelivr.net', 'calendar.app.google', 'calendar.google.com', 'schema.org']);
 
+// scripts/sync_layout.py 와 같은 규칙: 루트 기준 링크 → 페이지 깊이에 맞춘 상대경로
+const relativize = (html, depth) => html.replace(/\b(href|src)="\/(?!\/)([^"]*)"/g, (_, a, p) => `${a}="${depth === 0 ? './' : '../'.repeat(depth)}${p}"`);
+
 const titles = new Map();
 const descs = new Map();
 
 for (const file of sitePages) {
   const rel = relative(root, file);
   const s = readFileSync(file, 'utf8');
+  const depth = rel.split(/[\\/]/).length - 1;
   const text = s.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
 
   ok(/<html lang="ko">/.test(s), `${rel}: lang="ko" 없음`);
@@ -47,14 +50,15 @@ for (const file of sitePages) {
   ok(desc && desc.length >= 20 && desc.length <= 160, `${rel}: description 없음 또는 길이 부적합`);
   if (desc) { ok(!descs.has(desc), `${rel}: description 중복`); descs.set(desc, rel); }
   ok((s.match(/<h1[\s>]/g) || []).length === 1, `${rel}: h1 은 정확히 1개여야 함`);
-  ok(s.includes(`<!-- layout:header -->\n${header}\n<!-- /layout:header -->`), `${rel}: 공통 header 불일치 (scripts/sync_layout.py 실행)`);
-  ok(s.includes(`<!-- layout:footer -->\n${footer}\n<!-- /layout:footer -->`), `${rel}: 공통 footer 불일치 (scripts/sync_layout.py 실행)`);
+  ok(s.includes(`<!-- layout:header -->\n${relativize(header, depth)}\n<!-- /layout:header -->`), `${rel}: 공통 header 불일치 (scripts/sync_layout.py 실행)`);
+  ok(s.includes(`<!-- layout:footer -->\n${relativize(footer, depth)}\n<!-- /layout:footer -->`), `${rel}: 공통 footer 불일치 (scripts/sync_layout.py 실행)`);
   ok(!/<form[\s>]/i.test(s), `${rel}: 입력 양식 금지 (개인정보 수집 경로 미승인)`);
   ok(!/<script>(?!\s*$)/.test(s), `${rel}: 인라인 스크립트 금지 (CSP)`);
 
   for (const w of FORBIDDEN) ok(!text.includes(w), `${rel}: 미심의 금지 표현 "${w}"`);
   for (const w of PLACEHOLDER) ok(!s.includes(w), `${rel}: 작업용 문구 "${w}"`);
 
+  ok(!/\b(href|src)="\/(?!\/)/.test(s), `${rel}: 루트 기준 내부 링크 금지 (하위 경로 배포에서 깨짐) — scripts/sync_layout.py 실행`);
   for (const [, href] of s.matchAll(/href="([^"]+)"/g)) {
     if (/^(mailto:|tel:)/.test(href)) continue;
     if (/^https?:\/\//.test(href)) {
@@ -63,7 +67,8 @@ for (const file of sitePages) {
     }
     const [path, hash] = href.split('#');
     if (!path) continue;
-    const target = path.endsWith('/') ? join(root, path, 'index.html') : join(root, path);
+    const abs = join(dirname(file), path);
+    const target = path.endsWith('/') || path === '.' || path === '..' ? join(abs, 'index.html') : abs;
     ok(existsSync(target), `${rel}: 깨진 내부 링크 ${href}`);
     if (hash && existsSync(target)) ok(readFileSync(target, 'utf8').includes(`id="${hash}"`), `${rel}: 없는 앵커 ${href}`);
   }

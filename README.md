@@ -1,6 +1,8 @@
 # Human MCP 디지털 영업지점 (human-mcp-web)
 
-기업 경영상담과 개인·가족 재무상담의 온라인 접점입니다. 빌드 과정이 없는 정적 사이트이며(공개 파일은 `public/`만), Cloudflare Pages 무료 플랜에 그대로 배포합니다.
+기업 경영상담과 개인·가족 재무상담의 온라인 접점입니다. 빌드 과정이 없는 정적 사이트입니다.
+
+**공개 주소: https://mattpark45.github.io/portfolio_2026/** (GitHub Pages, `main` 브랜치 최상위 폴더)
 
 | 경로 | 내용 |
 |---|---|
@@ -17,11 +19,11 @@
 - **머리글·바닥글 수정**: `partials/`를 고친 뒤 `npm run layout`
 - **시험**: `npm test` (정적 검사 + 브라우저 E2E. E2E는 Playwright 필요)
 
-## 배포 (Cloudflare Pages, 무료)
-1. Cloudflare 대시보드 → Workers & Pages → Create → Pages → Connect to Git → `Mattpark45/portfolio_2026`
-2. Production branch `main`, Framework preset `None`, Build command 비움, Output directory `public`
-3. 프로젝트 이름이 주소가 됩니다. 예: `human-mcp` → `https://human-mcp.pages.dev`
-4. 이후 `main`에 병합할 때마다 자동 배포되고, PR마다 미리보기 주소가 생깁니다.
+## 배포
+- **현재: GitHub Pages.** `main`에 병합하면 1~2분 뒤 자동 반영됩니다. 사이트는 `/portfolio_2026/` 하위 경로에서 열리므로 내부 링크는 모두 상대경로여야 합니다(`npm run layout`이 자동 변환, 시험이 검사).
+- **나중에 Cloudflare Pages로 옮길 때:** Connect to Git → 이 저장소, Build command 비움, Output directory `/`. 상대경로라 그대로 동작합니다.
+- **롤백:** 문제가 생기면 `main`에서 해당 병합 커밋을 revert 하면 이전 화면으로 돌아갑니다.
+- 참고: 저장소가 공개이므로 `docs/`, `tests/` 등도 GitHub와 공개 주소에서 열람될 수 있습니다. 비밀값·고객정보는 절대 커밋하지 않습니다.
 
 ## 운영 원칙
 `docs/REQUIREMENTS.md`가 기준 원본입니다. 특히 금융광고 미심의 상태의 표현 규칙을 지켜야 합니다.

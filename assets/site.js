@@ -15,9 +15,8 @@
       a.setAttribute('href', BOOKING_URL);
       a.setAttribute('target', '_blank');
       a.setAttribute('rel', 'noopener');
-    } else {
-      a.setAttribute('href', '/contact/#request');
     }
+    // 미설정 시에는 페이지에 적힌 연락처 링크(상대경로)를 그대로 둔다
   });
   document.querySelectorAll('[data-booking-ready]').forEach(function (el) { el.hidden = !bookingReady; });
   document.querySelectorAll('[data-booking-pending]').forEach(function (el) { el.hidden = bookingReady; });
@@ -33,9 +32,10 @@
   }
 
   // 현재 페이지 표시
-  var here = location.pathname.replace(/index\.html$/, '');
+  var norm = function (u) { return u.split('#')[0].replace(/index\.html$/, ''); };
+  var here = norm(location.href);
   document.querySelectorAll('#site-nav a[href]').forEach(function (a) {
-    if (a.getAttribute('href') === here) a.setAttribute('aria-current', 'page');
+    if (!a.hasAttribute('data-booking') && norm(a.href) === here) a.setAttribute('aria-current', 'page');
   });
 
   var y = document.getElementById('year');
