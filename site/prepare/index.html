@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상담 준비 질문 — Human MCP</title>
+<meta name="description" content="5분 정도 몇 가지 질문에 답하면 원하는 방향, 잘 되어 있는 것, 걱정되는 것, 이번 상담에서 정할 것이 한 장으로 정리됩니다. 입력 내용은 저장·전송되지 않습니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="상담 준비 질문 — Human MCP">
+<meta property="og:description" content="5분 정도 몇 가지 질문에 답하면 원하는 방향, 잘 되어 있는 것, 걱정되는 것, 이번 상담에서 정할 것이 한 장으로 정리됩니다. 입력 내용은 저장·전송되지 않습니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#0b2340">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<!-- layout:header -->
+<a class="skip" href="#main">본문 바로가기</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../"><b>Human<span>MCP</span></b><small>Digital Advisory Branch</small></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">메뉴</button>
+    <nav id="site-nav" class="nav" aria-label="주요 메뉴">
+      <a href="../individuals/">개인·가족</a>
+      <a href="../business/">기업·경영자</a>
+      <a href="../how-we-work/">상담 방식</a>
+      <a href="../insights/">인사이트</a>
+      <a href="../prepare/">상담 준비</a>
+      <a class="btn small" data-booking href="../contact/#request">상담 일정 요청</a>
+    </nav>
+  </div>
+</header>
+<!-- /layout:header -->
+
+<main id="main">
+<section class="hero">
+  <div class="wrap narrow">
+    <span class="eyebrow">Prepare</span>
+    <h1>상담 준비 질문</h1>
+    <p class="lead">답하실 수 있는 것만 답하셔도 됩니다. 오른쪽(모바일에서는 아래)에 한 장 요약이 바로 만들어집니다.</p>
+    <div class="notice calm">입력하신 내용은 이 브라우저 화면 안에서만 쓰이며 어디에도 저장되거나 전송되지 않습니다. 페이지를 닫으면 사라집니다. 이름·연락처·주민등록번호·건강 정보·계좌 정보는 적지 마세요.</div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap tool">
+    <div id="questions">
+      <fieldset class="q">
+        <legend>어떤 상담을 원하시나요?</legend>
+        <div class="opts">
+          <label><input type="radio" name="kind" value="individual" checked> 개인·가족 재무상담</label>
+          <label><input type="radio" name="kind" value="business"> 기업·경영자 경영상담</label>
+        </div>
+      </fieldset>
+
+      <div data-kind="individual">
+        <fieldset class="q">
+          <legend>지금 어떤 시기에 계신가요? (여러 개 선택)</legend>
+          <div class="opts" data-name="stage">
+            <label><input type="checkbox" value="결혼·출산"> 결혼·출산</label>
+            <label><input type="checkbox" value="내 집 마련"> 내 집 마련</label>
+            <label><input type="checkbox" value="자녀교육"> 자녀교육</label>
+            <label><input type="checkbox" value="사업하는 가족"> 사업하는 가족</label>
+            <label><input type="checkbox" value="은퇴 준비"> 은퇴 준비</label>
+            <label><input type="checkbox" value="은퇴 이후"> 은퇴 이후</label>
+            <label><input type="checkbox" value="기타"> 기타</label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend>5년 뒤, 어떤 모습이면 좋겠나요?</legend>
+          <textarea data-name="goal" maxlength="300" aria-label="5년 뒤 원하는 모습" placeholder="예: 아이 교육비 걱정 없이 지내고, 은퇴 준비를 시작했으면 좋겠다"></textarea>
+        </fieldset>
+        <fieldset class="q">
+          <legend>지금 잘 되어 있다고 느끼는 것은?</legend>
+          <textarea data-name="strength" maxlength="300" aria-label="잘 되어 있는 것" placeholder="예: 매달 꾸준히 저축하고 있다"></textarea>
+        </fieldset>
+        <fieldset class="q">
+          <legend>가장 걱정되는 것은? (여러 개 선택)</legend>
+          <div class="opts" data-name="worry">
+            <label><input type="checkbox" value="생활비·현금흐름"> 생활비·현금흐름</label>
+            <label><input type="checkbox" value="갑작스러운 소득 공백"> 갑작스러운 소득 공백</label>
+            <label><input type="checkbox" value="부채"> 부채</label>
+            <label><input type="checkbox" value="자녀교육비"> 자녀교육비</label>
+            <label><input type="checkbox" value="은퇴 후 생활"> 은퇴 후 생활</label>
+            <label><input type="checkbox" value="가족에게 남길 것"> 가족에게 남길 것</label>
+            <label><input type="checkbox" value="기존 준비가 맞는지"> 기존 준비가 맞는지</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div data-kind="business" hidden>
+        <fieldset class="q">
+          <legend>회사 규모 (연매출)</legend>
+          <div class="opts" data-name="size" data-single>
+            <label><input type="radio" name="size" value="30억 미만"> 30억 미만</label>
+            <label><input type="radio" name="size" value="30~100억"> 30~100억</label>
+            <label><input type="radio" name="size" value="100~300억"> 100~300억</label>
+            <label><input type="radio" name="size" value="300억 이상"> 300억 이상</label>
+            <label><input type="radio" name="size" value="말하기 어려움"> 말하기 어려움</label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend>내년에 회사가 이루고 싶은 것은?</legend>
+          <textarea data-name="goal_b" maxlength="300" aria-label="내년 목표" placeholder="예: 새로운 고객층으로 확장하고 싶다"></textarea>
+        </fieldset>
+        <fieldset class="q">
+          <legend>회사가 잘하고 있는 것은?</legend>
+          <textarea data-name="strength_b" maxlength="300" aria-label="회사의 강점" placeholder="예: 기존 고객 재구매율, 생산 품질"></textarea>
+        </fieldset>
+        <fieldset class="q">
+          <legend>지금 가장 중요한 과제는? (여러 개 선택)</legend>
+          <div class="opts" data-name="issue">
+            <label><input type="checkbox" value="매출·고객획득"> 매출·고객획득</label>
+            <label><input type="checkbox" value="비용·현금흐름"> 비용·현금흐름</label>
+            <label><input type="checkbox" value="인력 채용·교육"> 인력 채용·교육</label>
+            <label><input type="checkbox" value="AI·업무 효율화"> AI·업무 효율화</label>
+            <label><input type="checkbox" value="자금·지원사업"> 자금·지원사업</label>
+            <label><input type="checkbox" value="투자유치"> 투자유치</label>
+            <label><input type="checkbox" value="안전·사업연속성"> 안전·사업연속성</label>
+            <label><input type="checkbox" value="승계·Exit"> 승계·Exit</label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend>결정은 언제쯤 필요하신가요?</legend>
+          <div class="opts" data-name="when" data-single>
+            <label><input type="radio" name="when" value="1개월 안"> 1개월 안</label>
+            <label><input type="radio" name="when" value="3개월 안"> 3개월 안</label>
+            <label><input type="radio" name="when" value="올해 안"> 올해 안</label>
+            <label><input type="radio" name="when" value="아직 정하지 않음"> 아직 정하지 않음</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <fieldset class="q">
+        <legend>이번 상담에서 정하고 싶은 것은?</legend>
+        <div class="opts" data-name="want" data-single>
+          <label><input type="radio" name="want" value="무엇부터 볼지 우선순위"> 무엇부터 볼지 우선순위</label>
+          <label><input type="radio" name="want" value="지금 준비가 괜찮은지 점검"> 지금 준비가 괜찮은지 점검</label>
+          <label><input type="radio" name="want" value="여러 대안 비교"> 여러 대안 비교</label>
+          <label><input type="radio" name="want" value="어떤 전문가가 필요한지"> 어떤 전문가가 필요한지</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <aside class="summary" aria-live="polite">
+      <h2>한 장 요약</h2>
+      <pre id="summary-text"></pre>
+      <div class="actions">
+        <button class="btn light small" type="button" id="copy-btn">요약 복사</button>
+        <a class="btn ghost small" id="mail-btn" href="mailto:dhp.cfo@gmail.com">이메일로 보내기</a>
+        <a class="btn small" data-booking href="../contact/#request">상담 일정 요청</a>
+      </div>
+      <p class="status" id="status" role="status"></p>
+      <small>요약은 고객님이 직접 복사하거나 메일로 보내실 때만 전달됩니다. 이 사이트는 아무것도 저장하지 않습니다.</small>
+    </aside>
+  </div>
+</section>
+</main>
+
+<!-- layout:footer -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Human MCP</h3>
+        <p>기업의 성장과 사람의 미래를 함께 생각합니다.<br>부산·울산·경남 기반 · 전국 화상 상담</p>
+        <p><a href="tel:01049377837">010-4937-7837</a><br><a href="mailto:dhp.cfo@gmail.com">dhp.cfo@gmail.com</a></p>
+      </div>
+      <div>
+        <h3>상담</h3>
+        <ul>
+          <li><a href="../individuals/">개인·가족 재무상담</a></li>
+          <li><a href="../business/">기업·경영자 경영상담</a></li>
+          <li><a href="../how-we-work/">상담 방식과 비용 원칙</a></li>
+          <li><a href="../prepare/">상담 준비 질문</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>더 알아보기</h3>
+        <ul>
+          <li><a href="../insights/">인사이트</a></li>
+          <li><a href="../about/">상담하는 사람</a></li>
+          <li><a href="../contact/">연락처</a></li>
+          <li><a href="../privacy/">개인정보 처리 안내</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">이 사이트는 서비스 소개와 상담 일정 안내를 위한 것으로, 특정 금융상품을 소개하거나 가입을 권유하지 않습니다. 금융상품 관련 절차는 상담 중 고객이 원하는 경우에 한해 소속 회사의 승인된 절차와 시스템으로만 진행합니다. 법률·세무·회계·노무 등 자격이 필요한 업무는 해당 자격을 가진 전문가가 수행합니다. 게시된 경력과 사례는 당시 담당 업무 기준이며 향후 결과를 보장하지 않습니다. © <span id="year">2026</span> Human MCP</p>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+<!-- /layout:footer -->
+<script src="../assets/prepare.js" defer></script>
+</body>
+</html>
