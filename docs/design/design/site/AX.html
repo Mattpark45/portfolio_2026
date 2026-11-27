@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI/AX 및 기업교육 — AX 진단·PoC·임직원 교육 | Human MCP</title>
+<meta name="description" content="반복 업무부터 AI를 붙이는 AX 진단, 작게 검증하는 PoC, 실무형 임직원 교육. 자문 도구를 직접 만드는 AI Product Builder가 함께합니다.">
+<link rel="stylesheet" href="../css/hmcp.css"><link rel="stylesheet" href="../css/pages.css">
+<style>
+.ax-matrix{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-strong);border:1px solid var(--line-strong);max-width:820px;position:relative}
+.ax-matrix div{background:var(--paper);padding:26px 24px;min-height:150px}
+.ax-matrix div.hi{background:var(--green);color:var(--ivory)}
+.ax-matrix h4{font:600 17px/1.4 var(--f-sans);margin-bottom:6px}
+.ax-matrix .hi h4{color:var(--gold-light)}
+.ax-matrix p{font-size:14.5px;color:var(--char-2)}
+.ax-matrix .hi p{color:rgba(246,243,236,.82)}
+.ax-axis{display:flex;justify-content:space-between;max-width:820px;font:500 12px var(--f-mono);color:var(--char-2);margin-top:10px}
+.ax-wrap{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.ax-y{writing-mode:vertical-rl;transform:rotate(180deg);font:500 12px var(--f-mono);color:var(--char-2)}
+.offer{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-strong)}
+.offer div{padding:28px 22px 30px 0;border-bottom:1px solid var(--line)}
+.offer div+div{padding-left:22px;border-left:1px solid var(--line)}
+.offer .k{font:500 12px var(--f-mono);color:var(--gold-ink)}
+.offer h3{font:600 20px/1.4 var(--f-sans);color:var(--green);margin:10px 0 8px}
+.offer p{font-size:14.5px;color:var(--char-2);margin-bottom:12px}
+.offer small{font-size:13px;color:var(--char-2)}
+.curr{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.curr div{padding:26px;border:1px solid rgba(246,243,236,.2);border-radius:var(--r-m)}
+.curr .k{font:600 12.5px var(--f-sans);letter-spacing:.1em;color:var(--gold-light)}
+.curr h3{font:600 20px/1.4 var(--f-sans);margin:10px 0 10px;color:var(--ivory)}
+.curr ul{margin:0;padding-left:18px;font-size:14.5px;display:grid;gap:5px;color:rgba(246,243,236,.82)}
+.built{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.built a{display:block;padding:24px;border:1px solid var(--line);border-radius:var(--r-m);background:#fff;text-decoration:none}
+.built b{display:block;font-size:17px;color:var(--char);margin:10px 0 6px}
+.built p{font-size:14.5px;color:var(--char-2)}
+@media (max-width:1000px){.offer{grid-template-columns:1fr 1fr}.offer div:nth-child(3){padding-left:0;border-left:0}.curr,.built{grid-template-columns:1fr}}
+@media (max-width:560px){.offer{grid-template-columns:1fr}.offer div{padding-left:0!important;border-left:0!important}.ax-matrix{grid-template-columns:1fr}.ax-y{display:none}.ax-wrap{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div data-hdr data-site></div>
+<main>
+<section class="pg-hero" data-screen-label="AX · Hero">
+  <div class="wrap">
+    <div>
+      <nav class="pg-crumb"><a href="Home.html">홈</a> › AI/AX 및 교육</nav>
+      <div class="eyebrow">AI Transformation &amp; Education</div>
+      <h1>AI는 거창하게가 아니라,<br>내일 줄일 수 있는 일부터.</h1>
+      <p class="lede">어떤 업무에 AI를 붙이면 바로 시간이 줄어드는지 찾고, 작게 시험해 보고, 직원들이 직접 쓸 수 있게 가르칩니다. 자문 도구를 직접 만들어 쓰고, 한국AI기술협회 R&amp;D 기술교류위원장으로 AI 기술 검증을 맡고 있는 사람이 함께합니다.</p>
+      <div class="ctas"><a class="btn btn-primary" href="Booking.html?type=ax">AX 진단 문의</a><a class="btn btn-secondary" href="#edu">교육 과정 보기</a></div>
+    </div>
+    <aside class="aside"><h3>이런 조직에</h3><ul><li>AI 도입 이야기는 많은데 무엇부터 할지 모를 때</li><li>보고서·견적·응대 같은 반복 업무가 많을 때</li><li>직원 교육을 실무형으로 하고 싶을 때</li><li>AI 기술기업과 공동사업을 찾을 때</li></ul></aside>
+  </div>
+</section>
+
+<div class="jump"><div class="wrap"><a href="#where">어디부터</a><a href="#offer">제공 서비스</a><a href="#edu">기업교육</a><a href="#built">직접 만든 도구</a><a href="#faq">FAQ</a></div></div>
+
+<section class="pg-sec" id="where" data-screen-label="AX · 매트릭스">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Where to start</div><h2>효과가 크고<br>쉬운 일부터</h2></div><p>AX 진단에서는 업무를 이 네 칸에 나눠 보고, 왼쪽 위 칸부터 시작합니다.</p></div>
+    <div class="ax-wrap">
+      <span class="ax-y">효과 ↑</span>
+      <div>
+        <div class="ax-matrix">
+          <div class="hi"><h4>바로 시작</h4><p>문서 초안, 회의록, 고객 응대 답변, 견적 정리</p></div>
+          <div><h4>계획 후 도입</h4><p>영업 데이터 분석, 사내 지식 검색</p></div>
+          <div><h4>도구로 해결</h4><p>번역, 일정, 간단한 자동화</p></div>
+          <div><h4>나중에 검토</h4><p>핵심 시스템 교체, 대규모 개발</p></div>
+        </div>
+        <div class="ax-axis"><span>쉬움</span><span>어려움 →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec alt" id="offer" data-screen-label="AX · 서비스">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Services</div><h2>진단에서 정착까지</h2></div><p>도입보다 정착이 어렵습니다. 네 단계로 나눠 작게 시작합니다.</p></div>
+    <div class="offer">
+      <div><span class="k">01</span><h3>AX 진단</h3><p>업무를 나열하고 AI로 줄일 수 있는 시간을 추정합니다.</p><small>인터뷰 · 업무 목록 · 우선순위표</small></div>
+      <div><span class="k">02</span><h3>PoC</h3><p>한두 개 업무에서 실제로 써 보고 효과를 잽니다.</p><small>2~6주 · 측정 지표 합의</small></div>
+      <div><span class="k">03</span><h3>교육</h3><p>직원들이 직접 쓰는 법을 실습 중심으로 배웁니다.</p><small>대표·관리자·실무자 과정</small></div>
+      <div><span class="k">04</span><h3>정착 · 협업</h3><p>사용 규칙을 정하고 필요한 경우 기술기업과 연결합니다.</p><small>가이드 · 기술 파트너</small></div>
+    </div>
+    <p style="font-size:13.5px;color:var(--char-2);margin-top:16px">강의·멘토링 30건+ · 코멘토 리드멘토 평점 4.7/5.0 · 알파코·데이원컴퍼니·한국AI기술협회 출강 <span class="sample">기간·범위는 예시</span></p>
+  </div>
+</section>
+
+<section class="pg-sec dark on-dark" id="edu" data-screen-label="AX · 교육">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Corporate education</div><h2>듣고 끝나는 강의가 아니라<br>다음 날 쓰는 교육</h2></div><p>각 과정은 수강자가 자기 업무를 가져와 실습하는 방식입니다. 법정의무교육은 ICM 협업 기관과 연결합니다.</p></div>
+    <div class="curr">
+      <div><span class="k">FOR CEO</span><h3>대표를 위한 AI 의사결정</h3><ul><li>AI로 바뀌는 우리 업종</li><li>투자 우선순위 정하기</li><li>위험과 사용 규칙</li></ul></div>
+      <div><span class="k">FOR MANAGERS</span><h3>관리자를 위한 업무 재설계</h3><ul><li>팀 업무 쪼개기</li><li>AI 작업 흐름 만들기</li><li>성과 측정</li></ul></div>
+      <div><span class="k">FOR STAFF</span><h3>실무자를 위한 AI 실습</h3><ul><li>문서·메일·보고서</li><li>데이터 정리</li><li>고객 응대</li></ul></div>
+    </div>
+    <div style="margin-top:28px"><div class="ph dark" style="height:200px;border-radius:var(--r-m)">실제 강의 사진 자리 <span class="ai-tag" style="background:rgba(0,0,0,.4)">AI 연출 이미지 사용 시 표시</span></div></div>
+  </div>
+</section>
+
+<section class="pg-sec" id="built" data-screen-label="AX · 직접 만든 도구">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Built by Human MCP</div><h2>직접 만들어 쓰는<br>도구들</h2></div><p>남에게 권하기 전에 먼저 써 봅니다. 자문에 쓰는 도구를 직접 만들었습니다.</p></div>
+    <div class="built">
+      <a href="Diagnostics.html#xray"><span class="status st-live">이용 가능</span><b>재무X레이 Scout</b><p>공개 재무 데이터를 읽고 점검 포인트를 보여 주는 도구</p></a>
+      <a href="Diagnostics.html#doctor"><span class="status st-live">이용 가능</span><b>사업자주치의AI</b><p>경영 고민을 말하면 과제와 대응 방향을 정리하는 AI</p></a>
+      <a href="Diagnostics.html#signal"><span class="status st-soon">준비 중</span><b>Corporate Signal Engine</b><p>기업 변화 신호에서 사업기회를 찾는 분석 엔진</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec alt" id="faq" data-screen-label="AX · FAQ">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">FAQ</div><h2>자주 묻는 질문</h2></div><p></p></div>
+    <div class="faq">
+      <details><summary>회사 데이터를 AI에 넣어도 괜찮나요?</summary><p>진단 단계에서 어떤 데이터를 써도 되는지 사용 규칙부터 정합니다. 민감한 데이터는 외부 AI에 넣지 않는 방식으로 설계합니다.</p></details>
+      <details><summary>교육 인원과 장소는 어떻게 되나요?</summary><p>회사 방문 또는 온라인으로 진행하며, 인원에 맞춰 과정을 조정합니다.</p></details>
+      <details><summary>개발까지 해 주시나요?</summary><p>PoC 수준의 검증은 함께하고, 본격 개발이 필요하면 적합한 기술기업을 연결합니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band on-dark"><div class="wrap">
+  <div><div class="eyebrow">AX consultation</div><h2>우리 회사에서 AI가 줄일 수 있는<br>시간부터 찾아봅시다</h2><p>30분 동안 업무 구조를 듣고 바로 시작할 수 있는 일을 골라 드립니다.</p></div>
+  <div class="ctas"><a class="btn btn-gold" href="Booking.html?type=ax">AX 진단 문의</a><a class="btn btn-ghost-light" href="Booking.html?type=ax&topic=임직원 교육">교육 문의</a></div>
+</div></section>
+</main>
+<div data-ftr></div>
+<script src="../js/chrome.js"></script>
+</body></html>

@@ -17,18 +17,23 @@
 다음을 정리해서 보여 주세요. 제가 승인하면 2단계로 넘어갑니다.
 1. 디자인과 현재 저장소 비교: 그대로 구현 / 기존 컴포넌트 재사용 / 새로 개발 / 준법·보안 검토 필요 항목으로 구분
 2. 디자인 토큰 적용 방식 (`hmcp.css :root` → Tailwind theme 또는 CSS 변수)
-3. 공통 컴포넌트 목록: Header, MobileDrawer, Footer, MobileStickyCTA, Button(primary/secondary/gold/ghost-light/link), StatusBadge, SituationRow, ServiceRow, ToolCard, DxWidget, ArticleMeta, TOC, FactInterpretBox, Callout, SourceList, BookingStepper, ChoiceCard, Chip, DayPicker, SlotPicker, FormField, ConsentGroup, Alert, Skeleton, EmptyState
-4. 라우트 구조: `/`, `/intelligence/[slug]`, `/booking` (+ 아직 디자인 안 된 페이지는 빈 라우트로만)
+3. 공통 컴포넌트 목록: PageHero, JumpNav, SectionHead, QuestionList, DomainAccordion, StepsRow, FAQ, CTABand, NoteBox, LifeStageTabs, RetirementCalculator, RoutingExplorer, CategoryFilter, Header, MobileDrawer, Footer, MobileStickyCTA, Button(primary/secondary/gold/ghost-light/link), StatusBadge, SituationRow, ServiceRow, ToolCard, DxWidget, ArticleMeta, TOC, FactInterpretBox, Callout, SourceList, BookingStepper, ChoiceCard, Chip, DayPicker, SlotPicker, FormField, ConsentGroup, Alert, Skeleton, EmptyState
+4. 라우트 구조: `/`, `/about`, `/corporate`, `/personal`, `/owner`, `/growth`, `/ax`, `/network`, `/diagnostics`, `/intelligence`, `/intelligence/[slug]`, `/booking` (Portal은 구현하지 않음)
 5. 페이지별 GitHub Issue 초안과 Acceptance Criteria (README와 Step 5-6 문서의 기준 사용)
 6. Claude Code / Codex 작업 분리안
 
 ## 2단계 — 구현 순서
+**1차 출시** (README 화면 표의 '1차'): Home, About, Corporate, Personal, Intelligence 허브, Article, Booking
 1. 디자인 토큰 + 폰트(Pretendard, Noto Serif KR, IBM Plex Mono) + 전역 스타일
-2. 공통 컴포넌트 (Header/Drawer/Footer/Button/Form 요소)
+2. 공통 컴포넌트 (Header/Drawer/Footer/MobileCTA/Button/Form, pages.css 패턴)
 3. Home — 섹션 순서와 문구는 Home.html 그대로
 4. 3분 점검 위젯 — 규칙(RES)은 `config/dx-rules.ts` 등으로 분리, 결과→예약 연결은 sessionStorage
-5. Article 템플릿 — MDX 또는 CMS 스키마(작성자, 작성일, 검토일, 검토자, 카테고리, 요약, 출처 필수), Article JSON-LD
-6. Booking — 4단계 + 로딩/빈 일정/오류/완료 상태. 예약 API와 캘린더 연동은 인터페이스만 만들고 Mock 구현으로 시작
+5. About · Corporate · Personal (생애 단계 탭, 계산기 포함)
+6. Intelligence 허브 + Article 템플릿 — MDX 또는 CMS 스키마(작성자, 작성일, 검토일, 검토자, 카테고리, 요약, 출처 필수), Article JSON-LD
+7. Booking — 4단계 + 로딩/빈 일정/오류/완료 상태. 예약 API와 캘린더 연동은 인터페이스만 만들고 Mock으로 시작
+
+**2차**: Owner, Growth, AX, Network(Routing 탐색기), Diagnostics
+**구현하지 않음**: Portal (UX 콘셉트)
 
 ## 검증
 - 1440 / 1280 / 768 / 390 / 360px에서 디자인과 비교 (가로 스크롤 없음)

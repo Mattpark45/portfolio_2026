@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intelligence — 대표와 가족을 위한 경영·재무 브리핑 | Human MCP</title>
+<meta name="description" content="기업경영, 개인재무, 보험·연금, 정책·법령, 투자·IPO·M&A, 글로벌 GTM, AI/AX. 작성일·검토일·출처를 밝힌 전문지식 허브.">
+<link rel="stylesheet" href="../css/hmcp.css"><link rel="stylesheet" href="../css/pages.css">
+<style>
+body{background:var(--paper)}
+.in-mast{border-bottom:1px solid var(--char)}
+.in-mast .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:14px;padding-bottom:14px;font-size:13px;color:var(--char-2)}
+.in-hero .wrap{padding-top:48px;padding-bottom:40px}
+.in-hero h1{font:600 clamp(32px,4vw,54px)/1.25 var(--f-serif);color:var(--green);margin:14px 0 14px}
+.in-hero p{font-size:18px;color:var(--char-2);max-width:640px}
+.in-search{display:flex;border:1.5px solid var(--char);background:#fff;max-width:680px;margin-top:28px}
+.in-search input{flex:1;border:0;height:58px;padding:0 18px;font:inherit;font-size:16.5px;min-width:0;background:transparent}
+.in-search input:focus{outline:none}.in-search:focus-within{outline:3px solid var(--blue);outline-offset:2px}
+.in-search button{border:0;background:var(--green);color:var(--ivory);padding:0 24px;font:600 15px var(--f-sans);cursor:pointer}
+.filters{position:sticky;top:72px;z-index:5;background:rgba(251,249,245,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filters .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:12px;padding-bottom:12px;scrollbar-width:none}
+.filters button{flex:none;padding:9px 15px;min-height:42px;border:1px solid var(--line-strong);border-radius:999px;background:#fff;font:500 14.5px var(--f-sans);cursor:pointer;color:var(--char)}
+.filters button[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.filters button span{font:400 12px var(--f-mono);margin-left:4px;opacity:.7}
+.in-body{display:grid;grid-template-columns:1fr 300px;gap:56px;padding-top:40px;padding-bottom:96px}
+.in-body>*{min-width:0}
+.feat{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;padding-bottom:36px;border-bottom:1px solid var(--line-strong);margin-bottom:8px;text-decoration:none;color:inherit}
+.feat .ph{aspect-ratio:16/10}
+.k{display:flex;gap:10px;font-size:13px;margin-bottom:8px;flex-wrap:wrap}
+.k .c{color:var(--gold-ink);font-weight:700}.k .d{color:var(--char-2);font:400 12px var(--f-mono)}
+.feat h2{font:600 30px/1.38 var(--f-serif);color:var(--char);margin-bottom:12px}
+.feat p{color:var(--char-2)}
+.list a{display:grid;grid-template-columns:1fr 160px;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.list .ph{aspect-ratio:4/3;font-size:10.5px}
+.list h3{font:600 19px/1.45 var(--f-sans);margin-bottom:6px}
+.list p{font-size:14.5px;color:var(--char-2)}
+.list a:hover h3,.feat:hover h2{color:var(--green);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.empty{padding:48px 24px;text-align:center;border:1px dashed var(--line-strong);border-radius:var(--r-m);margin-top:24px;display:none}
+.empty b{display:block;font-size:17px;margin-bottom:6px}
+.empty p{color:var(--char-2);font-size:15px;margin-bottom:16px}
+.more{margin-top:28px;text-align:center}
+.side{display:grid;gap:20px;align-self:start;position:sticky;top:150px}
+.side .box{border:1px solid var(--line);border-radius:var(--r-m);padding:22px;background:#fff}
+.side h4{font:600 12px var(--f-sans);letter-spacing:.14em;color:var(--char-2);margin-bottom:14px}
+.side ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:14.5px}
+.side ol a{text-decoration:none}.side ol a:hover{text-decoration:underline}
+.side .sub{background:var(--green);color:var(--ivory);border:0}
+.side .sub h4{color:var(--gold-light)}
+.side .sub p{font-size:14.5px;color:rgba(246,243,236,.82);margin-bottom:14px}
+.side .sub input{width:100%;height:46px;border:0;border-radius:var(--r-s);padding:0 12px;font:inherit;margin-bottom:8px}
+.side .sub .btn{width:100%;justify-content:center}
+.side .author{display:flex;gap:12px;align-items:center}
+.side .author img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.side .author b{display:block;font-size:15px}.side .author span{font-size:13px;color:var(--char-2)}
+@media (max-width:1000px){.in-body{grid-template-columns:1fr}.side{position:static}.feat{grid-template-columns:1fr}}
+@media (max-width:560px){.list a{grid-template-columns:1fr 96px;gap:14px}.list h3{font-size:16.5px}.list p{display:none}.feat h2{font-size:23px}.in-search{flex-direction:column}.in-search button{height:50px}}
+</style></head>
+<body>
+<div data-hdr data-site></div>
+<div class="in-mast"><div class="wrap"><span>Human MCP Intelligence — 대표와 가족을 위한 경영·재무 브리핑</span><span style="font-family:var(--f-mono)">격주 발행</span></div></div>
+<main>
+<section class="in-hero" data-screen-label="Intelligence · Hero">
+  <div class="wrap">
+    <div class="eyebrow">Intelligence &amp; Insights</div>
+    <h1>더 나은 판단을 위한 글</h1>
+    <p>실제로 받는 질문에 답합니다. 모든 글에 작성일, 검토일, 출처를 적고 사실과 해석을 나눠 씁니다.</p>
+    <form class="in-search" role="search" onsubmit="filter();return false"><label for="q" style="position:absolute;left:-9999px">글 검색</label><input id="q" placeholder="예) 가지급금, 법인전환, 연금 수령 순서" oninput="filter()"><button>찾기</button></form>
+  </div>
+</section>
+
+<div class="filters" aria-label="카테고리"><div class="wrap" id="cats"></div></div>
+
+<div class="wrap in-body">
+  <div>
+    <a class="feat" href="Article.html" id="feat" data-screen-label="Intelligence · 대표 글">
+      <div class="ph">대표 이미지 · 16:10</div>
+      <div><div class="k"><span class="c">기업경영</span><span class="d">검토 2026.11.24</span></div><h2>가지급금, 언제 문제가 되고 어떤 순서로 정리할까</h2><p>대표 개인과 법인의 자금이 섞이면 생기는 일과 정리 수단 비교. 세무 협업 전문가 검토. <span class="sample">예시 콘텐츠</span></p></div>
+    </a>
+    <div class="list" id="list"></div>
+    <div class="empty" id="empty"><b>찾는 글이 아직 없습니다</b><p>궁금한 내용을 알려 주시면 다음 글로 다루겠습니다.</p><a class="btn btn-secondary" href="/cdn-cgi/l/email-protection#d2b6baa2fcb1b4bd92b5bfb3bbbefcb1bdbfeda1a7b0b8b7b1a6ef386a52f23e716e3e724ef23e724e3e475a">주제 제안하기</a></div>
+    <div class="more"><button class="btn btn-secondary" id="moreBtn">더 보기</button></div>
+  </div>
+  <aside class="side">
+    <div class="box"><div class="author"><img src="../assets/portrait.webp" alt=""><div><b>박동혁</b><span>모든 글 작성 · 세무·법률은 협업 전문가 검토</span></div></div><a class="link-arrow" href="About.html" style="display:inline-block;margin-top:14px;font-size:14px">자문가 소개</a></div>
+    <div class="box"><h4>많이 읽은 글</h4><ol><li><a href="Article.html">가지급금 정리 순서</a></li><li><a href="Article.html">은퇴 5년 전, 연금 수령 순서</a></li><li><a href="Article.html">베트남 법인 설립 전 확인할 것</a></li><li><a href="Article.html">법인전환, 언제가 유리할까</a></li></ol></div>
+    <div class="box sub on-dark"><h4>격주 브리핑</h4><p>새 글과 정책 변화를 2주에 한 번 정리해 보내 드립니다. 영업 연락은 하지 않습니다.</p><form onsubmit="this.querySelector('button').textContent='구독 완료 ✓';return false"><input type="email" placeholder="이메일 주소" aria-label="이메일 주소" required><button class="btn btn-gold">구독하기</button></form></div>
+  </aside>
+</div>
+</main>
+<div data-ftr></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/chrome.js"></script>
+<script>
+const CATS=['전체','기업경영','개인재무','보험·연금','정책·법령','산업·기업동향','투자·IPO·M&A','글로벌 GTM','AI/AX'];
+const POSTS=[
+ ['정책·법령','2027년 중소기업 정책자금, 무엇이 달라지나','공고 전에 준비할 서류와 일정','11.18'],
+ ['개인재무','은퇴 5년 전, 연금 수령 순서부터 정하세요','국민·퇴직·개인연금의 순서가 세금을 바꿉니다','11.12'],
+ ['글로벌 GTM','베트남 법인 설립 전 확인할 다섯 가지','베트남 사업에 참여하며 정리한 체크리스트','11.05'],
+ ['투자·IPO·M&A','매각을 생각한다면 3년 전부터 할 일','기업가치를 깎는 요인부터 정리하기','10.29'],
+ ['기업경영','명의신탁주식, 지금 정리해야 하는 이유','시간이 지날수록 커지는 비용','10.22'],
+ ['보험·연금','법인 보험, 대표 유고 대비로 점검할 것','경영 공백과 상속세 재원','10.15'],
+ ['AI/AX','직원 15명 회사의 AI 도입, 첫 달에 한 일','반복 업무부터 줄이기','10.08'],
+ ['산업·기업동향','공시로 읽는 우리 업종의 변화','재무제표에서 신호 찾기','10.01'],
+ ['기업경영','법인전환, 언제가 유리할까','개인사업자 소득 구간별 비교','09.24'],
+ ['개인재무','맞벌이 가정의 현금흐름 정리법','통장 나누기부터','09.17'],
+];
+let cat='전체',shown=6;
+const catsEl=document.getElementById('cats');
+CATS.forEach(c=>{const n=c==='전체'?POSTS.length+1:POSTS.filter(p=>p[0]===c).length+(c==='기업경영'?1:0);const b=document.createElement('button');b.innerHTML=`${c}<span>${n}</span>`;b.setAttribute('aria-pressed',c===cat);b.onclick=()=>{cat=c;shown=6;catsEl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));filter()};catsEl.appendChild(b)});
+function filter(){
+  const q=document.getElementById('q').value.trim();
+  const res=POSTS.filter(p=>(cat==='전체'||p[0]===cat)&&(!q||(p[1]+p[2]).includes(q)));
+  const featOk=(cat==='전체'||cat==='기업경영')&&(!q||'가지급금 정리 순서 대표 법인'.includes(q)||'가지급금, 언제 문제가 되고 어떤 순서로 정리할까'.includes(q));
+  document.getElementById('feat').style.display=featOk?'':'none';
+  document.getElementById('list').innerHTML=res.slice(0,shown).map(p=>`<a href="Article.html"><div><div class="k"><span class="c">${p[0]}</span><span class="d">${p[3]}</span></div><h3>${p[1]}</h3><p>${p[2]}</p></div><div class="ph">이미지</div></a>`).join('');
+  document.getElementById('empty').style.display=(!res.length&&!featOk)?'block':'none';
+  document.getElementById('moreBtn').style.display=res.length>shown?'':'none';
+}
+document.getElementById('moreBtn').onclick=()=>{shown+=6;filter()};
+filter();
+</script>
+</body></html>

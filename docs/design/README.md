@@ -1,4 +1,4 @@
-# Handoff: Human MCP — Digital Advisory Branch (1차 출시 디자인)
+# Handoff: Human MCP — Digital Advisory Branch (전체 화면 13종)
 
 ## Overview
 휴먼MCP(Human MCP) 공식 디지털 영업지점 웹사이트의 디자인 인계 패키지입니다.
@@ -6,8 +6,25 @@
 
 확정 방향: **콘셉트 A(Entrepreneurial Advisor)를 뼈대로, C의 3분 점검 위젯과 B의 콘텐츠 구조를 결합**.
 
-이번 패키지에 포함된 완성 화면: **Home / Intelligence 콘텐츠 상세 / 상담예약·온보딩** + 디자인 시스템.
-아직 디자인되지 않은 화면: 기업 경영자문, 개인 종합금융, About, 대표·가족 통합자문, Growth & Capital, AI/AX, 전문가 협업, 진단센터, 콘텐츠 목록, 고객 포털.
+포함된 화면 (13종, 모두 상호 링크된 클릭 가능한 프로토타입):
+
+| # | 화면 | 파일 | 출시 단계 |
+|---|---|---|---|
+| 01 | 메인 홈 | site/Home.html | 1차 |
+| 02 | About Human MCP | site/About.html | 1차 |
+| 03 | 기업 경영자문 | site/Corporate.html | 1차 |
+| 04 | 개인·법인 종합금융 | site/Personal.html | 1차 |
+| 05 | 대표·가족 통합자문 | site/Owner.html | 2차 |
+| 06 | Growth & Capital | site/Growth.html | 2차 |
+| 07 | AI/AX 및 기업교육 | site/AX.html | 2차 |
+| 08 | 전문가 협업 네트워크 | site/Network.html | 2차 |
+| 09 | 디지털 진단센터 | site/Diagnostics.html | 2차 |
+| 10 | Intelligence 허브 | site/Intelligence.html | 1차 |
+| 10-A | 콘텐츠 상세 템플릿 | site/Article.html | 1차 |
+| 11 | 상담예약·온보딩 | site/Booking.html | 1차 |
+| 12 | 고객 포털 | site/Portal.html | **UX 콘셉트 (구현 범위 아님)** |
+
+Sitemap·User Flow·전체 썸네일: `design/Screens Index.html`. 토큰·컴포넌트 명세: `design/Design System.html`.
 
 ## About the Design Files
 `design/` 폴더의 파일은 **HTML로 만든 디자인 레퍼런스(프로토타입)** 입니다. 의도한 모양과 동작을 보여 주는 것이며, **그대로 배포할 프로덕션 코드가 아닙니다.**
@@ -80,7 +97,7 @@
 
 1. **Header** (sticky, 72px, ivory 92% + blur 8px, 하단 1px line) — 로고(HUMAN MCP / FINANCIAL & BUSINESS ADVISORY), 메뉴 6개(기업 경영자문 · 개인·법인 종합금융 · Growth & Capital · 디지털 진단 · Intelligence · About), Primary "30분 첫 상담 예약". ≤1100px: 메뉴 숨김 → 44px 햄버거 → 전체화면 Drawer(항목마다 한 줄 설명, Esc로 닫힘, body scroll lock).
 2. **Hero** — 2열 (1.15fr / .85fr, gap 56). 왼쪽: eyebrow "Entrepreneurial Advisor · 박동혁", H1 "회사의 성장과 가족의 미래,<br>따로 고민하지 않도록.", lede, CTA 2개(Primary "기업 경영자문 알아보기 →", Secondary "개인·가족 재무상담"), micro "바로 상담하지 않으셔도 됩니다. 3분 점검부터 해보기". 오른쪽: 인물 사진 4:5 아치 프레임, `object-position: 50% 18%`, 좌하단 캡션 카드. ≤900px: 사진 위(1:1, max 440px), 텍스트 아래.
-3. **Facts strip** — 4열: 16년 베트남 생활·사업 / 10년+ 퍼포먼스 마케팅 / 16개 분야 ICM 협업 / 기업 + 개인 통합자문. 숫자 serif 26px.
+3. **Facts strip** — 4열: 5개국 무역 · 베트남 현지 사업 참여 / 10년 무역·마케팅·R&D·M&A 실무 / 16개 분야 ICM 협업 / 기업 + 개인 통합자문. 숫자 serif 26px.
 4. **고객별 진입** — 아이콘 카드 대신 **행(row) 목록**: 번호(mono) / 질문(sans 600 ~23px) / 이동 서비스(14px) / →. hover 시 배경 paper + 좌우 12px 패딩. 6개 문장(Home.html 참조).
 5. **3분 점검 + 도구** (green-900 배경 + 자연 배경 이미지 14% opacity) — 왼쪽 설명 + 신뢰 문구 3줄, 오른쪽 **점검 위젯**(아래 Interactions 참조). 하단에 진단 도구 카드 4개 + 상태 배지(이용 가능 / 상담 시 제공 / 준비 중).
 6. **자문 방식** — Risk / Benefit / Growth 3열(serif 44px 단어 + 한국어 소제목 + 설명), 아래 6단계 띠(이해·보호·최적화·성장·실현·지속).
@@ -111,6 +128,29 @@
 - **완료**: 체크 아이콘, "{이름}님, 감사합니다.", 예약 요약 dl, 상담 전 준비 3가지, 관련 글/홈 링크
 - 모바일(≤560): 1열, 하단 sticky 이전/다음 바
 - 디자인 전용: 좌하단 "상태 미리보기" 스위치 → **구현 시 제거**(Storybook 등으로 대체)
+
+### 4. 서브페이지 공통 패턴 (`design/css/pages.css`)
+02~09번 화면은 같은 골격을 씁니다. 공통 컴포넌트로 만드세요.
+- **PageHero** `.pg-hero` — 2열(1.2fr/.8fr): breadcrumb, eyebrow, H1(serif clamp 32–52), lede, CTA 2개 / 오른쪽 "이런 분께" 리스트(좌측 1px 선). 변형 `.dark`(green-900 + 자연 배경 16%)
+- **JumpNav** `.jump` — 헤더 아래 sticky(top 72px) 섹션 앵커, 가로 스크롤, scroll-spy로 활성 밑줄 (chrome.js)
+- **SectionHead** `.pg-h` — 2열(eyebrow+H2 / 설명), ≤1000px 1열
+- **QuestionList** `.qlist` — 2열 고객 질문 목록
+- **DomainAccordion** `.dom` — `<details>` 기반 서비스 영역: 번호 / 제목+부제 / 수행방식 태그(직접 green-100, 협업 blue 12%) / +−
+- **WhoDoesWhat** `.who` · **Steps** `.steps5`(--n 변수로 열 수) · **Related** `.rel3` · **FAQ** `.faq` · **NoteBox** `.note-box`(업무범위·금융 고지)
+- **CTABand** `.cta-band` — 페이지 마지막 공통 상담 유도(green-900 + OG 이미지 20%)
+- 헤더 메뉴 현재 페이지: `aria-current="page"` + 하단 2px green
+
+### 5. 화면별 특이 요소
+- **About**: 타임라인(2016 무역 → 2018 마케팅 → 2021 사업기획·R&D → 2019~ 강의 → 2025~ 금융·M&A), 자격·학력 4열, 성과 사례 3카드(+108% / +284% / −60%), 네 가지 기반, 역할 6종, 자문철학 6단계, 하는 일/하지 않는 일, 채널. **이력 출처: https://mattpark45.github.io/portfolio_2026/** (링크 노출). 공통 사진 밴드 `.pg-band` + `.photo-fig`(21:8, 모바일 4:3)는 Corporate/Personal/Owner 히어로 아래에 사용
+- **Corporate**: 성장 단계 4열, Risk·Benefit·Growth 3카드, 서비스 영역 아코디언 6개, Evidence→Routing 4단계, 16개 분야 그리드
+- **Personal**: 생애 단계 탭(4개, role=tablist) → 지킬 것/쓸 수 있는 것/준비할 것 패널 교체, 상담 4단계 사이클, 은퇴 준비 5단계, **은퇴자금 계산기**(range 4개 → 부족분 = max(0, 생활비−연금)×(90−은퇴나이)×12, 연금 충당률 바). 계산 로직은 검증 후 공개
+- **Owner**: 회사↔가족 2열 + 가운데 연결 라벨(급여·배당/지분 이전/퇴직금/매각 대금), 시간축 3단(0–2/3–5/5–10년), Exit 전후 3카드, 팀 5칸
+- **Growth**: 직접(GTM) vs 협업(Capital) 2열, 고객획득 퍼널 막대(설명용), 해외진출 4단계, 자본 준비 3카드 + 업무범위 고지
+- **AX**: 효과×난이도 2×2 매트릭스, 서비스 4단계, 대상별 교육 3과정, 직접 만든 도구 3카드
+- **Network**: **Routing 탐색기** — 좌측 문제 6개(role=tab) → 우측 단계별 담당(직접/협업) 흐름 + CTA. ≤1000px 좌측 목록이 가로 스크롤 탭으로 변경. 16개 분야 그리드, 파트너 모집
+- **Diagnostics**: Hero에 3분 점검 위젯(dx.js 재사용), 도구 4종 교차 레이아웃(UI 목업 포함), 계산기 4개, 받는/받지 않는 정보
+- **Intelligence**: 검색 + 카테고리 필터(9개, aria-pressed) + 대표 글 + 목록(6개씩 더 보기) + **빈 결과 상태**(주제 제안 CTA) + 사이드(작성자·인기글·구독)
+- **Portal**: 상단 경고 바 "UX 콘셉트", 좌측 다크 내비 / 모바일 하단 탭, 정기점검 배너, 다음 상담, 후속 과제(고객/협업 구분, 체크), 계획 진행도, 진행 기록, 자료함, 구현 전 확인 사항
 
 ---
 
@@ -145,7 +185,11 @@
 | 예약 일정·슬롯 | 하드코딩 | 캘린더 API |
 | 확인 문자 | 문구만 | 문자 발송 서비스 |
 | 글 검색 | UI만 | 콘텐츠 검색 |
-| 고객 포털 | 미디자인 | 향후 콘셉트, 1차 범위 아님 |
+| 은퇴자금 계산기 | 단순 합계 | 로직 검증 후 공개 (물가·수익률 미반영 표시 유지) |
+| Network Routing 사례 | 정적 데이터 6건 | CMS 또는 설정 파일 |
+| Intelligence 필터·검색 | 클라이언트 필터 | 콘텐츠 API/정적 생성 |
+| 구독·출시 알림 폼 | 문구만 변경 | 뉴스레터 서비스 연동 |
+| 고객 포털 | UX 콘셉트 | 구현하지 않음 (인증·금융전산 연동 승인 후) |
 
 ## 준법·보안 기준 (반드시 지킬 것)
 - 공개 웹에서 주민등록번호, 건강정보, 보험계약 상세, 계좌, 인증정보를 수집하지 않음
@@ -155,12 +199,13 @@
 - 푸터 고지 문구는 AFG 준법감시 검토 후 확정
 
 ## 확인 필요 항목 (구현 시 설정값으로 분리)
-- 공식 직함(디렉터 / 전문위원), AFG 소속 표기
+- 공식 직함 표기 순서 (중기연 전문위원 · 씨오㈜ M&A 파트너 · 한국AI기술협회 R&D 기술교류위원장 · AFG)
 - 첫 상담 시간(30분 / 1시간), 무료 여부·상담료
 - "상담 중 가입이나 계약을 권하지 않습니다" 문구 사용 가능 여부
 - 진단 도구별 상태와 URL
 - ICM 협력사 실명 게시 허락
-- 브랜드 사진 5종(현재 얼굴 사진 1장으로 대체)
+- 다인원 상담 사진은 AI 연출 이미지 → 실제 상담 실적처럼 쓰지 말 것 (태그 유지)
+- 베트남 표현: 거주 아님 → "베트남 관련 사업 참여"(수산물 무역 거래국, 웨딩북 베트남 서비스 개편·마케팅 코칭)로만 표기
 
 ## Accessibility (WCAG 2.2 AA)
 대비 기준은 토큰 표 참조. lang="ko", 모든 폼 라벨 노출 + autocomplete, 오류 메시지에 수정 방법 포함, 점검·예약 패널 aria-live, Drawer는 role=dialog aria-modal + Esc, `prefers-reduced-motion`에서 스켈레톤 애니메이션 중지(구현 시 추가).
@@ -168,7 +213,12 @@
 ## Assets
 | 파일 | 크기 | 출처 / 용도 |
 |---|---|---|
-| `design/assets/portrait.webp` | 765×1024 | 사용자 제공 실제 얼굴 사진. Hero, 작성자, 예약 사이드 |
+| `design/assets/portrait.webp` | 765×1024 | 증명사진형 프로필. 작성자 원형 아바타(Article, Intelligence, Portal) |
+| `design/assets/photo-portrait-office.webp` | 768×1024 | 브랜드 프로필(사무실, 세로). Home Hero 아치 프레임, 예약 사이드 |
+| `design/assets/photo-standing-wide.webp` | 1024×576 | 브랜드 프로필(가로). About Hero (object-position 68% 30%) |
+| `design/assets/photo-desk-wide.webp` | 1024×572 | 브랜드 프로필(책상). Personal 상단 밴드 |
+| `design/assets/photo-meeting-consult.webp` | 1024×773 | **AI 연출** 상담 장면. Corporate 밴드, Growth 해외진출 — "AI 연출 이미지" 태그 필수 |
+| `design/assets/photo-meeting-review.webp` | 1024×765 | **AI 연출** 자료 검토 장면. Owner 밴드 — 태그 필수 |
 | `design/assets/humanmcp-hero-1920x800.webp` | 1920×800, 191KB | AI 생성 자연 배경(새벽 산·숲). 점검 섹션 배경 |
 | `design/assets/humanmcp-og-1200x630.webp` | 1200×630, 146KB | AI 생성 SNS 공유 이미지. OG, 상담 섹션 배경 |
 | 빗금 placeholder | — | 브랜드 사진·콘텐츠 이미지 자리(실제 이미지로 교체) |
@@ -176,11 +226,11 @@
 ## Files
 ```
 design/
-  site/Home.html        메인 홈
-  site/Article.html     콘텐츠 상세 템플릿
-  site/Booking.html     상담예약·온보딩 (상태 포함)
+  Screens Index.html    Sitemap · User Flow · 13개 화면 썸네일
   Design System.html    토큰·컴포넌트·상태 명세
+  site/*.html           13개 화면 (위 표)
   css/hmcp.css          토큰 + 공통 컴포넌트
+  css/pages.css         서브페이지 공통 패턴
   js/chrome.js          헤더/드로어/푸터/모바일 CTA
   js/dx.js              3분 점검 위젯
   assets/               이미지 3종
@@ -188,4 +238,9 @@ docs/
   research-notes.md     ICM 전자책·litt.ly·벤치마킹 분석 메모
 CLAUDE_CODE_PROMPT.md   Claude Code에 붙여 넣을 요청문
 ```
-브라우저에서 `design/site/Home.html`을 열면 세 화면을 클릭하며 이동할 수 있습니다.
+브라우저에서 `design/Screens Index.html` 또는 `design/site/Home.html`을 열면 모든 화면을 클릭하며 이동할 수 있습니다.
+
+## 참고 링크
+- 이력·성과 원본: https://mattpark45.github.io/portfolio_2026/
+- 협업 인프라 원본: https://ebook.icm.re.kr/dhpcfo/
+- 채널 모음: https://litt.ly/dhpcfo

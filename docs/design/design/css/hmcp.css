@@ -139,3 +139,8 @@ h1,h2,h3,h4,p{margin:0}
 .drawer nav a{display:flex;justify-content:space-between;padding:18px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-size:18px;font-weight:600;color:var(--char)}
 .drawer nav a small{font-weight:400;font-size:13px;color:var(--char-2)}
 .drawer .btn{justify-content:center;margin-top:8px}
+
+/* Brand photo figure */
+.photo-fig{position:relative;margin:0;border-radius:var(--r-m);overflow:hidden;background:#E7E4DE}
+.photo-fig img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-fig figcaption{position:absolute;left:12px;bottom:12px;font-size:12.5px;background:rgba(251,249,245,.92);padding:6px 10px;border-radius:var(--r-s);color:var(--char)}

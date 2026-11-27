@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>대표·가족 통합자문 — 기업 성장, 승계, Exit 전후 자산관리 | Human MCP</title>
+<meta name="description" content="회사의 성장과 대표 개인의 재무 안정, 가업승계, 기업가치, Exit 전후 자산관리를 한 테이블에서 설계합니다.">
+<link rel="stylesheet" href="../css/hmcp.css"><link rel="stylesheet" href="../css/pages.css">
+<style>
+.split{display:grid;grid-template-columns:1fr 120px 1fr;align-items:stretch}
+.split .side{padding:32px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m)}
+.split .side h3{font:600 24px/1.3 var(--f-serif);color:var(--green);margin:10px 0 16px}
+.split .side ul{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.split .side li{padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.split .side li:last-child{border:0}
+.split .mid{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;position:relative}
+.split .mid::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px dashed var(--gold)}
+.split .mid span{position:relative;background:var(--ivory);padding:8px 10px;font:500 12px/1.4 var(--f-mono);color:var(--gold-ink);text-align:center;border:1px solid var(--line-strong);border-radius:var(--r-s)}
+.links4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border-top:1px solid var(--line-strong)}
+.links4 div{padding:22px 20px 22px 0;border-bottom:1px solid var(--line)}
+.links4 div+div{padding-left:20px;border-left:1px solid var(--line)}
+.links4 b{display:block;font-size:16px;color:var(--char);margin-bottom:6px}
+.links4 p{font-size:14px;color:var(--char-2)}
+.horizon{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(246,243,236,.16);border:1px solid rgba(246,243,236,.16)}
+.horizon div{background:var(--green);padding:30px 26px}
+.horizon .k{font:500 12px var(--f-mono);color:var(--gold-light)}
+.horizon h3{font:600 24px/1.3 var(--f-serif);margin:10px 0 14px;color:var(--ivory)}
+.horizon ul{margin:0;padding-left:18px;font-size:15px;display:grid;gap:6px;color:rgba(246,243,236,.85)}
+.exit{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.exit div{padding:28px;border-radius:var(--r-m);border:1px solid var(--line-strong);background:#fff}
+.exit .when{font:600 12.5px var(--f-sans);letter-spacing:.1em;color:var(--blue-ink)}
+.exit h3{font:600 20px/1.4 var(--f-sans);margin:10px 0 10px;color:var(--green)}
+.exit ul{margin:0;padding-left:18px;font-size:15px;display:grid;gap:6px}
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.team div{padding:20px 16px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--paper);text-align:center}
+.team div.me{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.team b{display:block;font-size:15.5px}
+.team small{font-size:13px;color:var(--char-2)}
+.team .me small{color:var(--gold-light)}
+@media (max-width:1000px){.split{grid-template-columns:1fr;gap:12px}.split .mid{flex-direction:row;flex-wrap:wrap;padding:8px 0}.split .mid::before{display:none}.links4{grid-template-columns:1fr 1fr}.links4 div:nth-child(3){padding-left:0;border-left:0}.horizon,.exit{grid-template-columns:1fr}.team{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.links4{grid-template-columns:1fr}.links4 div{padding-left:0!important;border-left:0!important}.team{grid-template-columns:1fr 1fr}}
+</style></head>
+<body>
+<div data-hdr data-site></div>
+<main>
+<section class="pg-hero dark on-dark" data-screen-label="Owner · Hero">
+  <div class="wrap">
+    <div>
+      <nav class="pg-crumb"><a href="Home.html">홈</a> › 대표·가족 통합자문</nav>
+      <div class="eyebrow">Owner &amp; Family Office</div>
+      <h1>회사가 자라는 만큼,<br>대표와 가족도 안전하게.</h1>
+      <p class="lede">회사의 성장, 대표 개인의 재무 안정, 다음 세대로의 승계, 언젠가의 Exit까지. 따로 상담하면 서로 부딪히는 결정을 한 테이블에서 함께 설계합니다.</p>
+      <div class="ctas"><a class="btn btn-gold" href="Booking.html?type=corp&topic=가업승계">통합자문 상담 예약</a><a class="btn btn-ghost-light" href="#map">어떻게 연결되는지 보기</a></div>
+    </div>
+    <aside class="aside"><h3>이런 오너께</h3><ul><li>회사 돈과 개인 돈의 경계가 흐릿할 때</li><li>대표 급여·배당·퇴직금 설계를 한 번도 안 해봤을 때</li><li>자녀 승계와 매각 사이에서 고민 중일 때</li><li>매각 후 자금을 어떻게 관리할지 미리 알고 싶을 때</li></ul></aside>
+  </div>
+</section>
+
+<div class="pg-band" style="background:linear-gradient(var(--green-900) 50%,transparent 50%)"><div class="wrap"><figure class="photo-fig"><img src="../assets/photo-meeting-review.webp" alt="대표와 가족의 재무 계획을 함께 검토하는 장면" style="object-position:50% 45%"><span class="ai-tag">AI 연출 이미지</span></figure></div></div>
+<div class="jump"><div class="wrap"><a href="#map">회사와 가족의 연결</a><a href="#horizon">시간축 설계</a><a href="#exit">Exit 전후</a><a href="#team">함께하는 팀</a><a href="#faq">FAQ</a></div></div>
+
+<section class="pg-sec" id="map" data-screen-label="Owner · 연결">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Two balance sheets, one plan</div><h2>회사의 결정은<br>가족의 재무가 됩니다</h2></div><p>왼쪽의 결정 하나가 오른쪽에 바로 영향을 줍니다. 그래서 둘을 한 번에 봅니다.</p></div>
+    <div class="split">
+      <div class="side"><span class="eyebrow">Company</span><h3>회사</h3><ul><li>이익 규모와 잉여금</li><li>가지급금 · 명의신탁주식</li><li>기업가치와 주가</li><li>임원 보수 · 퇴직금 규정</li><li>법인 보장 · 유고 대비</li></ul></div>
+      <div class="mid" aria-hidden="true"><span>급여·배당</span><span>지분 이전</span><span>퇴직금</span><span>매각 대금</span></div>
+      <div class="side"><span class="eyebrow">Owner &amp; Family</span><h3>대표 · 가족</h3><ul><li>생활비와 현금흐름</li><li>개인 자산 · 부동산</li><li>상속 · 증여 계획</li><li>은퇴 소득</li><li>가족 보장</li></ul></div>
+    </div>
+    <div class="links4">
+      <div><b>급여 vs 배당</b><p>세금과 4대보험, 은퇴 소득까지 고려해 비율을 정합니다.</p></div>
+      <div><b>지분 이전 시점</b><p>기업가치가 낮을 때와 높을 때 증여 부담이 크게 달라집니다.</p></div>
+      <div><b>임원 퇴직금</b><p>규정 정비 여부에 따라 대표의 은퇴 자금과 세금이 바뀝니다.</p></div>
+      <div><b>대표 유고 대비</b><p>경영 공백과 상속세 재원을 함께 준비합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec dark on-dark" id="horizon" data-screen-label="Owner · 시간축">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Time horizon</div><h2>지금, 5년, 10년을<br>나눠서 설계합니다</h2></div><p>승계와 Exit는 갑자기 할 수 없습니다. 시간을 쓸수록 선택지가 넓어집니다.</p></div>
+    <div class="horizon">
+      <div><span class="k">NOW · 0–2년</span><h3>정리하기</h3><ul><li>가지급금·명의신탁주식 정리</li><li>임원 보수·퇴직금 규정</li><li>대표 유고 대비</li><li>가족 현금흐름 점검</li></ul></div>
+      <div><span class="k">NEXT · 3–5년</span><h3>키우기</h3><ul><li>기업가치 관리</li><li>지분 구조 설계</li><li>증여 시점 검토</li><li>대표 은퇴 자금 축적</li></ul></div>
+      <div><span class="k">LATER · 5–10년</span><h3>넘기기 · 실현하기</h3><ul><li>가업승계 실행</li><li>M&amp;A·IPO 검토</li><li>상속 재원 준비</li><li>Exit 후 자산 운용</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec" id="exit" data-screen-label="Owner · Exit">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Before &amp; after exit</div><h2>매각 전에 준비할 것,<br>매각 후에 지킬 것</h2></div><p>J.P. Morgan 같은 프라이빗뱅크가 하는 일을 중소기업 오너의 눈높이로 합니다.</p></div>
+    <div class="exit">
+      <div><span class="when">3년 전</span><h3>가치를 깎는 요인 정리</h3><ul><li>가지급금·특수관계 거래</li><li>대표 의존도</li><li>재무 투명성</li></ul></div>
+      <div><span class="when">거래 중</span><h3>구조와 세금</h3><ul><li>지분 매각 vs 자산 매각</li><li>양도세·증여 연계</li><li>M&amp;A 협업 파트너 연결</li></ul></div>
+      <div><span class="when">매각 후</span><h3>자산 관리</h3><ul><li>현금흐름과 생활 설계</li><li>투자·보장 재설계</li><li>상속·증여 계획</li></ul></div>
+    </div>
+    <p class="note-box" style="margin-top:24px"><b>업무 범위</b> M&amp;A 자문, 가치평가, 세무·법률 업무는 ICM 협업 전문가(회계법인·세무사·변호사)가 수행하며, Human MCP는 전체 설계와 조율을 맡습니다.</p>
+  </div>
+</section>
+
+<section class="pg-sec alt" id="team" data-screen-label="Owner · 팀">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">One table</div><h2>한 테이블에<br>필요한 사람만</h2></div><p>대표님이 각 전문가에게 같은 이야기를 반복하지 않도록, 제가 중심에서 정리하고 조율합니다.</p></div>
+    <div class="team">
+      <div class="me"><b>Human MCP</b><small>설계 · 조율 · 금융</small></div>
+      <div><b>세무사</b><small>세금 · 승계</small></div>
+      <div><b>변호사</b><small>계약 · 지배구조</small></div>
+      <div><b>회계법인</b><small>가치평가 · M&amp;A</small></div>
+      <div><b>노무사</b><small>임원 보수 · 규정</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec" id="faq" data-screen-label="Owner · FAQ">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">FAQ</div><h2>자주 묻는 질문</h2></div><p></p></div>
+    <div class="faq">
+      <details><summary>승계를 아직 결정하지 못했는데 상담할 수 있나요?</summary><p>네. 승계와 매각, 계속 경영 중 어느 길이든 지금 정리해 둘 것은 비슷합니다. 결정을 돕는 것부터 시작합니다.</p></details>
+      <details><summary>가족도 함께 상담할 수 있나요?</summary><p>네. 배우자나 자녀가 함께하면 더 정확한 계획을 세울 수 있습니다.</p></details>
+      <details><summary>기존 세무사가 있는데 괜찮나요?</summary><p>물론입니다. 기존 세무사와 협력하는 방식으로 진행할 수 있습니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band on-dark"><div class="wrap">
+  <div><div class="eyebrow">Owner consultation</div><h2>회사와 가족,<br>한 번에 이야기해 보세요</h2><p>30분 동안 회사 단계와 가족의 목표를 듣고, 지금 정리할 것부터 말씀드립니다.</p></div>
+  <div class="ctas"><a class="btn btn-gold" href="Booking.html?type=corp&topic=가업승계">통합자문 상담 예약</a><a class="btn btn-ghost-light" href="Corporate.html">기업 경영자문 보기</a></div>
+</div></section>
+</main>
+<div data-ftr></div>
+<script src="../js/chrome.js"></script>
+</body></html>

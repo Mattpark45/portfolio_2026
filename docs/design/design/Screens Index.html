@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Human MCP — 전체 화면 13종 · Sitemap · User Flow</title>
+<link rel="stylesheet" href="css/hmcp.css">
+<style>
+.top{background:var(--green-900);color:var(--ivory);padding:60px 0 52px}
+.top h1{font:600 clamp(30px,3.6vw,46px)/1.28 var(--f-serif);margin:16px 0 14px}
+.top p{color:rgba(246,243,236,.8);max-width:780px}
+.top .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.sec{padding:64px 0;border-bottom:1px solid var(--line)}
+.sec h2{font:600 28px/1.3 var(--f-serif);color:var(--green);margin-bottom:8px}
+.sec .d{color:var(--char-2);max-width:780px;margin-bottom:28px}
+.map{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.map .col{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:16px}
+.map h4{font:600 12px var(--f-sans);letter-spacing:.12em;color:var(--gold-ink);margin-bottom:10px}
+.map a{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);text-decoration:none;font-size:14.5px;font-weight:500}
+.map a:first-of-type{border-top:0}
+.map a small{font:500 11px var(--f-mono);color:var(--char-2)}
+.flows{display:grid;gap:14px}
+.flow{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m)}
+.flow b{font-size:15px;color:var(--green)}
+.flow b small{display:block;font-weight:400;font-size:13px;color:var(--char-2)}
+.flow .steps{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13.5px}
+.flow .steps a{padding:6px 10px;border:1px solid var(--line-strong);border-radius:var(--r-s);text-decoration:none;background:#fff}
+.flow .steps a:hover{border-color:var(--green)}
+.flow .steps i{font-style:normal;color:var(--gold)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tile{display:block;text-decoration:none;color:inherit}
+.tile .vp{border:1px solid var(--line-strong);border-radius:var(--r-m);overflow:hidden;background:var(--ivory);position:relative;aspect-ratio:1440/1000}
+.tile iframe{border:0;width:1440px;height:1000px;transform-origin:0 0;position:absolute;top:0;left:0;pointer-events:none}
+.tile .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;gap:12px}
+.tile .n{font:500 12px var(--f-mono);color:var(--gold-ink)}
+.tile h3{font:600 17px/1.4 var(--f-sans);margin-top:2px}
+.tile p{font-size:13.5px;color:var(--char-2);margin-top:4px}
+.tile .rel{font:600 11px var(--f-sans);padding:3px 7px;border-radius:3px;white-space:nowrap}
+.r1{background:var(--green-100);color:var(--green)}.r2{background:rgba(82,116,135,.12);color:var(--blue-ink)}.r3{background:rgba(138,90,18,.1);color:var(--warn)}
+.tile:hover .vp{border-color:var(--green)}
+@media (max-width:1000px){.map{grid-template-columns:1fr 1fr}.gal{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr;gap:10px}}
+@media (max-width:600px){.map,.gal{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="top on-dark"><div class="wrap">
+  <div class="eyebrow">Human MCP · Step 6–8 · 전체 화면</div>
+  <h1>핵심 화면 13종,<br>하나의 디자인 시스템으로</h1>
+  <p>요청하신 12개 화면에 콘텐츠 상세 템플릿을 더해 13개 화면을 같은 디자인 시스템으로 만들었습니다. 모든 화면이 서로 연결되어 있어 클릭하며 이동할 수 있고, 데스크톱과 모바일에 모두 대응합니다.</p>
+  <div class="links"><a class="btn btn-gold" href="site/Home.html">프로토타입 시작 (홈)</a><a class="btn btn-ghost-light" href="Design%20System.html">디자인 시스템</a></div>
+</div></header>
+
+<section class="sec" data-screen-label="Sitemap"><div class="wrap">
+  <h2>Sitemap</h2>
+  <p class="d">상단 메뉴 6개 + 상담예약 버튼. 대표·가족 통합자문과 전문가 협업은 기업자문·About에서 연결되고, 푸터에서도 바로 갈 수 있습니다.</p>
+  <div class="map">
+    <div class="col"><h4>서비스</h4><a href="site/Corporate.html">기업 경영자문 <small>03</small></a><a href="site/Personal.html">개인·법인 종합금융 <small>04</small></a><a href="site/Owner.html">대표·가족 통합자문 <small>05</small></a><a href="site/Growth.html">Growth &amp; Capital <small>06</small></a><a href="site/AX.html">AI/AX 및 교육 <small>07</small></a></div>
+    <div class="col"><h4>신뢰 · 연결</h4><a href="site/Home.html">메인 홈 <small>01</small></a><a href="site/About.html">About Human MCP <small>02</small></a><a href="site/Network.html">전문가 협업 <small>08</small></a></div>
+    <div class="col"><h4>자기발견 · 콘텐츠</h4><a href="site/Diagnostics.html">디지털 진단센터 <small>09</small></a><a href="site/Intelligence.html">Intelligence 허브 <small>10</small></a><a href="site/Article.html">콘텐츠 상세 <small>10-A</small></a></div>
+    <div class="col"><h4>전환 · 관리</h4><a href="site/Booking.html">상담예약·온보딩 <small>11</small></a><a href="site/Portal.html">고객 포털 (콘셉트) <small>12</small></a></div>
+  </div>
+</div></section>
+
+<section class="sec" data-screen-label="User Flow"><div class="wrap">
+  <h2>고객별 User Flow</h2>
+  <p class="d">각 단계를 누르면 해당 화면으로 이동합니다. 바로 상담하지 않아도 되도록 읽기 · 점검하기 · 예약하기를 모두 열어 두었습니다.</p>
+  <div class="flows">
+    <div class="flow"><b>검색 방문자<small>네이버·구글·지식인</small></b><div class="steps"><a href="site/Article.html">콘텐츠 상세</a><i>→</i><a href="site/Corporate.html">관련 서비스</a><i>→</i><a href="site/Diagnostics.html">재무X레이</a><i>→</i><a href="site/Booking.html?type=corp&topic=가지급금">상담예약</a><i>→</i><span>완료</span></div></div>
+    <div class="flow"><b>SNS · 소개 방문자<small>Threads·Instagram·소개</small></b><div class="steps"><a href="site/Home.html">홈</a><i>→</i><a href="site/About.html">About</a><i>→</i><a href="site/Home.html#tools">3분 점검</a><i>→</i><a href="site/Booking.html">결과로 상담예약</a></div></div>
+    <div class="flow"><b>성장기업 대표<small>연매출 30~200억</small></b><div class="steps"><a href="site/Home.html">홈 · 고객별 진입</a><i>→</i><a href="site/Corporate.html">기업 경영자문</a><i>→</i><a href="site/Network.html">협업 Routing</a><i>→</i><a href="site/Booking.html?type=corp">기업자문 문의</a></div></div>
+    <div class="flow"><b>승계·Exit 검토 오너</b><div class="steps"><a href="site/Owner.html">대표·가족 통합자문</a><i>→</i><a href="site/Growth.html#capital">Capital &amp; Deal</a><i>→</i><a href="site/Booking.html?type=corp&topic=가업승계">통합자문 상담</a></div></div>
+    <div class="flow"><b>개인 · 가족<small>육아·은퇴 준비</small></b><div class="steps"><a href="site/Personal.html">개인 종합금융 · 생애 단계</a><i>→</i><a href="site/Personal.html#calc">은퇴자금 계산</a><i>→</i><a href="site/Booking.html?type=personal">재무상담 예약</a></div></div>
+    <div class="flow"><b>기업 HR · 기관<small>AI 도입·교육</small></b><div class="steps"><a href="site/AX.html">AI/AX</a><i>→</i><a href="site/Diagnostics.html#doctor">사업자주치의AI</a><i>→</i><a href="site/Booking.html?type=ax">AX 진단 문의</a></div></div>
+    <div class="flow"><b>기존 고객<small>향후</small></b><div class="steps"><a href="site/Portal.html">고객 포털</a><i>→</i><span>후속 과제</span><i>→</i><a href="site/Booking.html">정기 점검 예약</a></div></div>
+  </div>
+</div></section>
+
+<section class="sec" style="border:0" data-screen-label="전체 화면"><div class="wrap">
+  <h2>전체 화면</h2>
+  <p class="d">썸네일을 누르면 화면이 열립니다. <span class="rel r1">1차 출시</span> <span class="rel r2">2차</span> <span class="rel r3">콘셉트</span></p>
+  <div class="gal" id="gal"></div>
+</div></section>
+
+<script>
+const S=[
+ ['01','메인 홈페이지','Home','A 뼈대 + 3분 점검 + Intelligence','r1','1차 출시'],
+ ['02','About Human MCP','About','스토리 · 네 가지 기반 · 역할 · 업무 범위','r1','1차 출시'],
+ ['03','기업 경영자문','Corporate','고민 · 성장 단계 · RBG · 서비스 영역','r1','1차 출시'],
+ ['04','개인 종합금융','Personal','생애 단계 탭 · 은퇴자금 계산기','r1','1차 출시'],
+ ['05','대표·가족 통합자문','Owner','회사↔가족 연결 · 시간축 · Exit','r2','2차'],
+ ['06','Growth & Capital','Growth','GTM 퍼널 · 해외진출 · 자본 준비','r2','2차'],
+ ['07','AI/AX 및 기업교육','AX','우선순위 매트릭스 · 교육 과정','r2','2차'],
+ ['08','전문가 협업 네트워크','Network','문제별 Routing 탐색기 · 16개 분야','r2','2차'],
+ ['09','디지털 진단센터','Diagnostics','3분 점검 · 도구 4종 · 정보 보호','r2','2차'],
+ ['10','Intelligence 허브','Intelligence','검색 · 카테고리 필터 · 빈 결과','r1','1차 출시'],
+ ['10-A','콘텐츠 상세','Article','작성·검토일 · 사실/해석 · 출처','r1','1차 출시'],
+ ['11','상담예약 · 온보딩','Booking','4단계 · 로딩/빈/오류/완료','r1','1차 출시'],
+ ['12','고객 포털','Portal','일정 · 후속과제 · 정기점검','r3','콘셉트'],
+];
+const g=document.getElementById('gal');
+g.innerHTML=S.map(([n,t,f,d,c,l])=>`<a class="tile" href="site/${f}.html"><div class="vp"><iframe src="site/${f}.html" title="${t}" tabindex="-1" scrolling="no"></iframe></div><div class="meta"><div><span class="n">${n}</span><h3>${t}</h3><p>${d}</p></div><span class="rel ${c}">${l}</span></div></a>`).join('');
+function fit(){document.querySelectorAll('.tile .vp').forEach(v=>{v.querySelector('iframe').style.transform=`scale(${v.clientWidth/1440})`})}
+addEventListener('resize',fit);addEventListener('load',fit);fit();
+</script>
+</body></html>

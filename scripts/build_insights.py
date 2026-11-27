@@ -20,7 +20,12 @@ BASE = 'https://human-mcp.pages.dev'
 spec = importlib.util.spec_from_file_location('content', ROOT / 'content' / 'insights.py')
 content = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(content)
-ARTICLES = content.ARTICLES
+ARTICLES_ALL = content.ARTICLES
+DRAFTS = [a for a in ARTICLES_ALL if a.get('draft')]
+ARTICLES = [a for a in ARTICLES_ALL if not a.get('draft')]
+import shutil
+for d in DRAFTS:  # 비공개 글은 공개 폴더에서 제거
+    shutil.rmtree(SITE / 'insights' / d['slug'], ignore_errors=True)
 CATEGORIES = content.CATEGORIES
 
 REQUIRED = ['slug', 'title', 'dek', 'category', 'published', 'reviewed', 'reviewer', 'minutes', 'summary', 'sections', 'sources']

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Human MCP — 박동혁, Entrepreneurial Advisor</title>
+<meta name="description" content="무역, 퍼포먼스 마케팅, 사업기획·R&D를 거쳐 금융·M&A·기업자문으로. 10년의 실무로 기업자문과 개인 종합금융을 함께 하는 박동혁의 이야기.">
+<link rel="stylesheet" href="../css/hmcp.css"><link rel="stylesheet" href="../css/pages.css">
+<style>
+.ab-hero .wrap{grid-template-columns:.95fr 1.05fr;align-items:center;padding-top:40px}
+.ab-photo{position:relative;aspect-ratio:4/5;border-radius:var(--r-m);overflow:hidden;background:#E7E4DE;max-width:480px;justify-self:end;width:100%}
+.ab-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.ab-sign{margin-top:28px;font:600 15px var(--f-sans);color:var(--char)}
+.ab-sign small{display:block;font-weight:400;color:var(--char-2);font-size:14px;margin-top:2px}
+
+/* Timeline */
+.tl{position:relative;display:grid;gap:0;border-left:1px solid var(--line-strong);margin-left:8px}
+.tl article{position:relative;display:grid;grid-template-columns:200px 1fr;gap:32px;padding:0 0 48px 40px}
+.tl article::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--ivory);border:2px solid var(--green)}
+.tl article:last-child{padding-bottom:0}
+.tl .when{font:500 13px/1.5 var(--f-mono);color:var(--gold-ink)}
+.tl .when b{display:block;font:600 22px/1.3 var(--f-serif);color:var(--green);margin-top:4px}
+.tl h3{font:600 20px/1.4 var(--f-sans);margin-bottom:8px}
+.tl p{color:var(--char-2);font-size:15.5px;max-width:620px}
+.tl .ph{height:160px;border-radius:var(--r-m);margin-top:18px;max-width:420px}
+
+/* Quote */
+.ab-quote{max-width:900px}
+.ab-quote blockquote{margin:0;font:600 clamp(24px,2.6vw,34px)/1.5 var(--f-serif);color:var(--ivory);text-wrap:balance}
+.ab-quote blockquote::before{content:"“";display:block;font-size:72px;line-height:.6;color:var(--gold-light);margin-bottom:12px}
+.ab-quote p{margin-top:24px}
+
+/* Foundations */
+.fd{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-strong)}
+.fd div{padding:28px 24px 28px 0;border-bottom:1px solid var(--line)}
+.fd div+div{padding-left:24px;border-left:1px solid var(--line)}
+.fd .k{font:500 12px var(--f-mono);color:var(--gold-ink);letter-spacing:.08em}
+.fd h3{font:600 19px/1.4 var(--f-sans);color:var(--green);margin:12px 0 8px}
+.fd p{font-size:14.5px;color:var(--char-2)}
+.fd ul{margin:12px 0 0;padding-left:16px;font-size:14px;display:grid;gap:4px}
+
+/* Roles */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(246,243,236,.16);border:1px solid rgba(246,243,236,.16)}
+.roles div{background:var(--green);padding:26px 24px}
+.roles b{display:block;font:600 18px/1.3 var(--f-sans);color:var(--ivory)}
+.roles small{display:block;font-size:13px;color:var(--gold-light);margin:4px 0 10px}
+.roles p{font-size:14.5px}
+
+/* Philosophy */
+.phil{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--line-strong)}
+.phil div{padding:22px 18px;border-left:1px solid var(--line)}
+.phil div:first-child{border-left:0}
+.phil b{display:block;font:600 22px/1.2 var(--f-serif);color:var(--green)}
+.phil small{display:block;font:500 12px var(--f-mono);color:var(--gold-ink);margin:6px 0 10px}
+.phil p{font-size:14px;color:var(--char-2);line-height:1.6}
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.scope .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:26px}
+.scope h3{font:600 17px/1.4 var(--f-sans);margin-bottom:12px}
+.scope ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+.scope .no h3{color:var(--err)}
+.creds{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;border-top:1px solid var(--line-strong)}
+.creds div{padding:20px 20px 20px 0;border-bottom:1px solid var(--line)}
+.creds div+div{padding-left:20px;border-left:1px solid var(--line)}
+.creds h4{font:600 12px var(--f-sans);letter-spacing:.12em;color:var(--gold-ink);margin-bottom:8px}
+.creds p{font-size:14.5px}
+.src-note{font-size:13px;color:var(--char-2);margin-top:16px}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cases div{padding:26px;border:1px solid var(--line);border-radius:var(--r-m);background:#fff}
+.cases .k{font:600 12.5px var(--f-sans);color:var(--char-2)}
+.cases .big{font:600 40px/1.1 var(--f-serif);color:var(--green);margin:12px 0 6px}
+.cases h3{font:600 16px/1.45 var(--f-sans);margin-bottom:6px}
+.cases p{font-size:14px;color:var(--char-2)}
+@media (max-width:1000px){.creds{grid-template-columns:1fr 1fr}.creds div:nth-child(3){padding-left:0;border-left:0}.cases{grid-template-columns:1fr}}
+@media (max-width:560px){.creds{grid-template-columns:1fr}.creds div{padding-left:0!important;border-left:0!important}}
+.channels{display:flex;flex-wrap:wrap;gap:10px}
+.channels a{display:flex;flex-direction:column;padding:16px 18px;min-width:150px;border:1px solid var(--line-strong);border-radius:var(--r-m);text-decoration:none;background:#fff}
+.channels a b{font-size:15.5px}.channels a small{font-size:13px;color:var(--char-2)}
+@media (max-width:1000px){
+  .ab-hero .wrap{grid-template-columns:1fr}
+  .ab-photo{justify-self:start;max-width:360px;order:-1;aspect-ratio:1/1}
+  .fd{grid-template-columns:1fr 1fr}.fd div:nth-child(3){border-left:0;padding-left:0}
+  .roles{grid-template-columns:1fr 1fr}
+  .phil{grid-template-columns:repeat(3,1fr)}.phil div:nth-child(4){border-left:0}.phil div:nth-child(n+4){border-top:1px solid var(--line)}
+}
+@media (max-width:640px){
+  .tl article{grid-template-columns:1fr;gap:8px;padding-left:28px}
+  .fd,.roles,.scope{grid-template-columns:1fr}.fd div{padding-left:0!important;border-left:0!important}
+  .phil{grid-template-columns:1fr 1fr}.phil div:nth-child(odd){border-left:0}.phil div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+</style></head>
+<body>
+<div data-hdr data-site></div>
+<main>
+<section class="pg-hero ab-hero" data-screen-label="About · Hero">
+  <div class="wrap">
+    <div>
+      <nav class="pg-crumb"><a href="Home.html">홈</a> › About</nav>
+      <div class="eyebrow">About Human MCP</div>
+      <h1>사업을 해본 사람이,<br>사업하는 분의 편에서.</h1>
+      <p class="lede">무역에서 시작해 퍼포먼스 마케팅, 스타트업 사업기획·R&amp;D를 거쳐 지금은 금융·M&amp;A·기업자문을 합니다. 10년 동안 다섯 번 자리를 옮기며 배운 것으로, 회사의 경영과 대표·가족의 재무를 함께 자문합니다.</p>
+      <p class="ab-sign">박동혁<small>Entrepreneurial Advisor · 중소기업경영연구소 전문위원 · 씨오㈜ M&amp;A 파트너 · 한국AI기술협회 R&amp;D 기술교류위원장 · Authentic금융그룹(AFG)</small></p>
+      <div class="ctas"><a class="btn btn-primary" href="Booking.html">30분 첫 상담 예약</a><a class="btn btn-secondary" href="#story">이야기 읽기</a></div>
+    </div>
+    <div class="ab-photo"><img src="../assets/photo-standing-wide.webp" alt="박동혁 프로필 사진" style="object-position:68% 30%"></div>
+  </div>
+</section>
+
+<div class="jump"><div class="wrap"><a href="#story">걸어온 길</a><a href="#cases">사례</a><a href="#why">왜 종합자문인가</a><a href="#base">네 가지 기반</a><a href="#roles">하는 일</a><a href="#phil">자문철학</a><a href="#scope">업무 범위</a><a href="#ch">채널</a></div></div>
+
+<section class="pg-sec" id="story" data-screen-label="About · 타임라인">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">My journey</div><h2>10년, 다섯 번의 전환</h2></div><p>무역 → 광고 에이전시 → 스타트업 인하우스 → 사업기획·R&amp;D → 금융·M&amp;A·컨설팅. 분야는 달라졌지만 한 가지는 같았습니다. 구조로 매출을 만드는 일. <a class="link-arrow" href="https://mattpark45.github.io/portfolio_2026/" target="_blank" rel="noopener">포트폴리오 전체 보기 ↗</a></p></div>
+    <div class="tl">
+      <article><div class="when">2016 – 2018<b>수산업 무역</b></div><div><h3>국경을 넘는 거래부터</h3><p>일본·러시아·베트남·미국·캐나다를 상대로 연 53억 원 규모의 수산물 무역을 맡았습니다. 국제무역사 1급.</p></div></article>
+      <article><div class="when">2018 – 2021<b>퍼포먼스 마케터</b></div><div><h3>고객을 데려오는 일</h3><p>광고 에이전시 이엠넷과 스타트업 인하우스에서 밀리의서재, 삼천리자전거, LS엠트론, 패스오더, 웨딩북 등의 캠페인을 운영했습니다. 월 50만 원부터 3억 원까지의 광고비를 다뤘고, 카카오 비즈보드 런칭 당일 집행 사례는 카카오 공식 성공사례로 실렸습니다.</p></div></article>
+      <article><div class="when">2021 – 현재<b>사업기획 · R&amp;D</b></div><div><h3>회사를 직접 키우는 쪽으로</h3><p>하우투메리·투알컴퍼니 선임연구원으로 정부지원사업 사업계획서, 기업부설연구소 운영, 노코드 MVP 제작을 맡았습니다. 회사는 2024 부산 우수창업기술기업(밀리언클럽), 이노비즈·벤처 인증을 받았고, 2025 스마트서비스 지원사업에 선정되었습니다. 웨딩북 베트남의 서비스 개편과 마케팅 전략도 코칭했습니다.</p></div></article>
+      <article><div class="when">2019 – 현재<b>강사 · 멘토 30건+</b></div><div><h3>가르치며 검증한 7년</h3><p>코멘토 리드멘토(평점 4.7/5.0), 알파코, 데이원컴퍼니, 넥스트러너스 등에서 퍼포먼스 마케팅, 생성형 AI, 사업계획서, 노코드 MVP를 가르쳤습니다. 계룡건설, LS엠트론 등 기업 사내 코칭도 진행했습니다.</p></div></article>
+      <article><div class="when">2025 – 현재<b>금융 · M&amp;A · 자문</b></div><div><h3>기업 의사결정의 자리로</h3><p>한국AI기술협회 R&amp;D 기술교류위원장, 씨오㈜ M&amp;A 파트너, 중소기업경영연구소 전문위원으로 기술 검증, 기업가치평가, 정부지원자금, 법인 컨설팅을 합니다. 지금은 Human MCP로 기업자문과 개인 종합금융을 함께 합니다.</p></div></article>
+    </div>
+    <div class="creds">
+      <div><h4>학력</h4><p>서강대학교 커뮤니케이션학 학사</p></div>
+      <div><h4>금융 자격</h4><p>퇴직연금모집인 · 변액보험판매 · 펀드투자권유대행인</p></div>
+      <div><h4>실무 자격</h4><p>국제무역사 1급 · 검색광고마케터 1급 · GAIQ</p></div>
+      <div><h4>소속 회사 수상·인증</h4><p>2024 부산 우수창업기술기업 · 이노비즈 · 혁신성장 벤처인증</p></div>
+    </div>
+    <p class="src-note">출처: 박동혁 포트폴리오 2026 (<a href="https://mattpark45.github.io/portfolio_2026/" target="_blank" rel="noopener">mattpark45.github.io/portfolio_2026</a>). 캠페인 성과는 담당 광고주 계정의 운영 결과이며 증빙 링크는 포트폴리오에 있습니다.</p>
+  </div>
+</section>
+
+<section class="pg-sec alt" id="cases" data-screen-label="About · 사례">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Selected work</div><h2>숫자로 남은 일</h2></div><p>광고비를 늘려서가 아니라 구조와 타이밍을 바꿔서 만든 결과입니다. 각 사례의 증빙 자료는 <a class="link-arrow" href="https://mattpark45.github.io/portfolio_2026/" target="_blank" rel="noopener">포트폴리오</a>에서 볼 수 있습니다.</p></div>
+    <div class="cases">
+      <div><span class="k">밀리의서재 · 2019→2020</span><div class="big">+108%</div><h3>유료결제 2배, 결제당 비용 −52%</h3><p>광고비는 4% 늘리는 데 그쳤고, 브랜드 인지도 순위는 5위에서 2위로 올랐습니다.</p></div>
+      <div><span class="k">카카오 비즈보드 · 2019.08</span><div class="big">+284%</div><h3>런칭 당일 집행, 회원가입률 향상</h3><p>카카오 For Business 공식 성공사례로 실렸습니다.</p></div>
+      <div><span class="k">패스오더 · 웨딩북</span><div class="big">−60%</div><h3>앱 설치당 비용 절감</h3><p>패스오더 다운로드 비용 −63%, 6개월 방치된 웨딩북 캠페인을 원격으로 재정비해 설치당 비용 −60%.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec dark on-dark" id="why" data-screen-label="About · 왜">
+  <div class="wrap ab-quote">
+    <div class="eyebrow">Why integrated advisory</div>
+    <blockquote style="margin-top:20px">대표의 고민은 회사 안에서 끝나지 않습니다. 회사의 세금은 가족의 재산이 되고, 회사의 성장은 대표의 은퇴 계획이 됩니다.</blockquote>
+    <p>그래서 둘을 따로 상담하지 않습니다. 회사의 문제를 풀 때 대표 개인의 재무를 함께 보고, 개인의 재무를 설계할 때 회사의 단계를 함께 봅니다. 제가 할 수 있는 일은 직접 하고, 더 잘하는 전문가가 있으면 연결합니다.</p>
+  </div>
+</section>
+
+<section class="pg-sec" id="base" data-screen-label="About · 네 가지 기반">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Four foundations</div><h2>혼자가 아니라<br>네 가지 기반 위에서 일합니다</h2></div><p>각 기반에서 제가 직접 하는 일과, 조직의 공식 서비스, 협업 전문가가 하는 일을 구분해서 안내합니다.</p></div>
+    <div class="fd">
+      <div><span class="k">A · 기업자문 인프라</span><h3>중소기업경영연구소</h3><p>(주)KFPC 중소기업경영연구소의 경영컨설팅·자산관리 부문 전문위원으로 활동합니다.</p><ul><li>16개 분야 전문가 협업</li><li>세무·법률·노무·특허·M&amp;A 등</li></ul></div>
+      <div><span class="k">B · 금융서비스 인프라</span><h3>Authentic금융그룹</h3><p>AFG의 승인된 업무환경에서 개인·법인 금융서비스를 제공합니다.</p><ul><li>재무설계 · 위험관리</li><li>연금 · 은퇴 · 법인 금융</li></ul></div>
+      <div><span class="k">C · 기업가적 실무경험</span><h3>직접 해본 경험</h3><p>책이 아니라 현장에서 배운 것을 자문에 씁니다.</p><ul><li>무역 · 퍼포먼스 마케팅</li><li>정부 R&amp;D · 기업인증</li><li>M&amp;A(씨오㈜) · AI 기술 검증(한국AI기술협회)</li></ul></div>
+      <div><span class="k">D · 자체 디지털 기술</span><h3>직접 만든 도구</h3><p>상담 전에 고객이 스스로 상황을 보도록 돕는 도구를 만듭니다.</p><ul><li>재무X레이 · 사업자주치의AI</li><li>Corporate Signal Engine</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec dark on-dark" id="roles" data-screen-label="About · 역할">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">What I do</div><h2>하나의 직함으로는<br>설명하기 어려운 일</h2></div><p>고객에게는 한 사람이지만, 문제에 따라 다른 역할로 일합니다.</p></div>
+    <div class="roles">
+      <div><b>Corporate Advisor</b><small>기업 경영자문</small><p>경영과제를 정리하고 해결 방법을 찾습니다.</p></div>
+      <div><b>Financial Advisor (GA)</b><small>개인·법인 종합금융</small><p>생애 단계에 맞는 재무설계와 실행을 돕습니다.</p></div>
+      <div><b>Deal Originator</b><small>투자 · M&amp;A</small><p>투자와 거래의 기회를 발견하고 연결합니다.</p></div>
+      <div><b>Rainmaker</b><small>사업기회 연결</small><p>사람·기업·기관을 이어 새로운 기회를 만듭니다.</p></div>
+      <div><b>Performance Marketer</b><small>고객획득</small><p>매출로 이어지는 마케팅 구조를 설계합니다.</p></div>
+      <div><b>AI Product Builder</b><small>AI/AX</small><p>자문에 쓰는 도구를 직접 만들고 기업의 AI 도입을 돕습니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec" id="phil" data-screen-label="About · 자문철학">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Advisory philosophy</div><h2>위험만이 아니라<br>혜택과 성장까지</h2></div><p>Risk Finding, Benefit Finding, Growth Finding. 지켜야 할 것, 놓치고 있는 것, 다음에 할 것을 같은 자리에서 봅니다. 이를 여섯 단계로 실행합니다.</p></div>
+    <div class="phil">
+      <div><b>이해</b><small>Understand</small><p>현재 상황과 미래 목표를 듣습니다.</p></div>
+      <div><b>보호</b><small>Protect</small><p>막을 수 있는 위험부터 막습니다.</p></div>
+      <div><b>최적화</b><small>Optimize</small><p>세금·비용·구조를 다듬습니다.</p></div>
+      <div><b>성장</b><small>Grow</small><p>회사와 자산이 자랄 길을 찾습니다.</p></div>
+      <div><b>실현</b><small>Realize</small><p>승계·Exit·은퇴로 가치를 실현합니다.</p></div>
+      <div><b>지속</b><small>Sustain</small><p>정기 점검으로 계획을 이어갑니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec alt" id="scope" data-screen-label="About · 업무 범위">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Scope</div><h2>하는 일과 하지 않는 일</h2></div><p>신뢰는 경계를 분명히 할 때 생긴다고 믿습니다.</p></div>
+    <div class="scope">
+      <div class="card"><h3>제가 하는 일</h3><ul><li>상황을 듣고 문제와 목표를 정리합니다</li><li>재무설계와 승인된 금융서비스를 제공합니다</li><li>마케팅·GTM·AI/AX를 직접 지원합니다</li><li>필요한 전문가를 연결하고 끝까지 조율합니다</li></ul></div>
+      <div class="card no"><h3>하지 않는 일</h3><ul><li>세무 신고·법률 자문·노무 대리를 직접 하지 않습니다 (자격 보유 협업 전문가가 수행)</li><li>보험 가입을 다른 서비스의 조건으로 두지 않습니다</li><li>확인되지 않은 수익이나 결과를 약속하지 않습니다</li><li>공개 웹에서 민감한 개인정보를 받지 않습니다</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec" id="ch" data-screen-label="About · 채널">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Channels</div><h2>편한 곳에서 만나세요</h2></div><p>글은 블로그와 브런치에, 짧은 생각은 SNS에 남깁니다.</p></div>
+    <div class="channels">
+      <a href="#"><b>네이버 블로그</b><small>경영·재무 글</small></a><a href="#"><b>브런치</b><small>긴 글 · 에세이</small></a><a href="#"><b>YouTube</b><small>영상 해설</small></a><a href="#"><b>LinkedIn</b><small>경력 · 네트워크</small></a><a href="#"><b>Instagram</b><small>@dhp.cfo</small></a><a href="#"><b>네이버 톡톡</b><small>간단한 문의</small></a><a href="/cdn-cgi/l/email-protection#07636f772964616847606a666e6b2964686a"><b>이메일</b><small><span class="__cf_email__" data-cfemail="402428306e23262f00272d21292c6e232f2d">[email&#160;protected]</span></small></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band on-dark"><div class="wrap">
+  <div><div class="eyebrow">Let's talk</div><h2>지금 상황을 듣는 것부터<br>시작하겠습니다</h2><p>30분 동안 고민과 목표를 듣고, 도울 수 있는 일인지 솔직하게 말씀드립니다.</p></div>
+  <div class="ctas"><a class="btn btn-gold" href="Booking.html">30분 첫 상담 예약</a><a class="btn btn-ghost-light" href="Diagnostics.html">먼저 점검해 보기</a></div>
+</div></section>
+</main>
+<div data-ftr></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/chrome.js"></script>
+</body></html>

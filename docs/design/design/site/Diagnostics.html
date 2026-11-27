@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>디지털 진단센터 — 3분 점검·재무X레이·사업자주치의AI | Human MCP</title>
+<meta name="description" content="상담 전에 스스로 확인해 보세요. 3분 점검, 재무X레이 Scout, 사업자주치의AI, 계산기. 민감정보는 받지 않습니다.">
+<link rel="stylesheet" href="../css/hmcp.css"><link rel="stylesheet" href="../css/pages.css">
+<style>
+.dc-hero .wrap{grid-template-columns:.9fr 1.1fr;align-items:center}
+.dc-hero h1{color:var(--ivory)}
+.dc-trust{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px;font-size:14.5px;color:rgba(246,243,236,.78)}
+.dc-trust li{display:flex;gap:10px;align-items:baseline}
+.dc-trust li::before{content:"";flex:none;width:14px;height:1px;background:var(--gold-light);transform:translateY(-4px)}
+.tool-row{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;padding:72px 0;border-bottom:1px solid var(--line)}
+.tool-row:last-child{border:0}
+.tool-row.rev>div:first-child{order:2}
+.tool-row h2{font:600 clamp(26px,2.6vw,36px)/1.32 var(--f-serif);color:var(--green);margin:14px 0 14px}
+.tool-row p.l{color:var(--char-2);margin-bottom:20px}
+.tool-row .meta{display:flex;flex-wrap:wrap;gap:16px;font-size:13.5px;color:var(--char-2);margin-bottom:24px}
+.tool-row .meta span::before{content:"· ";color:var(--gold)}
+.mock{background:#fff;border:1px solid var(--line-strong);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--shadow-1)}
+.mock .top{display:flex;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);font-size:13px;color:var(--char-2)}
+.mock .in{padding:22px}
+.xr-search{display:flex;gap:8px;margin-bottom:18px}
+.xr-search input{flex:1;height:46px;border:1px solid var(--line-strong);border-radius:var(--r-s);padding:0 14px;font:inherit;min-width:0}
+.xr-row{display:grid;grid-template-columns:110px 1fr 54px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.xr-row .bar{height:8px;background:var(--ivory-2);border-radius:4px;overflow:hidden}
+.xr-row .bar i{display:block;height:100%;background:var(--green)}
+.xr-row b{font:500 12.5px var(--f-mono);text-align:right}
+.chat{display:grid;gap:12px}
+.chat .u{justify-self:end;background:var(--green);color:var(--ivory);padding:12px 16px;border-radius:14px 14px 4px 14px;max-width:80%;font-size:14.5px}
+.chat .a{justify-self:start;background:var(--ivory);padding:14px 16px;border-radius:14px 14px 14px 4px;max-width:88%;font-size:14.5px;line-height:1.65}
+.chat .a b{display:block;font-size:12.5px;letter-spacing:.08em;color:var(--green);margin-bottom:6px}
+.chat .a ul{margin:6px 0 0;padding-left:18px}
+.calcs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.calcs a{display:block;padding:22px;border:1px solid var(--line);border-radius:var(--r-m);background:#fff;text-decoration:none}
+.calcs b{display:block;font-size:16.5px;margin:10px 0 6px;color:var(--char)}
+.calcs p{font-size:14px;color:var(--char-2)}
+.privacy{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.privacy div{padding:26px;border-radius:var(--r-m);border:1px solid var(--line)}
+.privacy .ok{background:rgba(47,107,79,.06)}.privacy .no{background:rgba(162,59,46,.05)}
+.privacy h3{font:600 17px var(--f-sans);margin-bottom:12px}
+.privacy .ok h3{color:var(--ok)}.privacy .no h3{color:var(--err)}
+.privacy ul{margin:0;padding-left:18px;font-size:15px;display:grid;gap:6px}
+.tool-row>*{min-width:0}
+@media (max-width:1000px){.dc-hero .wrap,.tool-row{grid-template-columns:minmax(0,1fr);gap:32px}.tool-row.rev>div:first-child{order:0}.calcs{grid-template-columns:1fr 1fr}.privacy{grid-template-columns:1fr}}
+@media (max-width:560px){.calcs{grid-template-columns:1fr}.dc-trust{display:none}.tool-row{padding:48px 0}}
+</style></head>
+<body>
+<div data-hdr data-site></div>
+<main>
+<section class="pg-hero dark dc-hero on-dark" data-screen-label="Diagnostics · Hero">
+  <div class="wrap">
+    <div>
+      <nav class="pg-crumb"><a href="Home.html">홈</a> › 디지털 진단센터</nav>
+      <div class="eyebrow">Digital Diagnostic Center</div>
+      <h1>상담 전에,<br>스스로 먼저 확인하세요.</h1>
+      <p class="lede">질문 몇 개, 회사 이름 하나로 지금 챙겨야 할 것을 정리해 드립니다. 결과를 보고 필요할 때만 상담하시면 됩니다.</p>
+      <ul class="dc-trust"><li>이름·연락처 없이 바로 결과 확인</li><li>주민번호·계좌·건강정보는 묻지 않음</li><li>결과는 일반 안내이며 상품 권유가 아님</li></ul>
+    </div>
+    <div class="dx" id="dx" data-book="Booking.html" aria-live="polite">
+      <div class="dx-top"><span id="dxLabel">내 상황 점검</span><span id="dxStep">1 / 4</span></div>
+      <div class="dx-bar"><i id="dxBar" style="width:25%"></i></div>
+      <div class="dx-body" id="dxBody"></div>
+      <div class="dx-note">점검 결과는 저장되지 않습니다.</div>
+    </div>
+  </div>
+</section>
+
+<div class="jump"><div class="wrap"><a href="#xray">재무X레이 Scout</a><a href="#doctor">사업자주치의AI</a><a href="#pxray">개인 재무X레이</a><a href="#signal">Signal Engine</a><a href="#calc">계산기</a><a href="#privacy">정보 보호</a></div></div>
+
+<section class="wrap" data-screen-label="Diagnostics · 도구">
+  <div class="tool-row" id="xray">
+    <div>
+      <span class="status st-live">이용 가능</span>
+      <h2>재무X레이 Scout</h2>
+      <p class="l">회사 이름만 입력하면 공개 재무 데이터를 읽어 수익성·안정성·성장성의 흐름과 점검할 포인트를 보여 줍니다. 기본 진단은 무료입니다.</p>
+      <div class="meta"><span>법인</span><span>약 1분</span><span>공개 데이터만 사용</span></div>
+      <a class="btn btn-primary" href="#">재무X레이 시작하기</a> <span class="sample">실제 서비스 URL 연결</span>
+    </div>
+    <div class="mock" aria-hidden="true"><div class="top"><span>재무X레이 Scout</span><span>UI 예시</span></div><div class="in">
+      <div class="xr-search"><input value="(주)예시제조" readonly><span class="btn btn-primary" style="min-height:46px">조회</span></div>
+      <div class="xr-row"><span>수익성</span><span class="bar"><i style="width:62%"></i></span><b>보통</b></div>
+      <div class="xr-row"><span>안정성</span><span class="bar"><i style="width:38%;background:var(--warn)"></i></span><b>점검</b></div>
+      <div class="xr-row"><span>성장성</span><span class="bar"><i style="width:74%"></i></span><b>양호</b></div>
+      <div class="xr-row"><span>가지급금 신호</span><span class="bar"><i style="width:50%;background:var(--blue)"></i></span><b>확인</b></div>
+      <p style="font-size:12.5px;color:var(--char-2);margin-top:12px">가상의 회사 · 실제 데이터 아님</p>
+    </div></div>
+  </div>
+
+  <div class="tool-row rev" id="doctor">
+    <div>
+      <span class="status st-live">이용 가능</span>
+      <h2>사업자주치의AI</h2>
+      <p class="l">회사가 겪는 문제를 평소 말하듯 적으면, 관련 경영과제와 대응 방향, 어떤 분야의 전문가가 필요한지 정리해 드립니다.</p>
+      <div class="meta"><span>대표 · 개인사업자</span><span>AI 답변은 참고용</span></div>
+      <a class="btn btn-primary" href="#">질문해 보기</a> <span class="sample">실제 서비스 URL 연결</span>
+    </div>
+    <div class="mock" aria-hidden="true"><div class="top"><span>사업자주치의AI</span><span>UI 예시</span></div><div class="in chat">
+      <div class="u">직원이 15명인데 매년 인건비가 너무 올라요. 정부 지원 같은 게 있을까요?</div>
+      <div class="a"><b>정리한 과제</b>인건비 부담은 보통 세 가지로 나눠 볼 수 있습니다.<ul><li>고용 관련 정부지원금·세액공제 해당 여부</li><li>임금 구조와 4대보험 점검</li><li>업무 자동화로 인한 시간 절감</li></ul><span style="display:block;margin-top:8px;font-size:13px;color:var(--char-2)">관련 분야: 노무 · 세무 · AI/AX</span></div>
+    </div></div>
+  </div>
+
+  <div class="tool-row" id="pxray">
+    <div>
+      <span class="status st-consult">상담 시 제공</span>
+      <h2>개인 재무X레이</h2>
+      <p class="l">현금흐름, 자산, 보장 구조를 한 장으로 정리합니다. 민감한 정보가 필요해서 공개 웹이 아닌 상담 자리에서, 승인된 시스템으로만 진행합니다.</p>
+      <div class="meta"><span>개인 · 가족</span><span>상담 중 진행</span></div>
+      <a class="btn btn-secondary" href="Booking.html?type=personal">재무상담 예약</a>
+    </div>
+    <div class="ph" style="aspect-ratio:16/10;border-radius:var(--r-l)">리포트 샘플 이미지 자리 (개인정보 없는 예시본)</div>
+  </div>
+
+  <div class="tool-row rev" id="signal">
+    <div>
+      <span class="status st-soon">준비 중</span>
+      <h2>Corporate Signal Engine</h2>
+      <p class="l">공시, 정책 공고, 산업 동향에서 우리 회사와 관련된 변화 신호를 찾아 알려 주는 분석 엔진을 만들고 있습니다.</p>
+      <form class="h-search" onsubmit="this.querySelector('button').textContent='신청 완료 ✓';return false" style="display:flex;border:1.5px solid var(--char);background:#fff;max-width:440px"><label for="sg" style="position:absolute;left:-9999px">이메일</label><input id="sg" type="email" placeholder="이메일 주소" style="flex:1;border:0;height:50px;padding:0 14px;font:inherit;min-width:0;background:transparent"><button class="btn btn-primary" style="border-radius:0">출시 알림 받기</button></form>
+    </div>
+    <div class="mock" aria-hidden="true"><div class="top"><span>Signal 예시</span><span>준비 중</span></div><div class="in" style="display:grid;gap:0">
+      <div class="xr-row" style="grid-template-columns:60px 1fr"><b style="text-align:left;color:var(--gold-ink)">정책</b><span>제조업 스마트공장 지원사업 2차 공고</span></div>
+      <div class="xr-row" style="grid-template-columns:60px 1fr"><b style="text-align:left;color:var(--gold-ink)">세법</b><span>가업상속공제 요건 개정</span></div>
+      <div class="xr-row" style="grid-template-columns:60px 1fr"><b style="text-align:left;color:var(--gold-ink)">산업</b><span>베트남 외국인 투자 인센티브 변경</span></div>
+    </div></div>
+  </div>
+</section>
+
+<section class="pg-sec alt" id="calc" data-screen-label="Diagnostics · 계산기">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Calculators</div><h2>자주 묻는 질문을<br>숫자로 확인하기</h2></div><p>모든 계산기는 가정과 한계를 함께 표시합니다. 결과는 참고용입니다. <span class="sample">계산 로직 검증 후 공개</span></p></div>
+    <div class="calcs">
+      <a href="Personal.html#calc"><span class="status st-live">이용 가능</span><b>은퇴자금 계산기</b><p>은퇴 후 부족한 금액을 대략 확인</p></a>
+      <a href="#"><span class="status st-soon">준비 중</span><b>연금 수령 순서</b><p>연금 종류별 꺼내 쓰는 순서와 세금</p></a>
+      <a href="#"><span class="status st-soon">준비 중</span><b>법인전환 손익</b><p>개인사업자 → 법인 전환 시 세금 비교</p></a>
+      <a href="#"><span class="status st-soon">준비 중</span><b>급여 vs 배당</b><p>대표 보수 구조별 세금·4대보험</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec" id="privacy" data-screen-label="Diagnostics · 정보 보호">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Your data</div><h2>받는 정보와<br>받지 않는 정보</h2></div><p>진단 도구는 고객이 스스로 상황을 보도록 돕는 것이 목적입니다.</p></div>
+    <div class="privacy">
+      <div class="ok"><h3>진단에서 쓰는 정보</h3><ul><li>점검 질문에 대한 선택 (저장하지 않음)</li><li>회사 이름 (공개 재무 데이터 조회용)</li><li>상담 예약 시 이름·연락처 (동의 후)</li></ul></div>
+      <div class="no"><h3>공개 웹에서 받지 않는 정보</h3><ul><li>주민등록번호</li><li>건강정보 · 병력</li><li>보험계약 상세 · 계좌 · 인증정보</li></ul></div>
+    </div>
+  </div>
+</section>
+</main>
+<div data-ftr></div>
+<script src="../js/chrome.js"></script>
+<script src="../js/dx.js"></script>
+</body></html>

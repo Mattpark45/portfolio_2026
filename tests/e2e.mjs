@@ -28,7 +28,7 @@ await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}${PREFIX}`;
 const failedRequests = [];
 
-const PAGES = ['/', '/individuals/', '/business/', '/how-we-work/', '/insights/', '/insights/policy-fund-2027/', '/insights/ai-basic-act-sme/', '/insights/family-business-succession-2026/', '/insights/vietnam-export-2027/', '/insights/first-meeting/', '/insights/company-vs-owner/', '/insights/support-programs/', '/prepare/', '/about/', '/contact/', '/privacy/'];
+const PAGES = ['/', '/individuals/', '/business/', '/how-we-work/', '/insights/', '/insights/policy-fund-2027/', '/insights/ai-basic-act-sme/', '/insights/family-business-succession-2026/', '/insights/minimum-wage-2027/', '/insights/first-meeting/', '/insights/company-vs-owner/', '/insights/support-programs/', '/prepare/', '/about/', '/contact/', '/privacy/'];
 const VIEWPORTS = { mobile: { width: 390, height: 844 }, desktop: { width: 1280, height: 800 } };
 const results = [];
 const check = (name, cond, detail = '') => results.push({ name, pass: !!cond, detail });

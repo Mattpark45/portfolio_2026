@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>전문가 협업 네트워크 — 문제별 Routing | Human MCP</title>
+<meta name="description" content="중소기업경영연구소 16개 분야 협업 전문가와 함께 일하는 방식. 문제를 고르면 누가 어떤 역할로 함께하는지 보여 드립니다.">
+<link rel="stylesheet" href="../css/hmcp.css"><link rel="stylesheet" href="../css/pages.css">
+<style>
+.router{display:grid;grid-template-columns:340px 1fr;gap:0;border:1px solid var(--line-strong);border-radius:var(--r-l);overflow:hidden;background:#fff}
+.r-list{border-right:1px solid var(--line);background:var(--paper)}
+.r-list h3{font:600 12px var(--f-sans);letter-spacing:.14em;color:var(--char-2);padding:20px 22px 12px}
+.r-list button{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:16px 22px;min-height:56px;border:0;border-top:1px solid var(--line);background:none;font:500 15.5px var(--f-sans);color:var(--char);cursor:pointer}
+.r-list button:hover{background:var(--ivory)}
+.r-list button[aria-selected=true]{background:var(--green);color:var(--ivory)}
+.r-list button small{font-size:12.5px;color:var(--char-2)}
+.r-list button[aria-selected=true] small{color:var(--gold-light)}
+.r-view{padding:32px 36px}
+.r-view .q{font:600 24px/1.4 var(--f-serif);color:var(--green);margin-bottom:6px}
+.r-view .sub{color:var(--char-2);font-size:15px;margin-bottom:28px}
+.flow{display:grid;gap:0}
+.flow .st{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line);align-items:start}
+.flow .st:last-child{border-bottom:1px solid var(--line)}
+.flow .who{font:600 12.5px var(--f-sans);padding:5px 8px;border-radius:3px;justify-self:start}
+.flow .who.d{background:var(--green-100);color:var(--green)}
+.flow .who.c{background:rgba(82,116,135,.12);color:var(--blue-ink)}
+.flow .who.r{background:var(--ivory-2);color:var(--char-2)}
+.flow b{display:block;font-size:16px;margin-bottom:3px}
+.flow span{font-size:14.5px;color:var(--char-2)}
+.r-view .cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.grid16{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.grid16 div{background:var(--paper);padding:22px 20px;min-height:140px}
+.grid16 h4{font:600 16.5px/1.4 var(--f-sans);color:var(--green);margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+.grid16 h4 i{font-style:normal;font-size:11px;font-weight:600;padding:3px 6px;border-radius:3px;background:rgba(82,116,135,.12);color:var(--blue-ink);height:fit-content;white-space:nowrap}
+.grid16 h4 i.d{background:var(--green-100);color:var(--green)}
+.grid16 p{font-size:13.5px;color:var(--char-2);line-height:1.6}
+.partner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.partner ul{list-style:none;padding:0;margin:0;border-top:1px solid rgba(246,243,236,.2)}
+.partner li{padding:16px 0;border-bottom:1px solid rgba(246,243,236,.14);display:flex;justify-content:space-between;gap:16px;font-size:15.5px}
+.partner li small{color:rgba(246,243,236,.65);font-size:13.5px}
+@media (max-width:1000px){.router{grid-template-columns:1fr}.r-list{border-right:0;border-bottom:1px solid var(--line);display:flex;overflow-x:auto}.r-list h3{display:none}.r-list button{flex:none;width:auto;border-top:0;border-right:1px solid var(--line)}.r-list button small{display:none}.grid16{grid-template-columns:1fr 1fr}.partner{grid-template-columns:1fr}}
+@media (max-width:560px){.r-view{padding:24px 20px}.flow .st{grid-template-columns:1fr;gap:8px}.grid16{grid-template-columns:1fr}.grid16 div{min-height:0}}
+</style></head>
+<body>
+<div data-hdr data-site></div>
+<main>
+<section class="pg-hero" data-screen-label="Network · Hero">
+  <div class="wrap">
+    <div>
+      <nav class="pg-crumb"><a href="Home.html">홈</a> › <a href="Corporate.html">기업 경영자문</a> › 전문가 협업</nav>
+      <div class="eyebrow">Expert Network</div>
+      <h1>문제는 하나로 오지 않습니다.<br>그래서 팀으로 풉니다.</h1>
+      <p class="lede">세금 문제가 승계 문제가 되고, 노무 문제가 비용 문제가 됩니다. 저는 문제를 정리하고 맞는 전문가를 찾아 한 팀으로 묶고, 끝날 때까지 조율합니다.</p>
+      <div class="ctas"><a class="btn btn-primary" href="#router">문제별로 보기</a><a class="btn btn-secondary" href="Booking.html?type=partner">전문가 협업 문의</a></div>
+    </div>
+    <aside class="aside"><h3>협업 원칙</h3><ul><li>자격이 필요한 일은 자격자가 합니다</li><li>누가 무엇을 하는지 처음부터 알려 드립니다</li><li>전문가 비용은 각 전문가가 직접 안내합니다</li><li>대표님이 같은 설명을 반복하지 않게 합니다</li></ul></aside>
+  </div>
+</section>
+
+<section class="pg-sec" id="router" data-screen-label="Network · Routing">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">Routing</div><h2>문제를 고르면<br>누가 함께하는지 보입니다</h2></div><p>Evidence → Routing → Action. 실제 상담에서 일이 어떻게 나뉘는지 보여 드립니다.</p></div>
+    <div class="router">
+      <div class="r-list" role="tablist" aria-label="문제 선택"><h3>문제 선택</h3></div>
+      <div class="r-view" id="rView" role="tabpanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec alt" data-screen-label="Network · 16분야">
+  <div class="wrap">
+    <div class="pg-h"><div><div class="eyebrow">16 fields</div><h2>함께하는 16개 분야</h2></div><p>출처: 중소기업경영연구소 컨설팅 가이드북. 협력사 실명과 실적은 연구소 게시 허락 후 표시합니다. <span class="sample">실명 게시 확인 필요</span></p></div>
+    <div class="grid16">
+      <div><h4>WM센터 (Tax) <i>협업</i></h4><p>기업·CEO 세무 통합 서비스, 분야별 전문가그룹 배정</p></div>
+      <div><h4>세무 <i>협업</i></h4><p>법인세 절세, 가지급금, 가업승계, 세무조사 대응</p></div>
+      <div><h4>관세 <i>협업</i></h4><p>수출입통관, 관세 감면·환급, FTA·AEO</p></div>
+      <div><h4>노무 <i>협업</i></h4><p>임금 설계, 노동청 조사, 중대재해처벌법</p></div>
+      <div><h4>법무 · 행정 <i>협업</i></h4><p>법인 등기, 인·허가, 벤처·이노비즈 인증 신청</p></div>
+      <div><h4>법률 <i>협업</i></h4><p>기업법무, 상속분쟁, 계약서 검토, 지재권 소송</p></div>
+      <div><h4>특허 <i>협업</i></h4><p>출원·등록, IP 전략, IP 금융, PCT</p></div>
+      <div><h4>M&amp;A <i>협업</i></h4><p>매각·인수 자문, 실사·가치평가, 지배구조</p></div>
+      <div><h4>기업신용평가 <i>협업</i></h4><p>공공·민간 입찰용 신용등급, TCB 기술신용평가</p></div>
+      <div><h4>부동산 · 감정평가 <i>협업</i></h4><p>부동산 자문, 감정평가</p></div>
+      <div><h4>기업금융 <i>협업</i></h4><p>투자 IR, 기술금융, IPO, 액셀러레이팅</p></div>
+      <div><h4>기업인증 · R&amp;D <i>협업</i></h4><p>ISO·CE·ESG, R&amp;D·바우처, 정책자금</p></div>
+      <div><h4>법정의무교육 · 기업교육 <i>협업</i></h4><p>법정의무교육, 커뮤니케이션 교육</p></div>
+      <div><h4>비용절감 <i>협업</i></h4><p>비용 진단 → 절감 리포트 → 절감 컨설팅</p></div>
+      <div><h4>의료 · 건강 <i>협업</i></h4><p>임직원 건강검진 등 의료 연계</p></div>
+      <div><h4>경영컨설팅 · 자산관리 <i class="d">직접</i></h4><p>문제 정리, 설계, 조율, 금융서비스 (Human MCP)</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pg-sec dark on-dark" data-screen-label="Network · 파트너">
+  <div class="wrap partner">
+    <div>
+      <div class="eyebrow">For partners</div>
+      <h2 style="font:600 clamp(26px,2.8vw,38px)/1.32 var(--f-serif);margin:14px 0 16px">함께 일할 전문가와<br>파트너를 찾습니다</h2>
+      <p>고객의 문제를 함께 풀 전문서비스 제공자, 투자자·금융기관, 기술기업, 교육기관과의 협업을 환영합니다.</p>
+      <a class="btn btn-gold" href="Booking.html?type=partner" style="margin-top:24px">전문가 협업 문의</a>
+    </div>
+    <ul>
+      <li>전문서비스 제공자 <small>세무·법률·노무·특허 등</small></li>
+      <li>투자자 · 금융기관 <small>투자 · 기업금융</small></li>
+      <li>기술기업 <small>AI · 소프트웨어</small></li>
+      <li>교육기관 <small>기업교육 · 강의</small></li>
+      <li>사업개발 파트너 <small>공동사업 · 해외진출</small></li>
+    </ul>
+  </div>
+</section>
+</main>
+<div data-ftr></div>
+<script src="../js/chrome.js"></script>
+<script>
+const R=[
+ {k:'가지급금이 계속 쌓여요',t:'세무 · 개인재무',sub:'회사 자금과 대표 개인 자금을 함께 봐야 하는 문제입니다.',f:[['d','Human MCP','현황 정리 · 정리 수단 비교 · 대표 개인 현금흐름 설계'],['c','세무사','정리 방법별 세금 계산 · 실행'],['d','Human MCP','급여·배당 구조와 개인 재무 계획 연결'],['c','노무사 (필요 시)','임원 보수 규정 정비']],cta:['Booking.html?type=corp&topic=가지급금','가지급금 상담']},
+ {k:'자녀에게 회사를 넘기고 싶어요',t:'승계 · 법률 · 세무',sub:'5~10년 단위로 준비할수록 선택지가 넓어집니다.',f:[['d','Human MCP','승계 목표 정리 · 가족 재무와 시간표 설계'],['c','세무사 · WM센터','지분 이전 방식과 가업상속공제 검토'],['c','변호사','정관·주주간 계약·지배구조'],['d','Human MCP','상속 재원과 대표 은퇴 자금 준비']],cta:['Owner.html','대표·가족 통합자문 보기']},
+ {k:'정책자금·인증을 받고 싶어요',t:'인증 · R&D · 행정',sub:'자격 검토부터 시작합니다. 선정을 보장하지 않습니다.',f:[['d','Human MCP','회사 단계·요건 점검 · 우선순위 정리'],['c','인증·R&D 전문가','벤처·이노비즈·연구소 인증, R&D 과제 준비'],['c','행정사','인·허가와 신청 서류'],['c','특허 (필요 시)','IP 확보로 가점·요건 보완']],cta:['Booking.html?type=corp&topic=정책자금·인증','정책자금 상담']},
+ {k:'노무 분쟁이 걱정돼요',t:'노무 · 법률',sub:'예방이 가장 저렴합니다.',f:[['d','Human MCP','상황 정리 · 일정 조율'],['c','노무사','임금 구조·규정 점검, 노동청 대응'],['c','변호사 (분쟁 시)','소송·분쟁 대응'],['c','중대재해 전문가','위험성 평가']],cta:['Booking.html?type=corp&topic=노무','노무 상담']},
+ {k:'회사를 매각하고 싶어요',t:'M&A · 세무 · 자산관리',sub:'매각 전 준비와 매각 후 자산 관리까지 이어집니다.',f:[['d','Human MCP','매각 목표·시기 정리, 기업가치 저해 요인 점검'],['c','회계법인','가치평가 · 실사 · 매각 자문'],['c','세무사 · 변호사','거래 구조와 세금, 계약'],['d','Human MCP','매각 대금 자산 설계 · 가족 재무']],cta:['Growth.html#capital','Capital &amp; Deal 보기']},
+ {k:'해외로 수출하고 싶어요',t:'GTM · 관세 · 법률',sub:'베트남은 직접 참여한 사업 경험을 바탕으로 안내합니다.',f:[['d','Human MCP','시장 적합성 · 진출 방식 · 바이어 발굴 방향'],['c','관세사','FTA·원산지·통관'],['c','변호사','현지 계약 검토'],['c','특허 (필요 시)','해외 출원 · PCT']],cta:['Growth.html#global','해외진출 보기']}
+];
+const list=document.querySelector('.r-list'),view=document.getElementById('rView');
+const lbl={d:'직접',c:'협업',r:'소개'};
+R.forEach((r,i)=>{const b=document.createElement('button');b.setAttribute('role','tab');b.innerHTML=`<span>${r.k}</span><small>${r.t}</small>`;b.onclick=()=>show(i);list.appendChild(b)});
+function show(i){const r=R[i];list.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-selected',k===i));
+ view.innerHTML=`<p class="q">"${r.k}"</p><p class="sub">${r.sub}</p><div class="flow">${r.f.map(([c,w,d])=>`<div class="st"><span class="who ${c}">${lbl[c]}</span><div><b>${w}</b><span>${d}</span></div></div>`).join('')}</div><div class="cta"><a class="btn btn-primary" href="${r.cta[0]}">${r.cta[1]}</a></div>`}
+show(0);
+</script>
+</body></html>
