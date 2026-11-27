@@ -27,7 +27,7 @@
 규칙: Brass Gold 원색(#AC8B46)은 글자색으로 쓰지 않는다. 포커스 표시는 brass 3px 테두리(비텍스트 3:1 충족).
 
 ## 3. 타이포그래피
-- 서체: Pretendard Variable(폰트 CDN 차단 시 시스템 한글 서체로 대체되어도 레이아웃 유지).
+- 서체: 제목(h1·h2) **Noto Serif KR 700**(@fontsource 5.3.1, jsDelivr, 필요한 글자 구간만 내려받음), 본문 **Pretendard Variable**. CDN 차단 시 시스템 서체로 대체되어도 레이아웃 유지.
 - h1 clamp(2rem→3.2rem), h2 clamp(1.5rem→2.2rem), h3 1.15rem, 본문 16px·행간 1.7, `word-break: keep-all`.
 - 강조: h1 안의 `<em>`은 형광펜형 brass 밑줄(굵기·색으로만 강조, 기울임 없음).
 - eyebrow: 대문자 영문 소제목 + 앞쪽 brass 선 22px.
@@ -43,6 +43,15 @@
 - 최소 크기 24px, 주변 여백은 마크 높이의 25% 이상. 배경은 forest 고정.
 - 정식 CI(로고 파일·사용 규정)는 디자이너 검토 후 확정한다. 이 마크는 v1 임시안이다.
 
+## 5-1. 아이콘
+- **Lucide** (lucide-static 1.77.0, ISC 라이선스, `assets-src/icons/LICENSE-lucide`). 선 굵기 1.5px, 24px 격자, 색은 `currentColor`(기본 Forest, 강조 Brass).
+- 사용법: 페이지에 `<span class="ico" data-icon="이름"></span>`을 쓰고 `npm run layout` → SVG가 인라인으로 들어간다(외부 요청 없음). 새 아이콘은 lucide-static에서 `assets-src/icons/`로 복사한다.
+- 생성형 AI로 만든 아이콘은 섞지 않는다(굵기·격자 불일치).
+
+## 5-2. 인물 사진
+- `site/assets/img/profile-480.webp`, `profile-720.webp` (사용자 제공 프로필, 2026-11-27). 홈 히어로와 소개 페이지에만 사용.
+- 다른 인물·고객 사진은 실제 촬영본과 초상권 동의가 있을 때만 추가한다.
+
 ## 6. 구성 요소 (구현 현황)
 | 요소 | 상태 | 클래스 |
 |---|---|---|
@@ -56,6 +65,8 @@
 | Form 요소(선택·서술) | 구현(전송 없음) | `.q`, `.opts`, `textarea` |
 | Alert/Notice | 구현 | `.notice`, `.notice.calm` |
 | Status 메시지 | 구현 | `.status[role=status]` |
+| 신뢰 띠 / 서비스+도구 카드 / 7개 영역 바 / 자기점검 띠 / 4단계 여정 | 구현 | `.trust`, `.services`, `.tools`, `.domains`, `.check-band`, `.journey.four` |
+| 상태 배지(이용 가능/준비 중) | 구현 | `.badge.live`, `.badge.soon` |
 | Modal, Table, Chart, Loading, Empty, Error(폼) | **미구현** | 진단센터·예약 기능 도입 시 추가 |
 
 ## 7. 사진·이미지 원칙

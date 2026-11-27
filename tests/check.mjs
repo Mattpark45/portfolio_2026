@@ -61,6 +61,7 @@ for (const file of sitePages) {
   for (const w of FORBIDDEN) ok(!text.includes(w), `${rel}: 미심의 금지 표현 "${w}"`);
   for (const w of PLACEHOLDER) ok(!s.includes(w), `${rel}: 작업용 문구 "${w}"`);
 
+  ok(!/srcset="[^"]*(^|[\s,"])\/(?!\/)/.test(s) && !/srcset="\/(?!\/)/.test(s), `${rel}: srcset 루트 기준 경로 금지`);
   ok(!/\b(href|src)="\/(?!\/)/.test(s), `${rel}: 루트 기준 내부 링크 금지 (하위 경로 배포에서 깨짐) — scripts/sync_layout.py 실행`);
   for (const [, href] of s.matchAll(/href="([^"]+)"/g)) {
     if (/^(mailto:|tel:)/.test(href)) continue;
