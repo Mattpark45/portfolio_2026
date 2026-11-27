@@ -188,7 +188,7 @@ def article_page(a):
     </header>
     <div class="ar-meta">
       <img src="/static/assets/portrait.webp" alt="" width="765" height="1024">
-      <div class="ar-who"><b>박동혁</b><span>Human MCP · 중소기업경영연구소 전문위원</span></div>
+      <div class="ar-who"><b>박동혁</b><span>Human MCP · 중소기업경영연구소 경영컨설팅·자산관리 부문 전문위원</span></div>
       <div class="dates">작성 <b>{dot(a['published'])}</b> · 최근 검토 <b>{dot(a['reviewed'])}</b> · 자료 기준일 <b>{dot(basis)}</b><br>검토: {esc(a['reviewer'])}</div>
     </div>
   </div>
