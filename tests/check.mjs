@@ -28,7 +28,9 @@ const FORBIDDEN = [
   '삼성생명', 'GFC', 'AFG', 'A-CARE', 'A-LINK', 'A-LINE', '메디빅뱅', '설계사',
 ];
 const PLACEHOLDER = ['교체 필요', '교체 권장', 'TODO', 'lorem', 'example.com'];
-const ALLOWED_HOSTS = new Set(['ebook.icm.re.kr', 'mattpark45.github.io', 'cdn.jsdelivr.net', 'calendar.app.google', 'calendar.google.com', 'schema.org']);
+// 공식 채널은 사용자가 운영하는 litt.ly/dhpcfo 에서 확인한 주소만 허용
+const ALLOWED_HOSTS = new Set(['ebook.icm.re.kr', 'mattpark45.github.io', 'cdn.jsdelivr.net', 'calendar.app.google', 'calendar.google.com', 'schema.org',
+  'blog.naver.com', 'brunch.co.kr', 'www.youtube.com', 'www.instagram.com', 'www.linkedin.com', 'talk.naver.com']);
 
 // scripts/sync_layout.py 와 같은 규칙: 루트 기준 링크 → 페이지 깊이에 맞춘 상대경로
 const relativize = (html, depth) => html.replace(/\b(href|src)="\/(?!\/)([^"]*)"/g, (_, a, p) => `${a}="${depth === 0 ? './' : '../'.repeat(depth)}${p}"`);

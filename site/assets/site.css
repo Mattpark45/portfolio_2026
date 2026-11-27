@@ -1,19 +1,29 @@
-/* Human MCP — Digital Advisory Branch */
+/* Human MCP — Digital Advisory Branch · Entrepreneurial Advisor design */
 :root {
-  --navy: #0b2340;
-  --navy-2: #163a63;
-  --ink: #18212d;
-  --muted: #586473;
-  --line: #e4dfd6;
-  --cream: #f8f5ef;
-  --sand: #efe8dc;
-  --coral: #d9472b;          /* 흰 배경 대비 4.5:1 이상 */
-  --coral-soft: #fdf0eb;
-  --teal: #0f6b6b;
-  --white: #fff;
-  --radius: 16px;
+  /* ── Human MCP Design Tokens v1 (docs/DESIGN-SYSTEM.md) ──
+     모든 글자색 조합은 WCAG 2.2 AA(4.5:1) 이상으로 계산·검증했다. */
+  --forest: #143D30;        /* 주색: 신뢰·성장. 버튼, 제목, 어두운 섹션 */
+  --forest-2: #1F5643;      /* 주색 hover, 보조 강조 */
+  --ivory: #F6F3EC;         /* 기본 배경 톤 */
+  --ivory-2: #EEE8DC;       /* 강조 배경(알림, 칩) */
+  --charcoal: #252C2B;      /* 본문 글자 */
+  --muted: #5A615F;         /* 보조 글자 (ivory 5.7:1) */
+  --line: #E2DCCF;          /* 구분선 */
+  --brass: #AC8B46;         /* 장식 전용: 선·아이콘·큰 숫자. 작은 글자에 쓰지 않음 */
+  --brass-text: #7D6229;    /* 작은 강조 글자 (ivory 5.2:1) */
+  --brass-light: #D4B676;   /* 어두운 배경 위 강조 글자 (forest 6.2:1) */
+  --blue: #527487;          /* 보조색: 데이터·도구 영역 장식 */
+  --blue-text: #41657A;     /* 링크 (ivory 5.6:1) */
+  --on-dark: #C9D6CF;       /* 어두운 배경 위 보조 글자 (forest 8.1:1) */
+  --white: #FFFFFF;
+  /* 기존 이름 호환 */
+  --navy: var(--forest); --navy-2: var(--forest-2); --ink: var(--charcoal); --cream: var(--ivory);
+  --coral: var(--forest); --coral-soft: var(--ivory-2); --teal: var(--forest-2);
+  --radius: 14px;
+  --radius-lg: 20px;
   --max: 1120px;
-  --shadow: 0 1px 2px rgba(11,35,64,.06), 0 8px 24px rgba(11,35,64,.06);
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 88px;
+  --shadow: 0 1px 2px rgba(20,61,48,.05), 0 10px 30px rgba(20,61,48,.07);
   --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 * { box-sizing: border-box; }
@@ -193,3 +203,101 @@ textarea { width: 100%; min-height: 84px; border: 1px solid var(--line); border-
 
 [hidden] { display: none !important; }
 .card ul.chips { padding: 0; margin: 0; }
+
+/* ── Entrepreneurial Advisor 테마 (토큰 v1 적용 규칙) ── */
+body { background: var(--white); color: var(--charcoal); }
+a { color: var(--blue-text); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
+.skip:focus { background: var(--forest); color: var(--ivory); }
+
+/* 브랜드 마크 */
+.brand { flex-direction: row; align-items: center; gap: 10px; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.brand .word { display: flex; flex-direction: column; }
+.brand b { color: var(--forest); font-weight: 800; }
+.brand b span { color: var(--brass-text); }
+.brand small { color: var(--muted); }
+
+.nav a:hover, .nav a[aria-current="page"] { background: var(--ivory); }
+.menu-btn { color: var(--forest); }
+
+/* 버튼: 주색은 Forest, 보조는 테두리형 */
+.btn { background: var(--forest); color: var(--ivory) !important; border-radius: 999px; padding: 13px 24px; }
+.btn:hover { background: var(--forest-2); filter: none; }
+.btn.ghost { background: transparent; color: var(--forest) !important; border: 1.5px solid var(--forest); }
+.btn.light { background: var(--ivory); color: var(--forest) !important; }
+.btn.small { padding: 8px 16px; }
+.link-arrow { color: var(--forest); }
+.link-arrow::after { content: ""; }
+
+.eyebrow { color: var(--brass-text); display: inline-flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--brass); display: inline-block; }
+section.dark .eyebrow, .cta-band .eyebrow, .hero.dark .eyebrow { color: var(--brass-light); }
+h1, h2, h3 { color: var(--forest); }
+
+/* 섹션 톤 */
+.hero { background: var(--ivory); border-bottom: 1px solid var(--line); }
+.hero h1 em { font-style: normal; color: var(--forest-2); box-shadow: inset 0 -0.32em 0 rgba(172,139,70,.28); }
+section.alt { background: var(--ivory); }
+section.dark { background: var(--forest); }
+section.dark h2, section.dark h3 { color: var(--ivory); }
+section.dark .sub, section.dark p { color: var(--on-dark); }
+.cta-band { background: var(--forest); }
+.cta-band h2 { color: var(--ivory); }
+.cta-band p { color: var(--on-dark); }
+.cta-band .btn { background: var(--ivory); color: var(--forest) !important; }
+.cta-band .btn.ghost { background: transparent; color: var(--ivory) !important; border-color: var(--ivory); }
+
+/* 카드 */
+.card { border-color: var(--line); border-radius: var(--radius); }
+.card .num { color: var(--brass-text); }
+.audience { border-width: 1.5px; }
+.audience:hover { border-color: var(--brass); }
+.audience .go { color: var(--forest); }
+.chips li, section.alt .chips li { background: var(--ivory-2); border-color: transparent; color: var(--charcoal); }
+.fit .yes h3::before { color: var(--forest-2); }
+.journey li::before { color: var(--brass-text); }
+.journey-card li b, .steps li::before { background: var(--forest); color: var(--ivory); }
+.snap-card .tag { color: var(--blue-text); border-color: var(--blue); }
+.faq summary { color: var(--forest); }
+.faq summary::after { color: var(--brass-text); }
+.notice { background: var(--ivory-2); border-left-color: var(--brass); color: var(--charcoal); }
+.notice.calm { background: var(--ivory); border-left-color: var(--blue); }
+.opts label:has(input:checked) { border-color: var(--forest); background: var(--ivory-2); }
+.opts input { accent-color: var(--forest); }
+.summary { background: var(--forest); }
+.summary pre { color: var(--ivory); }
+.summary small { color: var(--on-dark); }
+.summary .btn.ghost { color: var(--ivory) !important; border-color: var(--ivory); }
+.status { color: var(--brass-light); }
+
+/* 상황별 진입 (Who are you) */
+.situations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.situation { display: flex; flex-direction: column; gap: 6px; padding: 20px; border: 1.5px solid var(--line); border-radius: var(--radius); background: #fff; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+.situation:hover { border-color: var(--brass); transform: translateY(-2px); }
+.situation b { color: var(--forest); font-size: 1.05rem; }
+.situation span { color: var(--muted); font-size: .93rem; }
+.situation .to { margin-top: auto; padding-top: 6px; font-weight: 700; font-size: .9rem; color: var(--blue-text); }
+@media (max-width: 900px) { .situations { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .situations { grid-template-columns: 1fr; } }
+
+/* 세 가지 진입 경로: 읽기 → 점검 → 상담 */
+.paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: #fff; }
+.paths > div { padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+.paths > div + div { border-left: 1px solid var(--line); }
+.paths .step { font-size: .8rem; font-weight: 800; letter-spacing: .1em; color: var(--brass-text); }
+.paths p { margin: 0; color: var(--muted); }
+.paths a { margin-top: auto; }
+@media (max-width: 760px) { .paths { grid-template-columns: 1fr; } .paths > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* 채널 */
+.channels { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0 0; }
+.channels a { display: inline-block; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(246,243,236,.35); color: var(--ivory); text-decoration: none; font-size: .85rem; }
+.channels a:hover { background: rgba(246,243,236,.1); }
+
+/* 푸터 */
+.site-footer { background: var(--charcoal); color: #C7CDCB; }
+.site-footer a { color: var(--ivory); }
+.foot-grid h3 { color: var(--ivory); }
+.disclaimer { color: #A9B1AE; border-top-color: rgba(246,243,236,.14); }
+
