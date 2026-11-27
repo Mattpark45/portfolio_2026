@@ -34,7 +34,7 @@ const browser = await chromium.launch();
 try {
   for (const [vp, viewport] of Object.entries(VIEWPORTS)) {
     const ctx = await browser.newContext({ viewport, deviceScaleFactor: 1 });
-    await ctx.route(/cdn\.jsdelivr\.net|fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+    await ctx.route(/cdn\.jsdelivr\.net|fonts\.(googleapis|gstatic)\.com|calendar\.google\.com/, (r) => r.abort());
     const page = await ctx.newPage();
     const errors = [];
     const bad = [];

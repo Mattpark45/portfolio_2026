@@ -114,7 +114,7 @@ ok(!existsSync(join(root, 'intelligence', 'vietnam-export-2027.html')), 'draft �
 ok(!existsSync(join(root, 'portal.html')), '고객 포털 콘셉트 페이지가 공개됨');
 
 // 예약: Google 캘린더 예약 페이지 연결
-ok(/href="https:\/\/calendar\.google\.com\/calendar\/appointments\/schedules\/[A-Za-z0-9_-]+/.test(readFileSync(join(root, 'booking.html'), 'utf8')), 'booking.html: Google 캘린더 예약 링크 없음');
+ok(/<iframe src="https:\/\/calendar\.google\.com\/calendar\/appointments\/schedules\/[A-Za-z0-9_-]+/.test(readFileSync(join(root, 'booking.html'), 'utf8')), 'booking.html: Google 캘린더 예약 링크 없음');
 
 // 피드·사이트맵·llms.txt
 const rss = readFileSync(join(root, 'rss.xml'), 'utf8');
