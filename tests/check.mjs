@@ -29,7 +29,7 @@ const FORBIDDEN = [
 const FAKE = ['구독 완료', '접수되었습니다', '확인 문자를 보내', '예약이 확정', '많이 읽은', '목업 지연'];
 const PLACEHOLDER = ['교체 필요', 'TODO', 'lorem', 'example.com', '이미지</div>'];
 const ALLOWED_HOSTS = new Set(['human-mcp.pages.dev', 'mattpark45.github.io', 'schema.org', 'cdn.jsdelivr.net', 'fonts.googleapis.com',
-  'blog.naver.com', 'brunch.co.kr', 'www.youtube.com', 'www.instagram.com', 'www.linkedin.com', 'talk.naver.com', 'calendar.app.google', 'calendar.google.com']);
+  'blog.naver.com', 'brunch.co.kr', 'www.youtube.com', 'www.instagram.com', 'www.linkedin.com', 'talk.naver.com', 'calendar.app.google', 'calendar.google.com', 'icm.re.kr']);
 const STORAGE = ['localStorage', 'indexedDB', 'fetch(', 'XMLHttpRequest', 'sendBeacon', 'WebSocket', 'document.cookie'];
 
 const visible = (s) => s
