@@ -113,6 +113,8 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--green);b
   .nav-b .btn{flex:1;justify-content:center}
   .done dl{grid-template-columns:1fr}
 }
+.bk-cal{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:20px 0 8px;padding:18px 20px;background:var(--ivory);border:1px solid var(--line);border-radius:var(--r-m)}
+.bk-cal span{font-size:13.5px;color:var(--char-2)}
 </style>
 </head>
 <body>
@@ -140,9 +142,10 @@ textarea:focus,input:focus,select:focus{outline:none;border-color:var(--green);b
   <div class="bk">
     <div>
       <div class="bk-h">
-        <p class="eyebrow">30분 첫 상담 예약</p>
+        <p class="eyebrow">첫 상담 예약</p>
         <h1 id="bkTitle">어떤 상담이 필요하신가요?</h1>
-        <p>네 단계, 약 2분이면 끝납니다. 이름과 연락처 외의 민감한 정보는 받지 않습니다.</p>
+        <p>Google 캘린더에서 비어 있는 시간을 바로 고르실 수 있습니다. 시간을 고르기 어려우시면 아래 네 단계로 희망 일정을 보내 주세요.</p>
+        <div class="bk-cal"><a class="btn btn-primary" id="calLink" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2lkGQ80W7MBvKvCpUpqw6c1xiQ5qJwSCRwKkKLjaY4CKsG-89x7U3VWnMxD5sPb6TyIHGoZosF?gv=true" target="_blank" rel="noopener">Google 캘린더에서 시간 고르기 ↗</a><span>새 창에서 열립니다 · 예약 확인 메일은 Google 캘린더가 보냅니다</span></div>
       </div>
       <ol class="steps" id="steps" aria-label="진행 단계"><li>상담 종류</li><li>상담 목적</li><li>일정</li><li>연락처·동의</li></ol>
       <div class="panel" id="panel" aria-live="polite"></div>

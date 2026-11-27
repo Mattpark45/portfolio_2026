@@ -351,7 +351,7 @@
         ? '<li>최근 재무제표가 있으면 준비해 주세요. 없어도 괜찮습니다.</li>'
         : '<li>매달 고정으로 나가는 돈을 대략 떠올려 보세요.</li>') +
       '<li>일정을 바꾸려면 회신 메일에 답장해 주세요.</li></ol>' +
-      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-secondary" href="/intelligence">관련 글 읽어 보기</a><a class="btn btn-secondary" href="/">홈으로</a></div></div>'
+      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-primary" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2lkGQ80W7MBvKvCpUpqw6c1xiQ5qJwSCRwKkKLjaY4CKsG-89x7U3VWnMxD5sPb6TyIHGoZosF?gv=true" target="_blank" rel="noopener">Google 캘린더에서 바로 예약 ↗</a><a class="btn btn-secondary" href="/intelligence">관련 글 읽어 보기</a><a class="btn btn-secondary" href="/">홈으로</a></div></div>'
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
