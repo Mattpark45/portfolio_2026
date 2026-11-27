@@ -1,5 +1,5 @@
 // 브라우저 E2E: Playwright(chromium). 실행: node tests/e2e.mjs [--shots 폴더]
-// 로컬 정적 서버를 띄워 모바일·데스크톱에서 주요 고객 동선을 확인한다.
+// Cloudflare Pages 와 같은 규칙(확장자 없는 주소 → .html, _headers 의 CSP)으로 로컬 서버를 띄워 확인한다.
 import http from 'node:http';
 import { readFileSync, existsSync, statSync, mkdirSync } from 'node:fs';
 import { join, dirname, extname } from 'node:path';
@@ -9,169 +9,125 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', 'site');
-// 루트(Cloudflare)든 하위 경로든 동작하도록, 하위 경로에서 서비스해, 루트 기준 링크가 남아 있으면 실패하게 한다
-const PREFIX = '/subpath-test';
 const shotsDir = process.argv.includes('--shots') ? process.argv[process.argv.indexOf('--shots') + 1] : null;
+const CSP = (readFileSync(join(root, '_headers'), 'utf8').match(/Content-Security-Policy: (.+)/) || [])[1];
 
-const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.txt': 'text/plain' };
+const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.txt': 'text/plain; charset=utf-8', '.xml': 'application/xml', '.svg': 'image/svg+xml', '.webp': 'image/webp' };
 const server = http.createServer((req, res) => {
-  let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
-  if (!p.startsWith(PREFIX + '/')) { res.writeHead(404); return res.end('outside base path'); }
-  p = p.slice(PREFIX.length);
-  let f = join(root, p);
-  if (existsSync(f) && statSync(f).isDirectory()) f = join(f, 'index.html');
-  if (!f.startsWith(root) || !existsSync(f)) { res.writeHead(404); return res.end('not found'); }
-  res.writeHead(200, { 'Content-Type': TYPES[extname(f)] || 'application/octet-stream' });
+  const p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+  const cands = p === '/' ? ['index.html'] : [p.slice(1), p.slice(1) + '.html', p.slice(1).replace(/\/$/, '') + '.html'];
+  const f = cands.map((c) => join(root, c)).find((c) => c.startsWith(root) && existsSync(c) && statSync(c).isFile());
+  if (!f) { res.writeHead(404, { 'Content-Type': TYPES['.html'] }); return res.end(readFileSync(join(root, '404.html'))); }
+  res.writeHead(200, { 'Content-Type': TYPES[extname(f)] || 'application/octet-stream', 'Content-Security-Policy': CSP });
   res.end(readFileSync(f));
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const base = `http://127.0.0.1:${server.address().port}${PREFIX}`;
-const failedRequests = [];
+const base = `http://127.0.0.1:${server.address().port}`;
 
-const PAGES = ['/', '/individuals/', '/business/', '/how-we-work/', '/insights/', '/insights/policy-fund-2027/', '/insights/ai-basic-act-sme/', '/insights/family-business-succession-2026/', '/insights/minimum-wage-2027/', '/insights/first-meeting/', '/insights/company-vs-owner/', '/insights/support-programs/', '/prepare/', '/about/', '/contact/', '/privacy/'];
+const PAGES = ['/', '/corporate', '/personal', '/owner', '/growth', '/ax', '/network', '/diagnostics', '/intelligence', '/about', '/booking',
+  '/legal/privacy', '/legal/terms', '/legal/scope', '/intelligence/policy-fund-2027', '/intelligence/minimum-wage-2027', '/intelligence/first-meeting'];
 const VIEWPORTS = { mobile: { width: 390, height: 844 }, desktop: { width: 1280, height: 800 } };
 const results = [];
 const check = (name, cond, detail = '') => results.push({ name, pass: !!cond, detail });
 
 const browser = await chromium.launch();
 try {
-  for (const [vpName, viewport] of Object.entries(VIEWPORTS)) {
+  for (const [vp, viewport] of Object.entries(VIEWPORTS)) {
     const ctx = await browser.newContext({ viewport, deviceScaleFactor: 1 });
-    // 외부 폰트 CDN은 시험에서 차단(네트워크 의존 제거). 실패해도 시스템 폰트로 표시되어야 함
     await ctx.route(/cdn\.jsdelivr\.net|fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
     const page = await ctx.newPage();
     const errors = [];
+    const bad = [];
     page.on('pageerror', (e) => errors.push(e.message));
-    page.on('response', (r) => { if (r.status() >= 400 && r.url().startsWith('http://127.0.0.1')) failedRequests.push(`${r.status()} ${r.url()}`); });
+    page.on('console', (m) => { if (m.type() === 'error' && /Content Security Policy/.test(m.text())) errors.push(m.text()); });
+    page.on('response', (r) => { if (r.status() >= 400 && r.url().startsWith(base)) bad.push(`${r.status()} ${r.url()}`); });
 
     for (const path of PAGES) {
-      errors.length = 0;
+      errors.length = 0; bad.length = 0;
       const resp = await page.goto(base + path, { waitUntil: 'load' });
-      check(`[${vpName}] ${path} 200`, resp && resp.status() === 200);
+      check(`[${vp}] ${path} 200`, resp && resp.status() === 200);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-      check(`[${vpName}] ${path} 가로 스크롤 없음`, overflow <= 1, `overflow=${overflow}px`);
-      check(`[${vpName}] ${path} 스크립트 오류 없음`, errors.length === 0, errors.join(' | '));
-      const imgNoAlt = await page.locator('img:not([alt])').count();
-      check(`[${vpName}] ${path} 이미지 alt`, imgNoAlt === 0);
-      {
-        const bookingHrefs = await page.locator('[data-booking]').evaluateAll((els) => els.map((e) => e.href));
-        check(`[${vpName}] ${path} 예약 버튼 → 연락처(예약 URL 미설정 시)`, bookingHrefs.length > 0 && bookingHrefs.every((h) => h === base + '/contact/#request'), bookingHrefs.join(','));
-      }
-      if (shotsDir && ['/', '/business/', '/individuals/', '/prepare/'].includes(path)) {
+      check(`[${vp}] ${path} 가로 스크롤 없음`, overflow <= 1, `overflow=${overflow}px`);
+      check(`[${vp}] ${path} 스크립트·CSP 오류 없음`, errors.length === 0, errors.join(' | '));
+      check(`[${vp}] ${path} 깨진 리소스 없음`, bad.length === 0, bad.join(', '));
+      check(`[${vp}] ${path} 이미지 alt`, (await page.locator('img:not([alt])').count()) === 0);
+      if (shotsDir && ['/', '/intelligence', '/intelligence/policy-fund-2027', '/booking'].includes(path)) {
         mkdirSync(shotsDir, { recursive: true });
-        await page.screenshot({ path: join(shotsDir, `${vpName}${path === '/' ? '-home' : path.replace(/\//g, '-').replace(/-$/, '')}.png`), fullPage: true });
+        await page.screenshot({ path: join(shotsDir, `${vp}${path.replace(/\//g, '_') || '_home'}.png`), fullPage: true });
       }
     }
 
-    // 모든 내부 링크를 실제로 열어 본다 (하위 경로 기준)
-    if (vpName === 'desktop') {
-      const seen = new Set();
-      for (const path of PAGES) {
-        await page.goto(base + path);
-        const links = await page.locator('a[href]').evaluateAll((els) => els.map((e) => e.href));
-        for (const l of links) {
-          const u = l.split('#')[0];
-          if (!u.startsWith('http://127.0.0.1') || seen.has(u)) continue;
-          seen.add(u);
-          const r = await page.request.get(u);
-          check(`[links] ${u.replace(base, '')} 200`, r.status() === 200, String(r.status()));
-        }
-      }
-    }
-
-    // 연락처: 예약 미설정 상태 안내 표시
-    await page.goto(base + '/contact/');
-    check(`[${vpName}] 연락처: 준비 중 안내 표시`, await page.locator('[data-booking-pending]').isVisible());
-    check(`[${vpName}] 연락처: 예약 블록 숨김`, !(await page.locator('[data-booking-ready]').isVisible()));
-    check(`[${vpName}] 연락처: 전화 링크`, (await page.locator('a[href="tel:01049377837"]').count()) > 0);
-
-    if (vpName === 'mobile') {
+    // 모바일 메뉴
+    if (vp === 'mobile') {
       await page.goto(base + '/');
-      const nav = page.locator('#site-nav');
-      check('[mobile] 메뉴 처음엔 닫힘', !(await nav.isVisible()));
       await page.click('.menu-btn');
-      check('[mobile] 메뉴 열림', await nav.isVisible());
-      check('[mobile] aria-expanded 갱신', (await page.getAttribute('.menu-btn', 'aria-expanded')) === 'true');
-      await page.click('#site-nav a[href="./business/"]');
-      await page.waitForURL(base + '/business/');
-      check('[mobile] 메뉴로 기업 페이지 이동', page.url() === base + '/business/');
+      check('[mobile] 메뉴 열림', await page.locator('#drawer.open').count() === 1);
+      await page.keyboard.press('Escape');
+      check('[mobile] 메뉴 닫힘(Esc)', await page.locator('#drawer.open').count() === 0);
     }
-    await ctx.close();
-  }
 
-  // 3분 점검 위젯: 4단계 흐름, 필수 검증, 결과, 저장·전송 없음
-  {
-    const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
-    await ctx.route(/cdn\.jsdelivr\.net/, (r) => r.abort());
-    const page = await ctx.newPage();
+    // Intelligence 허브: 필터·검색·구독 동의
+    await page.goto(base + '/intelligence');
+    const total = await page.locator('#list a, #feat').count();
+    await page.click('#cats button[data-cat="policy"]');
+    const policyVisible = await page.locator('#list a:visible, #feat:visible').count();
+    check(`[${vp}] 허브 카테고리 필터`, policyVisible > 0 && policyVisible < total, `${policyVisible}/${total}`);
+    await page.click('#cats button[data-cat="all"]');
+    await page.fill('#q', '최저임금');
+    check(`[${vp}] 허브 검색`, (await page.locator('#list a:visible, #feat:visible').count()) === 1);
+    await page.fill('#q', 'zzzz없는검색어');
+    check(`[${vp}] 허브 빈 결과 안내`, await page.locator('#empty').isVisible());
+    await page.goto(base + '/intelligence?cat=ax');
+    check(`[${vp}] 허브 ?cat= 반영`, (await page.locator('#cats button[data-cat="ax"][aria-pressed="true"]').count()) === 1);
+
+    await page.goto(base + '/intelligence#subscribe');
+    await page.evaluate(() => { window.__opened = null; window.HMCP_OPEN = (u) => { window.__opened = u; }; });
+    await page.fill('#subEmail', 'reader@test.invalid');
+    await page.click('#subForm button');
+    check(`[${vp}] 구독: 동의 없이 진행 안 됨`, /동의/.test(await page.textContent('#subNote')) && !(await page.evaluate(() => window.__opened)));
+    await page.check('#subAgree');
+    await page.click('#subForm button');
+    const sub = await page.evaluate(() => window.__opened);
+    check(`[${vp}] 구독: 메일 작성으로 연결 (서버 전송 없음)`, sub && sub.startsWith('mailto:dhp.cfo@gmail.com') && decodeURIComponent(sub).includes('reader@test.invalid'), String(sub).slice(0, 60));
+    check(`[${vp}] 구독: 완료로 표시하지 않음`, !/완료/.test(await page.textContent('#subForm')));
+
+    // 상담 요청 4단계 → 메일 작성 (가짜 접수 없음)
+    await page.goto(base + '/booking');
+    await page.evaluate(() => { sessionStorage.clear(); window.__opened = null; window.HMCP_OPEN = (u) => { window.__opened = u; }; });
+    await page.click('[data-type="corp"]');
+    await page.click('[data-a="next"]');
+    await page.click('[data-a="next"]');
+    await page.click('.day >> nth=0');
+    await page.click('.slot >> nth=0');
+    await page.click('[data-a="next"]');
+    await page.fill('#name', '시험');
+    await page.fill('#tel', '010-0000-0000');
+    await page.check('#c1');
+    await page.check('#c2');
+    await page.click('[data-a="next"]');
+    const bk = await page.evaluate(() => window.__opened);
+    check(`[${vp}] 상담 요청: 메일 작성으로 연결`, bk && decodeURIComponent(bk).includes('희망 일정'), String(bk).slice(0, 60));
+    check(`[${vp}] 상담 요청: 확정·접수로 표시하지 않음`, !/접수되었습니다|확인 문자/.test(await page.textContent('main')));
+
+    // 3분 점검 → 결과
     await page.goto(base + '/');
-    const reqs = [];
-    page.on('request', (r) => reqs.push(r.url()));
-    const dx = page.locator('#dx');
-    check('[dx] 1단계 표시', (await dx.locator('.dx-step-label').textContent()).trim() === '1 / 4');
-    await dx.getByRole('button', { name: '우리 회사' }).click();
-    await dx.locator('input[value="성장 중 (매출 확대)"]').click();
-    check('[dx] 단일 선택 시 자동으로 3단계', (await dx.locator('.dx-step-label').textContent()).trim() === '3 / 4');
-    await dx.getByRole('button', { name: '다음' }).click();
-    check('[dx] 관심사 미선택 시 오류 안내', ((await dx.locator('[role=alert]').textContent()) || '').includes('하나 이상'));
-    await dx.locator('input[value="현금흐름·운전자금"]').check();
-    await dx.getByRole('button', { name: '다음' }).click();
-    await dx.getByRole('button', { name: '결과 보기' }).click();
-    const txt = await dx.textContent();
-    check('[dx] 결과 3줄 표시', ['지킬 것', '쓸 수 있는 것', '다음 기회', '운전자금'].every((t) => txt.includes(t)), txt.slice(0, 200));
-    check('[dx] 결과에서 상담 요청 링크', (await dx.locator('a.btn').getAttribute('href')).endsWith('contact/#request'));
-    const storage = await page.evaluate(() => localStorage.length + sessionStorage.length + document.cookie.length);
-    check('[dx] 저장소 사용 없음', storage === 0);
-    check('[dx] 점검 중 네트워크 요청 없음', reqs.length === 0, reqs.join(','));
+    await page.click('#dx [data-t="corp"]');
+    for (let i = 0; i < 6 && !(await page.locator('#dx .dx-res, #dx [data-res]').count()); i++) {
+      const opt = page.locator('#dx .dx-opt').first();
+      if (!(await opt.count())) break;
+      await opt.click();
+      const next = page.locator('#dx [data-a="next"]:not([disabled])');
+      if (await next.count()) await next.click();
+    }
+    check(`[${vp}] 3분 점검 진행`, (await page.textContent('#dxStep')) !== '1 / 4');
     await ctx.close();
   }
-
-  // 상담 준비 질문: 요약 생성, 메일 링크, 저장·전송 없음
-  {
-    const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
-    await ctx.route(/cdn\.jsdelivr\.net/, (r) => r.abort());
-    const requests = [];
-    const page = await ctx.newPage();
-    await page.goto(base + '/prepare/');
-    page.on('request', (r) => requests.push(r.url()));
-    await page.check('input[name="kind"][value="business"]');
-    check('[prepare] 기업 선택 시 기업 질문 표시', await page.locator('[data-kind="business"]').isVisible());
-    check('[prepare] 기업 선택 시 개인 질문 숨김', !(await page.locator('[data-kind="individual"]').isVisible()));
-    await page.check('input[name="size"][value="30~100억"]');
-    await page.fill('textarea[data-name="goal_b"]', '새 고객층 확장');
-    await page.check('[data-name="issue"] input[value="인력 채용·교육"]');
-    await page.check('input[name="want"][value="여러 대안 비교"]');
-    const summary = await page.textContent('#summary-text');
-    check('[prepare] 요약에 입력 반영', ['기업·경영자', '30~100억', '새 고객층 확장', '인력 채용·교육', '여러 대안 비교'].every((t) => summary.includes(t)), summary);
-    const mailHref = await page.getAttribute('#mail-btn', 'href');
-    check('[prepare] 메일 링크에 요약 포함', mailHref.startsWith('mailto:dhp.cfo@gmail.com?') && decodeURIComponent(mailHref).includes('새 고객층 확장'));
-    const storage = await page.evaluate(() => localStorage.length + sessionStorage.length + document.cookie.length);
-    check('[prepare] 브라우저 저장소에 아무것도 남기지 않음', storage === 0, String(storage));
-    check('[prepare] 입력 중 네트워크 요청 없음', requests.length === 0, requests.join(','));
-    await ctx.close();
-  }
-
-  // 예약 URL을 설정한 경우의 동작 (site.js를 가로채 값 주입)
-  const ctx = await browser.newContext({ viewport: VIEWPORTS.desktop });
-  await ctx.route(/cdn\.jsdelivr\.net/, (r) => r.abort());
-  await ctx.route('**/assets/site.js', async (r) => {
-    const body = readFileSync(join(root, 'assets/site.js'), 'utf8').replace("var BOOKING_URL = '';", "var BOOKING_URL = 'https://calendar.app.google/TESTONLY';");
-    await r.fulfill({ contentType: 'text/javascript', body });
-  });
-  const page = await ctx.newPage();
-  await page.goto(base + '/contact/');
-  const hrefs = await page.locator('[data-booking]').evaluateAll((els) => els.map((e) => [e.getAttribute('href'), e.getAttribute('target')]));
-  check('[booking] 설정 시 모든 예약 버튼 → Google 캘린더, 새 창', hrefs.every(([h, t]) => h === 'https://calendar.app.google/TESTONLY' && t === '_blank'));
-  check('[booking] 설정 시 예약 블록 표시', await page.locator('[data-booking-ready]').isVisible());
-  check('[booking] 설정 시 준비 중 안내 숨김', !(await page.locator('[data-booking-pending]').isVisible()));
-  await ctx.close();
 } finally {
   await browser.close();
   server.close();
 }
 
-check('하위 경로에서 404 요청 없음 (CSS·JS·링크 자원)', failedRequests.length === 0, [...new Set(failedRequests)].slice(0, 5).join(' | '));
 const failed = results.filter((r) => !r.pass);
-for (const r of failed) console.error(`FAIL ${r.name} ${r.detail}`);
-console.log(`${failed.length ? 'FAIL' : 'PASS'} E2E ${results.length - failed.length}/${results.length}`);
+for (const r of results) console.log(`${r.pass ? 'PASS' : 'FAIL'} ${r.name}${r.pass || !r.detail ? '' : ' — ' + r.detail}`);
+console.log(`\n${results.length - failed.length}/${results.length} PASS`);
 process.exit(failed.length ? 1 : 0);

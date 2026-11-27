@@ -1,23 +1,18 @@
-<a class="skip" href="#main">본문 바로가기</a>
-<header class="site-header">
+<a class="skip" href="#main">본문으로 바로 가기</a>
+<header class="hdr">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="Human MCP 홈"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-  <rect width="64" height="64" rx="16" fill="#143D30"/>
-  <path d="M32 19 L19 43 M32 19 L45 43 M19 43 L45 43" stroke="#AC8B46" stroke-width="3" stroke-linecap="round" fill="none"/>
-  <circle cx="32" cy="19" r="6.5" fill="#F6F3EC"/>
-  <rect x="13" y="37" width="12" height="12" rx="3" fill="#F6F3EC"/>
-  <circle cx="45" cy="43" r="6" fill="none" stroke="#F6F3EC" stroke-width="3"/>
-  <circle cx="45" cy="43" r="2" fill="#F6F3EC"/>
-</svg><span class="word"><b>Human <span>MCP</span></b><small>Financial &amp; Business Advisory</small></span></a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">메뉴</button>
-    <nav id="site-nav" class="nav" aria-label="주요 메뉴">
-      <a href="/business/">기업 경영자문</a>
-      <a href="/individuals/">개인·가족 재무상담</a>
-      <a href="/prepare/">상담 준비</a>
-      <a href="/insights/">Intelligence</a>
-      <a href="/how-we-work/">상담 방식</a>
-      <a href="/about/">About</a>
-      <a class="btn small" data-booking href="/contact/#request">30분 첫 상담 예약</a>
-    </nav>
+    <a class="logo" href="/" aria-label="Human MCP 홈"><b>HUMAN MCP</b><small>FINANCIAL & BUSINESS ADVISORY</small></a>
+    <nav class="nav" aria-label="주요 메뉴"><a href="/corporate">기업 경영자문</a><a href="/personal">개인·법인 종합금융</a><a href="/growth">Growth & Capital</a><a href="/diagnostics">디지털 진단</a><a href="/intelligence" aria-current="page">Intelligence</a><a href="/about">About</a></nav>
+    <a class="btn btn-primary" href="/booking" style="min-height:42px">30분 첫 상담 예약</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><span></span></button>
   </div>
 </header>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="메뉴">
+  <div class="top">
+    <a class="logo" href="/"><b>HUMAN MCP</b><small>FINANCIAL & BUSINESS ADVISORY</small></a>
+    <button class="x" type="button" aria-label="메뉴 닫기">×</button>
+  </div>
+  <nav aria-label="모바일 메뉴"><a href="/corporate"><span>기업 경영자문</span><small>세무 · 승계 · 인증 · 노무</small></a><a href="/personal"><span>개인·법인 종합금융</span><small>재무설계 · 보장 · 연금</small></a><a href="/growth"><span>Growth & Capital</span><small>GTM · 투자 · M&A</small></a><a href="/diagnostics"><span>디지털 진단</span><small>3분 점검 · 재무X레이</small></a><a href="/intelligence"><span>Intelligence</span><small>경영 · 재무 브리핑</small></a><a href="/about"><span>About</span><small>Human MCP 소개</small></a></nav>
+  <a class="btn btn-primary" href="/booking">30분 첫 상담 예약</a>
+  <a class="btn btn-secondary" href="/diagnostics">내 상황 점검하기</a>
+</div>

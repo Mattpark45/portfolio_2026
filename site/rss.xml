@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Human MCP Intelligence</title>
+  <link>https://human-mcp.pages.dev/intelligence</link>
+  <atom:link href="https://human-mcp.pages.dev/rss.xml" rel="self" type="application/rss+xml"/>
+  <description>대표와 가족을 위한 경영·재무 브리핑. 작성일·검토일·출처를 함께 적습니다.</description>
+  <language>ko-KR</language>
+  <lastBuildDate>Fri, 27 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>2027년 중소기업 정책자금, 정부안에서 무엇이 달라졌나</title>
+    <link>https://human-mcp.pages.dev/intelligence/policy-fund-2027</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/policy-fund-2027</guid>
+    <category>정책·규제</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>중기부 2027년 예산 정부안 18조 724억 원. 정책자금 융자와 이차보전 구조, 국회 심의 일정, 지금 회사가 준비할 것을 정리했습니다.</description>
+  </item>
+  <item>
+    <title>AI 기본법 시행 10개월, 중소기업이 지금 확인할 것</title>
+    <link>https://human-mcp.pages.dev/intelligence/ai-basic-act-sme</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/ai-basic-act-sme</guid>
+    <category>AI·AX</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>2026년 1월 22일 시행된 AI 기본법. 과태료 계도기간이 끝나기 전에 AI를 만들거나 쓰는 회사가 점검할 의무와 대응 순서를 정리했습니다.</description>
+  </item>
+  <item>
+    <title>가업상속공제 개편안, 승계를 준비하는 대표가 지금 볼 것</title>
+    <link>https://human-mcp.pages.dev/intelligence/family-business-succession-2026</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/family-business-succession-2026</guid>
+    <category>자본·거래</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>한도는 1,000억 원으로 늘리고 경영기간·사후관리 요건은 강화하는 정부안. 11월 국회 조세소위 쟁점과 준비 순서를 정리했습니다.</description>
+  </item>
+  <item>
+    <title>2027년 최저임금 1만 700원, 인건비 계획에서 먼저 확인할 것</title>
+    <link>https://human-mcp.pages.dev/intelligence/minimum-wage-2027</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/minimum-wage-2027</guid>
+    <category>기업 경영</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>2027년 1월 1일부터 시급 1만 700원(3.7% 인상). 월 환산액과 함께, 연말에 중소기업이 인건비 계획에서 점검할 다섯 가지를 정리했습니다.</description>
+  </item>
+  <item>
+    <title>회사의 돈과 대표님의 돈, 왜 나눠 봐야 할까요</title>
+    <link>https://human-mcp.pages.dev/intelligence/company-vs-owner</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/company-vs-owner</guid>
+    <category>기업 경영</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>법인과 대표 개인의 재무를 함께 보되 섞지 않아야 하는 이유와, 스스로 점검해 볼 세 가지 질문.</description>
+  </item>
+  <item>
+    <title>지원사업 공고를 볼 때 먼저 확인할 네 가지</title>
+    <link>https://human-mcp.pages.dev/intelligence/support-programs</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/support-programs</guid>
+    <category>정책·규제</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>정부·지자체 지원사업 공고를 볼 때 신청 전에 확인할 자격 요건, 기간, 자부담과 의무, 중복 지원 제한.</description>
+  </item>
+  <item>
+    <title>첫 상담에서는 무엇을 이야기하나요</title>
+    <link>https://human-mcp.pages.dev/intelligence/first-meeting</link>
+    <guid isPermaLink="true">https://human-mcp.pages.dev/intelligence/first-meeting</guid>
+    <category>Human MCP Journal</category>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+    <description>준비할 자료 없이도 첫 상담이 충분한 이유, 30분 동안 다루는 내용과 상담이 끝날 때 가져가시는 것.</description>
+  </item>
+</channel>
+</rss>

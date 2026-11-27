@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Human MCP">
-  <!-- Human MCP 브랜드 마크: 사람(위)과 기업(왼쪽 아래)·전문가 네트워크(오른쪽 아래)를 하나로 잇는 연결 -->
-  <rect width="64" height="64" rx="16" fill="#143D30"/>
-  <path d="M32 19 L19 43 M32 19 L45 43 M19 43 L45 43" stroke="#AC8B46" stroke-width="3" stroke-linecap="round" fill="none"/>
-  <circle cx="32" cy="19" r="6.5" fill="#F6F3EC"/>
-  <rect x="13" y="37" width="12" height="12" rx="3" fill="#F6F3EC"/>
-  <circle cx="45" cy="43" r="6" fill="none" stroke="#F6F3EC" stroke-width="3"/>
-  <circle cx="45" cy="43" r="2" fill="#F6F3EC"/>
-</svg>

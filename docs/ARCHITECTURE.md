@@ -53,21 +53,20 @@ Define Financial(봇 차단)과 Root Financial(도메인 이동)은 이번에 �
 
 - Phase 1은 **빌드 없는 정적 사이트**(HTML/CSS/JS). 이유: 의존성·보안 표면 최소, 무료 호스팅, 두 에이전트가 같은 구조를 쉽게 검증.
 - Next.js·Tailwind·MDX 전환은 콘텐츠 수가 늘거나(20편+) 고객 포털·로그인이 필요해질 때 검토(Phase 2~3).
-- 호스팅: Cloudflare Pages(`site/` 직접 업로드). 내부 링크는 상대경로라 하위 경로 배포에도 동작.
+- 호스팅: Cloudflare Pages(`site/` 직접 업로드). 내부 링크는 루트 기준(`/…`)이며 Cloudflare Pages 루트 배포 전용.
 
-## 5. 저장소 구조 (권장안과의 대응)
+## 5. 저장소 구조 (2026-11-27 개편: 13개 화면 기준)
 
-| 권장 디렉터리 | 현재 | 비고 |
+| 영역 | 위치 | 비고 |
 |---|---|---|
-| app/ | `site/` | 정적 페이지와 라우팅(폴더=경로) |
-| components/ | `partials/` | 머리글·바닥글, `scripts/sync_layout.py`로 반영 |
-| content/ | `site/insights/` | 글이 늘면 MDX로 분리 |
-| features/ | `site/prepare/`, `site/assets/prepare.js` | 상담 준비 질문 |
-| integrations/ | 없음 | 예약 URL은 `site/assets/site.js` 설정 1곳 |
-| lib/ | 없음 | 계산 로직 도입 시 생성(검증 시험 필수) |
-| tests/ | `tests/` | 정적 검사 + Playwright E2E |
-| docs/ | `docs/` | 이 문서, REQUIREMENTS |
-| .github/ | `.github/workflows/test.yml` | PR마다 시험 |
+| 페이지 | `site/*.html`, `site/legal/*.html` | Cloudflare Pages 가 `/corporate` → `corporate.html` 로 제공 |
+| 공통 머리글·바닥글 | `partials/` | `scripts/build.py` 가 모든 페이지에 반영 |
+| 스타일·스크립트 | `site/static/css`, `site/static/js` | 데이터는 `data-*.js` (CSP: 인라인 스크립트 금지) |
+| 콘텐츠(CMS) | `content/insights.py` → `site/intelligence/` | 운영 절차 `docs/CONTENT-OPS.md` |
+| SEO/GEO/AIO | `sitemap.xml`, `rss.xml`, `llms.txt`, JSON-LD | 빌드가 생성 |
+| 보안·라우팅 | `site/_headers`, `site/_redirects` | CSP·옛 주소 301 |
+| 시험 | `tests/check.mjs`, `tests/e2e.mjs` | 미심의 표현·가짜 완료 표현·링크·CSP·모바일 |
+| CI | `.github/workflows/test.yml` | 시험 + 빌드 결과 커밋 여부 |
 
 ## 6. Claude Code · Codex 분담
 

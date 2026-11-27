@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://human-mcp.pages.dev/about/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/business/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/contact/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/how-we-work/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/about</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/ax</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/booking</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/corporate</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/diagnostics</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/growth</loc><lastmod>2026-11-27</lastmod></url>
   <url><loc>https://human-mcp.pages.dev/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/individuals/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/ai-basic-act-sme/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/company-vs-owner/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/family-business-succession-2026/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/first-meeting/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/minimum-wage-2027/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/policy-fund-2027/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/insights/support-programs/</loc><lastmod>2026-11-27</lastmod></url>
-  <url><loc>https://human-mcp.pages.dev/prepare/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/ai-basic-act-sme</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/company-vs-owner</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/family-business-succession-2026</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/first-meeting</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/minimum-wage-2027</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/policy-fund-2027</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/intelligence/support-programs</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/legal/privacy</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/legal/scope</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/legal/terms</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/network</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/owner</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://human-mcp.pages.dev/personal</loc><lastmod>2026-11-27</lastmod></url>
 </urlset>

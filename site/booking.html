@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://human-mcp.pages.dev/booking">
+<meta property="og:url" content="https://human-mcp.pages.dev/booking">
+<link rel="alternate" type="application/rss+xml" title="Human MCP Intelligence" href="https://human-mcp.pages.dev/rss.xml">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>30분 첫 상담 예약 | Human MCP</title>
+<meta name="description" content="개인·가족 재무상담, 기업 경영자문, AI/AX, 전문가 협업 상담을 4단계로 예약합니다. 이름과 연락처 외의 민감정보는 받지 않습니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="30분 첫 상담 예약 | Human MCP">
+<meta property="og:description" content="개인·가족 재무상담, 기업 경영자문, AI/AX, 전문가 협업 상담을 4단계로 예약합니다. 이름과 연락처 외의 민감정보는 받지 않습니다.">
+<meta property="og:image" content="https://human-mcp.pages.dev/static/assets/humanmcp-og-1200x630.webp">
+<meta property="og:site_name" content="Human MCP">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://human-mcp.pages.dev/static/assets/humanmcp-og-1200x630.webp">
+<meta name="theme-color" content="#143D30">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/static/assets/humanmcp-og-1200x630.webp">
+<link rel="stylesheet" href="/static/css/hmcp.css">
+<link rel="stylesheet" href="/static/css/pages.css">
+
+
+<style>
+body{background:var(--paper)}
+.bk{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:64px;padding:48px 0 96px;align-items:start}
+.bk-h .eyebrow{margin-bottom:12px}
+.bk-h h1{font:600 clamp(26px,3vw,38px)/1.3 var(--f-serif);color:var(--green)}
+.bk-h p{color:var(--char-2);margin-top:10px}
+.steps{display:flex;gap:6px;margin:32px 0 36px;list-style:none;padding:0}
+.steps li{flex:1;font-size:13px;color:var(--char-2)}
+.steps li::before{content:"";display:block;height:3px;background:var(--line);border-radius:2px;margin-bottom:8px}
+.steps li.on{color:var(--green);font-weight:600}
+.steps li.on::before,.steps li.done::before{background:var(--green)}
+.steps li.done{color:var(--char)}
+.panel{min-height:380px}
+.panel h2{font:600 21px/1.4 var(--f-sans);color:var(--char);margin-bottom:6px}
+.panel .hint{font-size:14.5px;color:var(--char-2);margin-bottom:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:20px;border:1px solid var(--line-strong);border-radius:var(--r-m);background:#fff;text-align:left;cursor:pointer;font:inherit;color:var(--char);min-height:96px;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--green)}
+.opt[aria-checked=true]{border-color:var(--green);background:var(--green-100);box-shadow:inset 0 0 0 1px var(--green)}
+.opt b{font-size:17px;color:var(--green)}
+.opt small{font-size:13.5px;color:var(--char-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 16px;min-height:44px;border:1px solid var(--line-strong);border-radius:999px;background:#fff;font:500 15px var(--f-sans);cursor:pointer;color:var(--char)}
+.chip[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.from-dx{display:flex;gap:12px;padding:14px 16px;background:rgba(82,116,135,.08);border:1px solid rgba(82,116,135,.25);border-radius:var(--r-m);font-size:14px;margin-bottom:20px;color:var(--char)}
+.from-dx b{color:var(--blue-ink);flex:none}
+textarea,input[type=text],input[type=tel],input[type=email],select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff;color:var(--char)}
+textarea{min-height:110px;resize:vertical}
+textarea:focus,input:focus,select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(20,61,48,.15)}
+.f{margin-bottom:18px}
+.f label{display:block;font-size:14.5px;font-weight:600;margin-bottom:6px}
+.f label small{font-weight:400;color:var(--char-2)}
+.f .err{display:none;color:var(--err);font-size:13.5px;margin-top:6px}
+.f.invalid input{border-color:var(--err)}
+.f.invalid .err{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cal{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.day{padding:10px 4px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff;font:inherit;cursor:pointer;text-align:center;min-height:60px;line-height:1.3}
+.day small{display:block;font-size:12px;color:var(--char-2)}
+.day b{font-size:17px}
+.day[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.day[aria-pressed=true] small{color:rgba(246,243,236,.75)}
+.day:disabled{opacity:.4;cursor:not-allowed;background:var(--ivory)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot{padding:12px 4px;min-height:46px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff;font:500 15px var(--f-mono);cursor:pointer;color:var(--char)}
+.slot[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.slot:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+.mode{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.lbl-s{font-size:13px;font-weight:600;color:var(--char-2);margin-bottom:10px;letter-spacing:.04em}
+.skel{height:46px;border-radius:var(--r-s);background:linear-gradient(90deg,var(--ivory-2) 0,#F5F1E8 50%,var(--ivory-2) 100%);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.empty{padding:24px;border:1px dashed var(--line-strong);border-radius:var(--r-m);font-size:14.5px;color:var(--char-2);text-align:center}
+.consent{border:1px solid var(--line-strong);border-radius:var(--r-m);background:#fff}
+.consent label{display:flex;gap:12px;padding:16px;border-bottom:1px solid var(--line);font-size:15px;cursor:pointer;align-items:flex-start}
+.consent label:last-child{border:0}
+.consent input{width:20px;height:20px;accent-color:var(--green);flex:none;margin-top:2px}
+.consent small{display:block;color:var(--char-2);font-size:13px;margin-top:2px}
+.nav-b{display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid var(--line);gap:12px}
+.back{background:none;border:0;font:500 15px var(--f-sans);color:var(--char-2);cursor:pointer;min-height:44px}
+.alert-e{display:none;gap:12px;padding:14px 16px;background:rgba(162,59,46,.07);border:1px solid rgba(162,59,46,.3);border-radius:var(--r-m);color:var(--err);font-size:14.5px;margin-top:16px}
+.alert-e.show{display:flex}
+.spin{width:16px;height:16px;border:2px solid rgba(246,243,236,.4);border-top-color:var(--ivory);border-radius:50%;animation:sp .7s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.done .ok{width:56px;height:56px;border-radius:50%;background:var(--green-100);color:var(--green);display:grid;place-items:center;font-size:26px;margin-bottom:20px}
+.done h2{font:600 28px/1.35 var(--f-serif);color:var(--green);margin-bottom:10px}
+.done dl{display:grid;grid-template-columns:110px 1fr;gap:10px 16px;margin:28px 0;padding:22px;background:#fff;border:1px solid var(--line);border-radius:var(--r-m);font-size:15px}
+.done dt{color:var(--char-2)}
+.done dd{margin:0;font-weight:600}
+.done ol{padding-left:20px;display:grid;gap:8px;color:var(--char);font-size:15px}
+.side{position:sticky;top:96px;display:grid;gap:16px}
+.side .card{background:var(--ivory);border-radius:var(--r-m);padding:24px}
+.side .me{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.side .me img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.side .me b{display:block}
+.side .me span{font-size:13px;color:var(--char-2)}
+.side ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:14.5px}
+.side li{display:flex;gap:10px}
+.side li::before{content:"—";color:var(--gold);flex:none}
+.side h4{font:600 12px var(--f-sans);letter-spacing:.14em;color:var(--char-2);margin-bottom:12px}
+.side .alt{font-size:14px;color:var(--char-2)}
+@media (max-width:960px){.bk{grid-template-columns:1fr;gap:40px;padding-top:28px}.side{position:static;order:2}}
+@media (max-width:560px){
+  .opts,.row2,.cal{grid-template-columns:1fr}
+  .steps li{font-size:0}
+  .steps li.on{font-size:12.5px}
+  .nav-b{position:sticky;bottom:0;background:var(--paper);margin:24px -20px 0;padding:12px 20px calc(12px + env(safe-area-inset-bottom));z-index:5}
+  .nav-b .btn{flex:1;justify-content:center}
+  .done dl{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 바로 가기</a>
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Human MCP 홈"><b>HUMAN MCP</b><small>FINANCIAL & BUSINESS ADVISORY</small></a>
+    <nav class="nav" aria-label="주요 메뉴"><a href="/corporate">기업 경영자문</a><a href="/personal">개인·법인 종합금융</a><a href="/growth">Growth & Capital</a><a href="/diagnostics">디지털 진단</a><a href="/intelligence">Intelligence</a><a href="/about">About</a></nav>
+    <a class="btn btn-primary" href="/booking" style="min-height:42px">30분 첫 상담 예약</a>
+    <button class="menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="drawer"><span></span></button>
+  </div>
+</header>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="메뉴">
+  <div class="top">
+    <a class="logo" href="/"><b>HUMAN MCP</b><small>FINANCIAL & BUSINESS ADVISORY</small></a>
+    <button class="x" type="button" aria-label="메뉴 닫기">×</button>
+  </div>
+  <nav aria-label="모바일 메뉴"><a href="/corporate"><span>기업 경영자문</span><small>세무 · 승계 · 인증 · 노무</small></a><a href="/personal"><span>개인·법인 종합금융</span><small>재무설계 · 보장 · 연금</small></a><a href="/growth"><span>Growth & Capital</span><small>GTM · 투자 · M&A</small></a><a href="/diagnostics"><span>디지털 진단</span><small>3분 점검 · 재무X레이</small></a><a href="/intelligence"><span>Intelligence</span><small>경영 · 재무 브리핑</small></a><a href="/about"><span>About</span><small>Human MCP 소개</small></a></nav>
+  <a class="btn btn-primary" href="/booking">30분 첫 상담 예약</a>
+  <a class="btn btn-secondary" href="/diagnostics">내 상황 점검하기</a>
+</div>
+<main id="main">
+
+<div class="wrap">
+  <div class="bk">
+    <div>
+      <div class="bk-h">
+        <p class="eyebrow">30분 첫 상담 예약</p>
+        <h1 id="bkTitle">어떤 상담이 필요하신가요?</h1>
+        <p>네 단계, 약 2분이면 끝납니다. 이름과 연락처 외의 민감한 정보는 받지 않습니다.</p>
+      </div>
+      <ol class="steps" id="steps" aria-label="진행 단계"><li>상담 종류</li><li>상담 목적</li><li>일정</li><li>연락처·동의</li></ol>
+      <div class="panel" id="panel" aria-live="polite"></div>
+    </div>
+    <aside class="side">
+      <div class="card">
+        <div class="me"><img src="/static/assets/photo-portrait-office.webp" alt="" style="object-position:50% 25%" width="768" height="1024"><div><b>박동혁</b><span>Human MCP · 중소기업경영연구소 전문위원</span></div></div>
+        <h4>첫 상담에서는</h4>
+        <ul><li>지금 상황과 목표를 듣습니다</li><li>도울 수 있는 일인지 솔직하게 말씀드립니다</li><li>필요하면 다음 단계와 준비 자료를 안내합니다</li><li>상담 중 가입이나 계약을 권하지 않습니다</li></ul>
+      </div>
+      <div class="card"><h4>예약이 어려우시면</h4><p class="alt">이메일 <a href="mailto:dhp.cfo@gmail.com">dhp.cfo@gmail.com</a> 또는 네이버 톡톡으로 편하게 문의해 주세요.</p></div>
+    </aside>
+  </div>
+</div>
+
+</main>
+<footer class="ftr on-dark" id="contact">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="logo" style="margin-bottom:18px"><b>HUMAN MCP</b><small>FINANCIAL & BUSINESS ADVISORY</small></div>
+        <p style="max-width:300px">박동혁 · 중소기업경영연구소 전문위원 · 씨오㈜ M&amp;A 파트너 · 한국AI기술협회 R&amp;D 기술교류위원장</p>
+      </div>
+      <div><h4>서비스</h4><ul><li><a href="/corporate">기업 경영자문</a></li><li><a href="/personal">개인·법인 종합금융</a></li><li><a href="/growth">Growth & Capital</a></li><li><a href="/ax">AI/AX 및 교육</a></li><li><a href="/owner">대표·가족 통합자문</a></li><li><a href="/network">전문가 협업</a></li></ul></div>
+      <div><h4>탐색</h4><ul><li><a href="/diagnostics">디지털 진단센터</a></li><li><a href="/intelligence">Intelligence</a></li><li><a href="/about">About</a></li><li><a href="/booking">상담예약</a></li></ul></div>
+      <div><h4>연락</h4><ul>
+        <li><a href="mailto:dhp.cfo@gmail.com">dhp.cfo@gmail.com</a></li>
+        <li><a href="https://mattpark45.github.io/portfolio_2026/" target="_blank" rel="noopener">포트폴리오 2026 ↗</a></li>
+        <li><a href="https://talk.naver.com/ct/wlxk5xa" target="_blank" rel="noopener">네이버 톡톡 ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/donghyuk-park-36a607145" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/channel/UCw3UfqT78fkSu5S7pS99ScA" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://brunch.co.kr/@dlight-park" target="_blank" rel="noopener">브런치</a> · <a href="https://blog.naver.com/thegroom45" target="_blank" rel="noopener">블로그</a> · <a href="https://www.instagram.com/dhp.cfo" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="/intelligence#subscribe">브리핑 구독</a> · <a href="/rss.xml">RSS</a></li>
+      </ul></div>
+    </div>
+    <div class="disc">
+      본 사이트의 금융 관련 정보는 일반적인 안내이며 특정 상품의 권유가 아닙니다. 금융상품 계약 체결 전 상품설명서와 약관을 반드시 확인하시기 바랍니다.
+      세무·법률·노무·특허 등 전문 업무는 해당 자격을 보유한 협업 전문가가 수행하며, Human MCP는 상담·연결·조율을 담당합니다. 금융상품 가입은 다른 서비스 이용의 조건이 아닙니다.<br><br>
+      <a href="/legal/privacy">개인정보 처리방침</a> · <a href="/legal/terms">이용약관</a> · <a href="/legal/scope">업무 범위 안내</a> &nbsp;&nbsp; © 2026 Human MCP
+    </div>
+  </div>
+</footer><div class="m-cta"><a class="btn btn-secondary" href="/diagnostics">내 상황 점검</a><a class="btn btn-primary" href="/booking">30분 첫 상담</a></div>
+<script src="/static/js/chrome.js" defer></script>
+<script src="/static/js/booking.js" defer></script>
+</body>
+</html>

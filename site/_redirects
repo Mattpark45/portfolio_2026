@@ -1,0 +1,17 @@
+/insights /intelligence 301
+/insights/ /intelligence 301
+/insights/* /intelligence/:splat 301
+/business /corporate 301
+/business/ /corporate 301
+/individuals /personal 301
+/individuals/ /personal 301
+/how-we-work /about 301
+/how-we-work/ /about 301
+/prepare /diagnostics 301
+/prepare/ /diagnostics 301
+/contact /booking 301
+/contact/ /booking 301
+/privacy /legal/privacy 301
+/privacy/ /legal/privacy 301
+/portal / 302
+/feed /rss.xml 301
