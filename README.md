@@ -8,6 +8,8 @@
 ## 자주 하는 일
 - 예약 연결: `site/assets/site.js`의 `BOOKING_URL`에 Google 캘린더 예약 페이지 주소 입력
 - 머리글·바닥글: `partials/` 수정 후 `npm run layout`
+- 글(Intelligence): `content/insights.py` 수정 후 `npm run build` (작성일·검토일·검토자·출처 필수, 목록·홈·sitemap 자동 갱신)
+- 3분 점검 결과 문구: `site/assets/dx-rules.js` (준법 검토 대상, 시험이 금지 표현 검사)
 - 새 페이지: `python3 scripts/new_page.py <경로> <제목> <설명> < 본문.html` 후 `npm run layout`
 - 시험: `npm test`
 - Preview 배포: `CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=… npx wrangler@3 pages deploy site --project-name human-mcp --branch preview` → https://preview.human-mcp.pages.dev

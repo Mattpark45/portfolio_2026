@@ -28,7 +28,7 @@ await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}${PREFIX}`;
 const failedRequests = [];
 
-const PAGES = ['/', '/individuals/', '/business/', '/how-we-work/', '/insights/', '/insights/first-meeting/', '/insights/company-vs-owner/', '/insights/support-programs/', '/prepare/', '/about/', '/contact/', '/privacy/'];
+const PAGES = ['/', '/individuals/', '/business/', '/how-we-work/', '/insights/', '/insights/policy-fund-2027/', '/insights/ai-basic-act-sme/', '/insights/family-business-succession-2026/', '/insights/vietnam-export-2027/', '/insights/first-meeting/', '/insights/company-vs-owner/', '/insights/support-programs/', '/prepare/', '/about/', '/contact/', '/privacy/'];
 const VIEWPORTS = { mobile: { width: 390, height: 844 }, desktop: { width: 1280, height: 800 } };
 const results = [];
 const check = (name, cond, detail = '') => results.push({ name, pass: !!cond, detail });
@@ -96,6 +96,33 @@ try {
       await page.waitForURL(base + '/business/');
       check('[mobile] 메뉴로 기업 페이지 이동', page.url() === base + '/business/');
     }
+    await ctx.close();
+  }
+
+  // 3분 점검 위젯: 4단계 흐름, 필수 검증, 결과, 저장·전송 없음
+  {
+    const ctx = await browser.newContext({ viewport: VIEWPORTS.mobile });
+    await ctx.route(/cdn\.jsdelivr\.net/, (r) => r.abort());
+    const page = await ctx.newPage();
+    await page.goto(base + '/');
+    const reqs = [];
+    page.on('request', (r) => reqs.push(r.url()));
+    const dx = page.locator('#dx');
+    check('[dx] 1단계 표시', (await dx.locator('.dx-step-label').textContent()).trim() === '1 / 4');
+    await dx.getByRole('button', { name: '우리 회사' }).click();
+    await dx.locator('input[value="성장 중 (매출 확대)"]').click();
+    check('[dx] 단일 선택 시 자동으로 3단계', (await dx.locator('.dx-step-label').textContent()).trim() === '3 / 4');
+    await dx.getByRole('button', { name: '다음' }).click();
+    check('[dx] 관심사 미선택 시 오류 안내', ((await dx.locator('[role=alert]').textContent()) || '').includes('하나 이상'));
+    await dx.locator('input[value="현금흐름·운전자금"]').check();
+    await dx.getByRole('button', { name: '다음' }).click();
+    await dx.getByRole('button', { name: '결과 보기' }).click();
+    const txt = await dx.textContent();
+    check('[dx] 결과 3줄 표시', ['지킬 것', '쓸 수 있는 것', '다음 기회', '운전자금'].every((t) => txt.includes(t)), txt.slice(0, 200));
+    check('[dx] 결과에서 상담 요청 링크', (await dx.locator('a.btn').getAttribute('href')).endsWith('contact/#request'));
+    const storage = await page.evaluate(() => localStorage.length + sessionStorage.length + document.cookie.length);
+    check('[dx] 저장소 사용 없음', storage === 0);
+    check('[dx] 점검 중 네트워크 요청 없음', reqs.length === 0, reqs.join(','));
     await ctx.close();
   }
 

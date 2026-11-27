@@ -6,6 +6,7 @@
     "layout": "python3 scripts/sync_layout.py",
     "test": "node tests/check.mjs && node tests/e2e.mjs",
     "test:static": "node tests/check.mjs",
-    "deploy": "npx --yes wrangler@3 pages deploy site --project-name human-mcp --branch main"
+    "deploy": "npx --yes wrangler@3 pages deploy site --project-name human-mcp --branch main",
+    "build": "python3 scripts/build_insights.py && python3 scripts/sync_layout.py"
   }
 }

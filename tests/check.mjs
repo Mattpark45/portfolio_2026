@@ -58,12 +58,16 @@ for (const file of sitePages) {
   ok(!/<form[\s>]/i.test(s), `${rel}: 입력 양식 금지 (개인정보 수집 경로 미승인)`);
   ok(!/<script>(?!\s*$)/.test(s), `${rel}: 인라인 스크립트 금지 (CSP)`);
 
-  for (const w of FORBIDDEN) ok(!text.includes(w), `${rel}: 미심의 금지 표현 "${w}"`);
+  // 정책 고유명사 예외: '모태펀드'(정부 벤처투자 재원, 금융상품 아님)
+  const textChecked = text.replace(/모태펀드/g, '');
+  for (const w of FORBIDDEN) ok(!textChecked.includes(w), `${rel}: 미심의 금지 표현 "${w}"`);
   for (const w of PLACEHOLDER) ok(!s.includes(w), `${rel}: 작업용 문구 "${w}"`);
 
   ok(!/srcset="[^"]*(^|[\s,"])\/(?!\/)/.test(s) && !/srcset="\/(?!\/)/.test(s), `${rel}: srcset 루트 기준 경로 금지`);
   ok(!/\b(href|src)="\/(?!\/)/.test(s), `${rel}: 루트 기준 내부 링크 금지 (하위 경로 배포에서 깨짐) — scripts/sync_layout.py 실행`);
-  for (const [, href] of s.matchAll(/href="([^"]+)"/g)) {
+  // 글의 출처 목록(<ol class="sources">)은 외부 원문 링크를 허용한다
+  const linkScope = s.replace(/<ol class="sources">[\s\S]*?<\/ol>/g, '');
+  for (const [, href] of linkScope.matchAll(/href="([^"]+)"/g)) {
     if (/^(mailto:|tel:)/.test(href)) continue;
     if (/^https?:\/\//.test(href)) {
       ok(ALLOWED_HOSTS.has(new URL(href).hostname), `${rel}: 허용되지 않은 외부 링크 ${href}`);
@@ -82,6 +86,18 @@ for (const file of sitePages) {
 const js = readFileSync(join(root, 'assets/site.js'), 'utf8');
 // 상담 준비 질문 스크립트는 저장·전송 API를 쓰면 안 됨
 const prep = readFileSync(join(root, 'assets/prepare.js'), 'utf8');
+// 3분 점검: 규칙 문구도 미심의 표현 검사, 스크립트는 저장·전송 금지
+const dxRules = readFileSync(join(root, 'assets/dx-rules.js'), 'utf8');
+for (const w of FORBIDDEN) ok(!dxRules.includes(w), `dx-rules.js: 미심의 금지 표현 "${w}"`);
+const dxJs = readFileSync(join(root, 'assets/dx.js'), 'utf8');
+for (const api of ['localStorage', 'sessionStorage', 'indexedDB', 'fetch(', 'XMLHttpRequest', 'sendBeacon', 'WebSocket', 'document.cookie']) ok(!dxJs.includes(api), `dx.js: 저장·전송 API 사용 금지 (${api})`);
+// 글: 작성일·검토일·출처 필수
+for (const file of sitePages.filter((f) => /insights[\\/][^\\/]+[\\/]index\.html$/.test(f))) {
+  const t = readFileSync(file, 'utf8');
+  ok(/최초 작성 \d{4}\.\d{2}\.\d{2}/.test(t) && /최근 검토 \d{4}\.\d{2}\.\d{2}/.test(t), `${relative(root, file)}: 작성일·검토일 없음`);
+  ok(/<ol class="sources"><li/.test(t), `${relative(root, file)}: 출처 없음`);
+  ok(t.includes('"@type": "Article"'), `${relative(root, file)}: Article JSON-LD 없음`);
+}
 for (const api of ['localStorage', 'sessionStorage', 'indexedDB', 'fetch(', 'XMLHttpRequest', 'sendBeacon', 'WebSocket', 'document.cookie']) ok(!prep.includes(api), `prepare.js: 저장·전송 API 사용 금지 (${api})`);
 const url = (js.match(/var BOOKING_URL = '([^']*)'/) || [])[1];
 ok(url !== undefined, 'site.js: BOOKING_URL 정의 없음');
