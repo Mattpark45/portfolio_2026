@@ -1859,3 +1859,12 @@ mark { background: linear-gradient(180deg, transparent 60%, var(--coral-soft) 60
 
   .sidenav { width: 88%; max-width: 320px; }
 }
+
+/* 미검증 링크 비활성화 (2026-11-27) */
+a[data-unverified]{pointer-events:none;cursor:default;opacity:.55;text-decoration:none}
+/* 데스크톱 가로 넘침 수정 (grid 자식 최소폭) */
+.case-grid > * { min-width: 0; }
+.case-headline { overflow-wrap: anywhere; }
+.metric-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.metric-block { min-width: 0; padding: 24px; }
+.metric-large { font-size: clamp(26px, 2.6vw, 44px); overflow-wrap: anywhere; }

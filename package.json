@@ -1,0 +1,10 @@
+{
+  "name": "human-mcp-web",
+  "private": true,
+  "description": "Human MCP 디지털 영업지점 (정적 사이트, 빌드 없음)",
+  "scripts": {
+    "layout": "python3 scripts/sync_layout.py",
+    "test": "node tests/check.mjs && node tests/e2e.mjs",
+    "test:static": "node tests/check.mjs"
+  }
+}
