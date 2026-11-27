@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>30분 첫 상담 예약 | Human MCP</title>
+<link rel="stylesheet" href="../css/hmcp.css">
+<style>
+body{background:var(--paper)}
+.bk{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:64px;padding:48px 0 96px;align-items:start}
+.bk-h .eyebrow{margin-bottom:12px}
+.bk-h h1{font:600 clamp(26px,3vw,38px)/1.3 var(--f-serif);color:var(--green)}
+.bk-h p{color:var(--char-2);margin-top:10px}
+.steps{display:flex;gap:6px;margin:32px 0 36px;list-style:none;padding:0}
+.steps li{flex:1;font-size:13px;color:var(--char-2)}
+.steps li::before{content:"";display:block;height:3px;background:var(--line);border-radius:2px;margin-bottom:8px}
+.steps li.on{color:var(--green);font-weight:600}.steps li.on::before,.steps li.done::before{background:var(--green)}
+.steps li.done{color:var(--char)}
+.panel{min-height:380px}
+.panel h2{font:600 21px/1.4 var(--f-sans);color:var(--char);margin-bottom:6px}
+.panel .hint{font-size:14.5px;color:var(--char-2);margin-bottom:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:20px;border:1px solid var(--line-strong);border-radius:var(--r-m);background:#fff;text-align:left;cursor:pointer;font:inherit;color:var(--char);min-height:96px;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--green)}
+.opt[aria-checked=true]{border-color:var(--green);background:var(--green-100);box-shadow:inset 0 0 0 1px var(--green)}
+.opt b{font-size:17px;color:var(--green)}.opt small{font-size:13.5px;color:var(--char-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 16px;min-height:44px;border:1px solid var(--line-strong);border-radius:999px;background:#fff;font:500 15px var(--f-sans);cursor:pointer;color:var(--char)}
+.chip[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.from-dx{display:flex;gap:12px;padding:14px 16px;background:rgba(82,116,135,.08);border:1px solid rgba(82,116,135,.25);border-radius:var(--r-m);font-size:14px;margin-bottom:20px;color:var(--char)}
+.from-dx b{color:var(--blue-ink);flex:none}
+textarea,input[type=text],input[type=tel],input[type=email],select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff;color:var(--char)}
+textarea{min-height:110px;resize:vertical}
+textarea:focus,input:focus,select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(20,61,48,.15)}
+.f{margin-bottom:18px}
+.f label{display:block;font-size:14.5px;font-weight:600;margin-bottom:6px}
+.f label small{font-weight:400;color:var(--char-2)}
+.f .err{display:none;color:var(--err);font-size:13.5px;margin-top:6px}
+.f.invalid input{border-color:var(--err)}.f.invalid .err{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* calendar */
+.cal{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.day{padding:10px 4px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff;font:inherit;cursor:pointer;text-align:center;min-height:60px;line-height:1.3}
+.day small{display:block;font-size:12px;color:var(--char-2)}
+.day b{font-size:17px}
+.day[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}.day[aria-pressed=true] small{color:rgba(246,243,236,.75)}
+.day:disabled{opacity:.4;cursor:not-allowed;background:var(--ivory)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot{padding:12px 4px;min-height:46px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff;font:500 15px var(--f-mono);cursor:pointer}
+.slot[aria-pressed=true]{background:var(--green);color:var(--ivory);border-color:var(--green)}
+.slot:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+.mode{display:flex;gap:8px;margin-top:18px}
+.lbl-s{font-size:13px;font-weight:600;color:var(--char-2);margin-bottom:10px;letter-spacing:.04em}
+.skel{height:46px;border-radius:var(--r-s);background:linear-gradient(90deg,var(--ivory-2) 0,#F5F1E8 50%,var(--ivory-2) 100%);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.empty{padding:24px;border:1px dashed var(--line-strong);border-radius:var(--r-m);font-size:14.5px;color:var(--char-2);text-align:center}
+/* consent */
+.consent{border:1px solid var(--line-strong);border-radius:var(--r-m);background:#fff}
+.consent label{display:flex;gap:12px;padding:16px;border-bottom:1px solid var(--line);font-size:15px;cursor:pointer;align-items:flex-start}
+.consent label:last-child{border:0}
+.consent input{width:20px;height:20px;accent-color:var(--green);flex:none;margin-top:2px}
+.consent small{display:block;color:var(--char-2);font-size:13px;margin-top:2px}
+.consent .req{color:var(--err);font-size:12.5px;font-weight:600}
+.nav-b{display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+.back{background:none;border:0;font:500 15px var(--f-sans);color:var(--char-2);cursor:pointer;min-height:44px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.alert-e{display:none;gap:12px;padding:14px 16px;background:rgba(162,59,46,.07);border:1px solid rgba(162,59,46,.3);border-radius:var(--r-m);color:var(--err);font-size:14.5px;margin-top:16px}
+.alert-e.show{display:flex}
+.spin{width:16px;height:16px;border:2px solid rgba(246,243,236,.4);border-top-color:var(--ivory);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* done */
+.done{text-align:left}
+.done .ok{width:56px;height:56px;border-radius:50%;background:var(--green-100);color:var(--green);display:grid;place-items:center;font-size:26px;margin-bottom:20px}
+.done h2{font:600 28px/1.35 var(--f-serif);color:var(--green);margin-bottom:10px}
+.done dl{display:grid;grid-template-columns:110px 1fr;gap:10px 16px;margin:28px 0;padding:22px;background:#fff;border:1px solid var(--line);border-radius:var(--r-m);font-size:15px}
+.done dt{color:var(--char-2)}.done dd{margin:0;font-weight:600}
+.done ol{padding-left:20px;display:grid;gap:8px;color:var(--char);font-size:15px}
+/* aside */
+.side{position:sticky;top:96px;display:grid;gap:16px}
+.side .card{background:var(--ivory);border-radius:var(--r-m);padding:24px}
+.side .me{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.side .me img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.side .me b{display:block}.side .me span{font-size:13px;color:var(--char-2)}
+.side ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:14.5px}
+.side li{display:flex;gap:10px}.side li::before{content:"—";color:var(--gold)}
+.side h4{font:600 12px var(--f-sans);letter-spacing:.14em;color:var(--char-2);margin-bottom:12px}
+.side .alt{font-size:14px;color:var(--char-2)}
+.state-switch{position:fixed;left:16px;bottom:16px;z-index:40;background:var(--char);color:#fff;border-radius:var(--r-m);padding:10px 12px;font:500 12px var(--f-mono);display:flex;gap:6px;align-items:center;flex-wrap:wrap;max-width:calc(100vw - 32px)}
+.state-switch button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:4px;padding:6px 8px;font:inherit;cursor:pointer}
+@media (max-width:960px){.bk{grid-template-columns:1fr;gap:40px;padding-top:28px}.side{position:static;order:2}}
+@media (max-width:560px){
+  .opts,.row2,.cal{grid-template-columns:1fr}
+  .steps li{font-size:0}.steps li.on{font-size:12.5px}
+  .nav-b{position:sticky;bottom:0;background:var(--paper);margin:24px -20px 0;padding:12px 20px calc(12px + env(safe-area-inset-bottom));z-index:5}
+  .nav-b .btn{flex:1;justify-content:center;margin-left:12px}
+  .state-switch{bottom:84px}
+}
+</style></head>
+<body id="top">
+<div data-hdr data-site></div>
+<main class="wrap">
+  <div class="bk">
+    <div>
+      <div class="bk-h"><div class="eyebrow">30분 첫 상담 예약</div><h1 id="bkTitle">어떤 상담이 필요하신가요?</h1><p>네 단계, 약 2분이면 끝납니다. 이름과 연락처 외의 민감한 정보는 받지 않습니다.</p></div>
+      <ol class="steps" id="steps" aria-label="진행 단계"><li>상담 종류</li><li>상담 목적</li><li>일정</li><li>연락처·동의</li></ol>
+      <div class="panel" id="panel" aria-live="polite"></div>
+    </div>
+    <aside class="side">
+      <div class="card">
+        <div class="me"><img src="../assets/portrait.webp" alt=""><div><b>박동혁</b><span>Human MCP · 중소기업경영연구소 전문위원</span></div></div>
+        <h4>첫 상담에서는</h4>
+        <ul><li>지금 상황과 목표를 듣습니다</li><li>도울 수 있는 일인지 솔직하게 말씀드립니다</li><li>필요하면 다음 단계와 준비 자료를 안내합니다</li><li>상담 중 가입이나 계약을 권하지 않습니다</li></ul>
+      </div>
+      <div class="card"><h4>예약이 어려우시면</h4><p class="alt">이메일 <a href="mailto:dhp.cfo@gmail.com">dhp.cfo@gmail.com</a> 또는 네이버 톡톡으로 편하게 문의해 주세요.</p><p class="alt" style="margin-top:8px"><span class="sample">상담료·무료 여부: 정책 확정 후 표시</span></p></div>
+    </aside>
+  </div>
+</main>
+<div data-ftr data-no-mcta></div>
+<div class="state-switch" aria-label="디자인 상태 미리보기">상태 미리보기 <button data-s="slots-loading">일정 로딩</button><button data-s="slots-empty">빈 일정</button><button data-s="submit-error">전송 오류</button><button data-s="done">완료</button><button data-s="reset">처음</button></div>
+
+<script src="../js/chrome.js"></script>
+<script>
+const TYPES={personal:['개인·가족 재무상담','재무계획 · 보장 · 연금 · 은퇴'],corp:['기업 경영자문 상담','경영과제 · 세무 리스크 · 성장 · 자본'],ax:['AI/AX 및 교육 문의','AX 진단 · PoC · 임직원 교육'],partner:['전문가 협업 · 제휴','전문서비스 · 투자자 · 기술기업']};
+const TOPICS={personal:['재무계획 전반','보장 점검','연금·은퇴','자녀·교육자금','부동산·세금','상속·증여'],corp:['세무 리스크','가지급금','가업승계','정책자금·인증','노무','투자유치·M&A','해외진출','비용절감'],ax:['AX 진단','AI 도입 PoC','임직원 교육','기술 협업'],partner:['세무·법률 등 전문서비스','투자·금융기관','기술기업','교육기관','공동사업']};
+const qs=new URLSearchParams(location.search);
+const KEY='hmcp_booking';
+let S=JSON.parse(sessionStorage.getItem(KEY)||'null')||{step:0,type:qs.get('type')||null,topics:qs.get('topic')?[qs.get('topic')]:[],note:'',day:null,slot:null,mode:'online',name:'',tel:'',email:'',company:'',c1:false,c2:false,c3:false};
+if(qs.get('type')&&S.step===0&&S.type) S.step=1;
+let dx=null;try{dx=JSON.parse(sessionStorage.getItem('hmcp_dx')||'null')}catch(e){}
+if(dx&&!S.type){S.type=dx.type==='corp'?'corp':'personal';S.topics=[];S.step=1;S.note='3분 점검에서 고른 항목: '+dx.ans.join(', ');}
+let forced=null;
+const save=()=>sessionStorage.setItem(KEY,JSON.stringify(S));
+const P=document.getElementById('panel');
+const days=(()=>{const out=[];const d=new Date(2026,11,1);const W='일월화수목금토';while(out.length<10){if(d.getDay()%6){out.push({k:d.toISOString().slice(0,10),w:W[d.getDay()],n:d.getDate(),m:d.getMonth()+1,off:out.length===3})}d.setDate(d.getDate()+1)}return out})();
+const SLOTS=['10:00','11:00','13:30','15:00','16:30','19:00'];
+const taken=k=>({'2026-12-01':['10:00','13:30'],'2026-12-02':['16:30']}[k]||[]);
+function stepsUI(){[...document.querySelectorAll('#steps li')].forEach((l,i)=>{l.className=i<S.step?'done':i===S.step?'on':'';l.setAttribute('aria-current',i===S.step?'step':'false')})}
+function nav(canNext,label='다음'){return `<div class="nav-b">${S.step>0?'<button class="back" data-a="back">← 이전</button>':'<span></span>'}<button class="btn btn-primary" data-a="next" ${canNext?'':'disabled'}>${label}</button></div>`}
+function render(){
+  stepsUI();save();
+  const T=document.getElementById('bkTitle');
+  if(forced==='done'||S.step===4) return renderDone();
+  if(S.step===0){
+    T.textContent='어떤 상담이 필요하신가요?';
+    P.innerHTML=`<h2>상담 종류</h2><p class="hint">가장 가까운 것을 골라 주세요. 나중에 바꿀 수 있습니다.</p><div class="opts" role="radiogroup">${Object.entries(TYPES).map(([k,[t,s]])=>`<button class="opt" role="radio" aria-checked="${S.type===k}" data-type="${k}"><b>${t}</b><small>${s}</small></button>`).join('')}</div>${nav(!!S.type)}`;
+  } else if(S.step===1){
+    T.textContent=TYPES[S.type][0];
+    P.innerHTML=`${dx?`<div class="from-dx"><b>3분 점검 결과</b><span>점검에서 고르신 항목을 상담 메모에 함께 담았습니다. 원치 않으시면 지워 주세요.</span></div>`:''}
+    <h2>무엇을 이야기하고 싶으세요?</h2><p class="hint">여러 개 골라도 됩니다. 선택하지 않으셔도 괜찮습니다.</p>
+    <div class="chips">${TOPICS[S.type].map(t=>`<button class="chip" aria-pressed="${S.topics.includes(t)}" data-topic="${t}">${t}</button>`).join('')}</div>
+    <div class="f" style="margin-top:24px"><label for="note">미리 전하고 싶은 말 <small>(선택)</small></label><textarea id="note" placeholder="예) 내년에 법인전환을 고민 중입니다.">${S.note}</textarea><p style="font-size:13px;color:var(--char-2);margin-top:6px">주민번호, 계좌, 건강정보, 보험 계약 내용은 적지 말아 주세요.</p></div>${nav(true)}`;
+  } else if(S.step===2){
+    T.textContent='편한 시간을 골라 주세요';
+    const d=days.find(x=>x.k===S.day);
+    let slotsHTML;
+    if(forced==='slots-loading') slotsHTML=`<div class="slots">${'<div class="skel"></div>'.repeat(6)}</div>`;
+    else if(forced==='slots-empty'||(d&&d.off)) slotsHTML=`<div class="empty">이 날은 예약 가능한 시간이 없습니다.<br>다른 날을 골라 주시거나 <a href="mailto:dhp.cfo@gmail.com">이메일</a>로 시간을 제안해 주세요.</div>`;
+    else if(!S.day) slotsHTML=`<div class="empty">왼쪽에서 날짜를 먼저 골라 주세요.</div>`;
+    else slotsHTML=`<div class="slots">${SLOTS.map(s=>`<button class="slot" data-slot="${s}" aria-pressed="${S.slot===s}" ${taken(S.day).includes(s)?'disabled aria-label="'+s+' 예약 마감"':''}>${s}</button>`).join('')}</div>`;
+    P.innerHTML=`<h2>일정</h2><p class="hint">30분 상담 · 한국 시간 기준 · 2026년 12월</p>
+    <div class="cal"><div><div class="lbl-s">날짜</div><div class="days">${days.map(x=>`<button class="day" data-day="${x.k}" aria-pressed="${S.day===x.k}"><small>${x.m}/${x.w}</small><b>${x.n}</b></button>`).join('')}</div></div>
+    <div><div class="lbl-s">시간</div>${slotsHTML}
+    <div class="lbl-s" style="margin-top:22px">방식</div><div class="mode"><button class="chip" data-mode="online" aria-pressed="${S.mode==='online'}">화상</button><button class="chip" data-mode="phone" aria-pressed="${S.mode==='phone'}">전화</button><button class="chip" data-mode="visit" aria-pressed="${S.mode==='visit'}">방문 (서울)</button></div></div></div>
+    <p style="font-size:13px;color:var(--char-2);margin-top:16px"><span class="sample">실제 구현 시 캘린더 연동 (예: Google Calendar/Cal.com) — 개발 단계에서 결정</span></p>${nav(!!(S.day&&S.slot))}`;
+  } else if(S.step===3){
+    T.textContent='거의 다 됐습니다';
+    const corp=S.type==='corp'||S.type==='partner'||S.type==='ax';
+    P.innerHTML=`<h2>연락처</h2><p class="hint">예약 확인과 상담 안내에만 사용합니다.</p>
+    <form id="fm" novalidate>
+      <div class="row2"><div class="f" id="f-name"><label for="name">이름</label><input type="text" id="name" autocomplete="name" value="${S.name}"><p class="err">이름을 적어 주세요.</p></div>
+      <div class="f" id="f-tel"><label for="tel">휴대전화</label><input type="tel" id="tel" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" value="${S.tel}"><p class="err">연락 가능한 번호를 적어 주세요. 예) 010-1234-5678</p></div></div>
+      <div class="row2"><div class="f"><label for="email">이메일 <small>(선택)</small></label><input type="email" id="email" autocomplete="email" value="${S.email}"></div>
+      ${corp?`<div class="f"><label for="company">회사·기관명 <small>(선택)</small></label><input type="text" id="company" autocomplete="organization" value="${S.company}"></div>`:'<div></div>'}</div>
+      <div class="consent" role="group" aria-label="동의">
+        <label><input type="checkbox" id="c1" ${S.c1?'checked':''}><span>[필수] 개인정보 수집·이용 동의<small>이름·연락처 · 상담 예약 및 안내 목적 · 상담 종료 후 1년 보관 <a href="#">전문 보기</a></small></span></label>
+        <label><input type="checkbox" id="c2" ${S.c2?'checked':''}><span>[필수] 업무 범위 안내 확인<small>세무·법률 등 자격 업무는 협업 전문가가 수행합니다. <a href="#">자세히</a></small></span></label>
+        <label><input type="checkbox" id="c3" ${S.c3?'checked':''}><span>[선택] 격주 브리핑 이메일 받기<small>언제든 해지할 수 있습니다.</small></span></label>
+      </div>
+      <div class="alert-e ${forced==='submit-error'?'show':''}" id="sendErr" role="alert"><b>!</b><span>예약을 보내지 못했습니다. 입력하신 내용은 그대로 있으니 잠시 후 다시 눌러 주세요. 계속 안 되면 dhp.cfo@gmail.com으로 알려 주세요.</span></div>
+    </form>${nav(S.c1&&S.c2,'예약 요청하기')}
+    <p style="font-size:13px;color:var(--char-2);margin-top:12px">요청 후 확인 문자를 보내 드립니다. 일정이 확정되면 다시 안내드립니다.</p>`;
+    const g=id=>document.getElementById(id);
+    const sync=()=>{S.name=g('name').value;S.tel=g('tel').value;S.email=g('email').value;if(g('company'))S.company=g('company').value;S.c1=g('c1').checked;S.c2=g('c2').checked;S.c3=g('c3').checked;save();P.querySelector('[data-a=next]').disabled=!(S.c1&&S.c2)};
+    P.querySelectorAll('input').forEach(i=>i.addEventListener('input',sync));
+  }
+}
+function renderDone(){
+  document.getElementById('bkTitle').textContent='예약 요청이 접수되었습니다';
+  [...document.querySelectorAll('#steps li')].forEach(l=>l.className='done');
+  const d=days.find(x=>x.k===S.day)||days[1];
+  P.innerHTML=`<div class="done"><div class="ok" aria-hidden="true">✓</div><h2>${S.name||'고객'}님, 감사합니다.</h2><p style="color:var(--char-2)">입력하신 번호로 확인 문자를 보내 드렸습니다. <span class="sample">문자 발송은 구현 단계 기능</span></p>
+  <dl><dt>상담 종류</dt><dd>${TYPES[S.type||'personal'][0]}</dd><dt>일정</dt><dd>${d.m}월 ${d.n}일 (${d.w}) ${S.slot||'11:00'} · 30분</dd><dt>방식</dt><dd>${{online:'화상',phone:'전화',visit:'방문'}[S.mode]}</dd>${S.topics.length?`<dt>이야기할 것</dt><dd>${S.topics.join(', ')}</dd>`:''}</dl>
+  <h3 style="font:600 16px var(--f-sans);margin-bottom:10px">상담 전에 해 두시면 좋은 것</h3>
+  <ol><li>지금 가장 궁금한 질문 한두 가지를 적어 두세요.</li>${S.type==='corp'?'<li>최근 재무제표가 있으면 준비해 주세요. 없어도 괜찮습니다.</li>':'<li>매달 고정으로 나가는 돈을 대략 떠올려 보세요.</li>'}<li>일정을 바꾸려면 확인 문자에 답장해 주세요.</li></ol>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:28px"><a class="btn btn-secondary" href="Article.html">관련 글 읽어 보기</a><a class="btn btn-secondary" href="Home.html">홈으로</a></div></div>`;
+}
+P.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.type){if(S.type!==b.dataset.type){S.topics=[]}S.type=b.dataset.type;render();return}
+  if(b.dataset.topic){const t=b.dataset.topic,i=S.topics.indexOf(t);i>-1?S.topics.splice(i,1):S.topics.push(t);b.setAttribute('aria-pressed',i<0);save();return}
+  if(b.dataset.day){S.day=b.dataset.day;S.slot=null;forced=null;render();return}
+  if(b.dataset.slot){S.slot=b.dataset.slot;render();return}
+  if(b.dataset.mode){S.mode=b.dataset.mode;render();return}
+  if(b.dataset.a==='back'){const n=document.getElementById('note');if(n)S.note=n.value;S.step--;forced=null;render();return}
+  if(b.dataset.a==='next'){
+    const n=document.getElementById('note');if(n)S.note=n.value;
+    if(S.step===3){
+      let ok=true;
+      const fn=document.getElementById('f-name'),ft=document.getElementById('f-tel');
+      fn.classList.toggle('invalid',!S.name.trim());ok=ok&&!!S.name.trim();
+      const telOk=/^01[0-9]-?\d{3,4}-?\d{4}$/.test(S.tel.trim());ft.classList.toggle('invalid',!telOk);ok=ok&&telOk;
+      if(!ok){document.getElementById(fn.classList.contains('invalid')?'name':'tel').focus();return}
+      b.disabled=true;b.innerHTML='<span class="spin"></span> 보내는 중…';
+      setTimeout(()=>{if(forced==='submit-error'){document.getElementById('sendErr').classList.add('show');b.disabled=false;b.textContent='다시 보내기';return}S.step=4;render();window.scrollTo({top:0,behavior:'smooth'})},900);
+      return;
+    }
+    S.step++;forced=null;render();window.scrollTo({top:0,behavior:'smooth'});
+  }
+});
+document.querySelector('.state-switch').addEventListener('click',e=>{
+  const s=e.target.dataset.s;if(!s)return;
+  if(s==='reset'){sessionStorage.removeItem(KEY);sessionStorage.removeItem('hmcp_dx');location.href='Booking.html';return}
+  if(s==='slots-loading'||s==='slots-empty'){S.type=S.type||'corp';S.step=2;S.day=S.day||days[1].k}
+  if(s==='submit-error'){S.type=S.type||'corp';S.step=3;S.day=S.day||days[1].k;S.slot=S.slot||'11:00';S.c1=S.c2=true}
+  if(s==='done'){S.type=S.type||'corp';S.day=S.day||days[1].k;S.slot=S.slot||'11:00';S.name=S.name||'김대표';S.topics=S.topics.length?S.topics:['가지급금']}
+  forced=s;render();
+});
+render();
+</script>
+</body></html>

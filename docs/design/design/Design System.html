@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Human MCP — Design System v0.1</title>
+<link rel="stylesheet" href="css/hmcp.css">
+<style>
+body{background:var(--ivory)}
+.ds{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+.ds-nav{position:sticky;top:0;height:100vh;overflow:auto;padding:32px 24px;border-right:1px solid var(--line);background:var(--paper)}
+.ds-nav .logo{margin-bottom:8px}
+.ds-nav .v{font:500 11.5px var(--f-mono);color:var(--char-2);margin-bottom:28px}
+.ds-nav b{display:block;font-size:11.5px;letter-spacing:.14em;color:var(--gold-ink);margin:22px 0 8px}
+.ds-nav a{display:block;padding:5px 0;font-size:14px;text-decoration:none;color:var(--char-2)}
+.ds-nav a:hover{color:var(--green)}
+.ds-main{padding:56px 56px 120px;max-width:1200px}
+.ds-sec{padding:56px 0;border-bottom:1px solid var(--line)}
+.ds-sec:first-child{padding-top:0}
+.ds-sec>h2{font:600 30px/1.3 var(--f-serif);color:var(--green);margin-bottom:8px}
+.ds-sec>p.d{color:var(--char-2);max-width:720px;margin-bottom:32px}
+.ds-sub{font:600 13px var(--f-sans);letter-spacing:.1em;color:var(--char-2);margin:36px 0 14px;text-transform:uppercase}
+.specimen{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-m);padding:28px}
+.specimen+.specimen{margin-top:16px}
+.tok{font:500 12px var(--f-mono);color:var(--char-2)}
+.g{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+.sw{border-radius:var(--r-m);overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw .c{height:84px;display:flex;align-items:flex-end;padding:10px;font:600 13px var(--f-sans)}
+.sw .i{padding:10px 12px;font-size:13px;line-height:1.55}
+.sw .i b{display:block;font-size:14px}
+.type-row{display:grid;grid-template-columns:160px 1fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.type-row:last-child{border:0}
+.sp-row{display:flex;align-items:center;gap:16px;padding:6px 0;font:500 12.5px var(--f-mono);color:var(--char-2)}
+.sp-row i{display:block;height:14px;background:var(--green);border-radius:2px}
+.comp-label{font:500 12px var(--f-mono);color:var(--char-2);margin-bottom:12px;display:block}
+.demo-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+table.spec{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+table.spec th{text-align:left;font:600 12px var(--f-sans);letter-spacing:.06em;color:var(--char-2);padding:10px 12px;border-bottom:1px solid var(--char);background:var(--ivory)}
+table.spec td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.spec td:first-child{font:500 13px var(--f-mono);color:var(--green);white-space:nowrap}
+.f label{display:block;font-size:14.5px;font-weight:600;margin-bottom:6px}
+.f input,.f select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:#fff}
+.f.err input{border-color:var(--err)}.f .m{font-size:13.5px;margin-top:6px;color:var(--char-2)}.f.err .m{color:var(--err)}
+.f.focus input{border-color:var(--green);box-shadow:0 0 0 3px rgba(20,61,48,.15)}
+.f.dis input{background:var(--ivory);color:var(--char-2)}
+.alert{display:flex;gap:12px;padding:14px 16px;border-radius:var(--r-m);font-size:14.5px;border:1px solid}
+.al-i{background:rgba(82,116,135,.08);border-color:rgba(82,116,135,.3)}.al-i b{color:var(--blue-ink)}
+.al-s{background:rgba(47,107,79,.08);border-color:rgba(47,107,79,.3)}.al-s b{color:var(--ok)}
+.al-w{background:rgba(138,90,18,.07);border-color:rgba(138,90,18,.25)}.al-w b{color:var(--warn)}
+.al-e{background:rgba(162,59,46,.07);border-color:rgba(162,59,46,.3)}.al-e b{color:var(--err)}
+.acc{border-top:1px solid var(--line-strong)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;display:flex;justify-content:space-between;padding:18px 0;font-weight:600;cursor:pointer;min-height:44px}
+.acc summary::after{content:"+";font-size:20px;color:var(--green)}
+.acc details[open] summary::after{content:"−"}
+.acc details p{padding:0 0 18px;color:var(--char-2);font-size:15px}
+.modal-demo{position:relative;height:300px;background:rgba(37,44,43,.5);border-radius:var(--r-m);display:grid;place-items:center}
+.modal{background:var(--paper);border-radius:var(--r-l);padding:28px;width:min(420px,90%);box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
+.modal h3{font:600 20px/1.4 var(--f-sans);margin-bottom:8px}
+.modal p{font-size:15px;color:var(--char-2);margin-bottom:22px}
+.skel{height:14px;border-radius:3px;background:linear-gradient(90deg,var(--ivory-2) 0,#F5F1E8 50%,var(--ivory-2) 100%);background-size:200% 100%;animation:sk 1.2s infinite;margin-bottom:10px}
+@keyframes sk{to{background-position:-200% 0}}
+.state{padding:28px;border:1px dashed var(--line-strong);border-radius:var(--r-m);text-align:center;font-size:14.5px;color:var(--char-2);background:#fff}
+.state .ic{width:44px;height:44px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:20px}
+.state b{display:block;color:var(--char);font-size:16px;margin-bottom:4px}
+.photo{position:relative;border-radius:var(--r-m);overflow:hidden;background:#E7E4DE}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.photo .safe{position:absolute;border:1.5px dashed var(--err);left:22%;right:22%;top:8%;height:48%;border-radius:50% 50% 45% 45%}
+.photo .cap{position:absolute;left:8px;bottom:8px;font:500 11px var(--f-mono);background:rgba(37,44,43,.75);color:#fff;padding:4px 6px;border-radius:3px}
+.chartbox{display:flex;align-items:flex-end;gap:14px;height:160px;padding:0 8px;border-bottom:1px solid var(--char)}
+.chartbox div{flex:1;border-radius:2px 2px 0 0}
+.ico{width:44px;height:44px;border:1px solid var(--line-strong);border-radius:var(--r-s);display:grid;place-items:center}
+.ico svg{width:22px;height:22px;stroke:var(--green);fill:none;stroke-width:1.5}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.do-dont div{padding:18px;border-radius:var(--r-m);font-size:14.5px}
+.do-dont .do{background:rgba(47,107,79,.07);border-top:3px solid var(--ok)}
+.do-dont .dont{background:rgba(162,59,46,.06);border-top:3px solid var(--err)}
+.do-dont b{display:block;margin-bottom:6px}
+.do-dont ul{margin:0;padding-left:18px;display:grid;gap:4px}
+@media (max-width:1000px){.ds{grid-template-columns:1fr}.ds-nav{position:static;height:auto;display:none}.ds-main{padding:32px 20px 80px}.g3,.g4,.g6{grid-template-columns:1fr 1fr}.g2,.do-dont{grid-template-columns:1fr}.type-row{grid-template-columns:1fr;gap:6px}}
+</style></head>
+<body>
+<div class="ds">
+<nav class="ds-nav" aria-label="디자인 시스템 목차">
+  <div class="logo"><b>HUMAN MCP</b><small>DESIGN SYSTEM</small></div>
+  <div class="v">v0.1 · 2026.11.27</div>
+  <b>원칙</b><a href="#principles">디자인 원칙</a>
+  <b>Foundations</b><a href="#color">Color</a><a href="#type">Typography</a><a href="#space">Spacing · Grid</a><a href="#shape">Radius · Shadow</a><a href="#icon">Iconography</a><a href="#photo">Photography</a>
+  <b>Components</b><a href="#button">Button · Link</a><a href="#card">Card · Badge</a><a href="#form">Form</a><a href="#nav">Navigation</a><a href="#table">Table · Chart</a><a href="#feedback">Modal · Alert · Accordion</a><a href="#states">Loading · Empty · Error · Success</a>
+  <b>인계</b><a href="#tokens">토큰 (CSS)</a><a href="#a11y">접근성 기준</a>
+</nav>
+
+<main class="ds-main">
+
+<section class="ds-sec" id="principles" data-screen-label="DS · 원칙">
+  <div class="eyebrow">Warm Editorial · Modern Advisory · Restrained Premium</div>
+  <h2 style="margin-top:12px">디자인 원칙</h2>
+  <p class="d">선택한 방향(A 뼈대 + C 점검 + B 콘텐츠)을 모든 화면에 일관되게 적용하기 위한 기준입니다.</p>
+  <div class="g g3">
+    <div class="specimen"><h3 style="font:600 18px/1.4 var(--f-sans);color:var(--green);margin-bottom:8px">1. 사람이 먼저</h3><p style="font-size:15px;color:var(--char-2)">누가 하는지가 보여야 합니다. 화면마다 자문가의 얼굴 또는 이름이 한 번은 보이게 합니다.</p></div>
+    <div class="specimen"><h3 style="font:600 18px/1.4 var(--f-sans);color:var(--green);margin-bottom:8px">2. 선은 많이, 상자는 적게</h3><p style="font-size:15px;color:var(--char-2)">아이콘 카드를 나열하지 않습니다. 가는 선, 여백, 명조 제목으로 구조를 만듭니다.</p></div>
+    <div class="specimen"><h3 style="font:600 18px/1.4 var(--f-sans);color:var(--green);margin-bottom:8px">3. 선택권을 준다</h3><p style="font-size:15px;color:var(--char-2)">상담 요청만 강요하지 않습니다. 읽기, 점검하기, 예약하기 중에서 방문자가 고르게 합니다.</p></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="color" data-screen-label="DS · Color">
+  <h2>Color</h2>
+  <p class="d">브랜드 5색을 유지하고, 대비 기준(WCAG 2.2 AA)을 통과하지 못하는 조합에는 글자용 보조색을 씁니다. 금색과 파란색은 '포인트'로만 사용하고, 화면의 90%는 아이보리·그린·차콜입니다.</p>
+  <div class="ds-sub">Brand</div>
+  <div class="g g6">
+    <div class="sw"><div class="c" style="background:#143D30;color:#F6F3EC">Aa</div><div class="i"><b>green</b><span class="tok">#143D30</span><br>Primary · 버튼 · 제목</div></div>
+    <div class="sw"><div class="c" style="background:#0E2C23;color:#F6F3EC">Aa</div><div class="i"><b>green-900</b><span class="tok">#0E2C23</span><br>어두운 섹션 · 푸터</div></div>
+    <div class="sw"><div class="c" style="background:#F6F3EC;color:#252C2B">Aa</div><div class="i"><b>ivory</b><span class="tok">#F6F3EC</span><br>기본 배경</div></div>
+    <div class="sw"><div class="c" style="background:#FBF9F5;color:#252C2B">Aa</div><div class="i"><b>paper</b><span class="tok">#FBF9F5</span><br>카드 · 보조 배경</div></div>
+    <div class="sw"><div class="c" style="background:#252C2B;color:#F6F3EC">Aa</div><div class="i"><b>char</b><span class="tok">#252C2B</span><br>본문 12.9:1</div></div>
+    <div class="sw"><div class="c" style="background:#AC8B46;color:#252C2B">—</div><div class="i"><b>gold</b><span class="tok">#AC8B46</span><br>선 · 장식만</div></div>
+  </div>
+  <div class="ds-sub">Text-safe accents</div>
+  <div class="g g6">
+    <div class="sw"><div class="c" style="background:#F6F3EC;color:#7D622A">Gold Ink</div><div class="i"><b>gold-ink</b><span class="tok">#7D622A</span><br>ivory 위 5.2:1</div></div>
+    <div class="sw"><div class="c" style="background:#143D30;color:#C9A862">Gold Light</div><div class="i"><b>gold-light</b><span class="tok">#C9A862</span><br>green 위 5.3:1</div></div>
+    <div class="sw"><div class="c" style="background:#F6F3EC;color:#466577">Blue Ink</div><div class="i"><b>blue-ink</b><span class="tok">#466577</span><br>ivory 위 5.6:1</div></div>
+    <div class="sw"><div class="c" style="background:#F6F3EC;color:#5E6563">Secondary</div><div class="i"><b>char-2</b><span class="tok">#5E6563</span><br>보조 글자 5.4:1</div></div>
+    <div class="sw"><div class="c" style="background:#527487;color:#fff">—</div><div class="i"><b>blue</b><span class="tok">#527487</span><br>차트 · 포커스 링</div></div>
+    <div class="sw"><div class="c" style="background:#DCE6E0;color:#143D30">Aa</div><div class="i"><b>green-100</b><span class="tok">#DCE6E0</span><br>선택 상태 배경</div></div>
+  </div>
+  <div class="ds-sub">Semantic</div>
+  <div class="g g4">
+    <div class="sw"><div class="c" style="background:#2F6B4F;color:#fff">Success</div><div class="i"><span class="tok">--ok #2F6B4F</span><br>완료 · 이용 가능 · 혜택(Benefit)</div></div>
+    <div class="sw"><div class="c" style="background:#8A5A12;color:#fff">Warning</div><div class="i"><span class="tok">--warn #8A5A12</span><br>주의 · 확인 필요</div></div>
+    <div class="sw"><div class="c" style="background:#A23B2E;color:#fff">Error</div><div class="i"><span class="tok">--err #A23B2E</span><br>오류 · 위험(Risk) 라벨</div></div>
+    <div class="sw"><div class="c" style="background:#466577;color:#fff">Info</div><div class="i"><span class="tok">--info #466577</span><br>안내 · 성장(Growth) 라벨</div></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--char-2);margin-top:16px">위험 라벨에 빨간색을 쓰되 공포감을 주지 않도록 글자색으로만 쓰고, 배경을 빨갛게 칠하지 않습니다.</p>
+</section>
+
+<section class="ds-sec" id="type" data-screen-label="DS · Type">
+  <h2>Typography</h2>
+  <p class="d">제목은 Noto Serif KR(명조)로 따뜻한 에디토리얼 느낌을, 본문과 UI는 Pretendard(고딕)로 가독성을 확보합니다. 두 서체 모두 SIL Open Font License 1.1이라 상업 사이트에 웹폰트로 써도 됩니다. 한국어는 <code>word-break: keep-all</code>로 단어 중간에서 줄이 바뀌지 않게 합니다.</p>
+  <div class="specimen">
+    <div class="type-row"><span class="tok">display · serif 600<br>clamp(34–60) / 1.28</span><span style="font:600 52px/1.28 var(--f-serif);color:var(--green)">회사의 성장과 가족의 미래</span></div>
+    <div class="type-row"><span class="tok">h2 · serif 600<br>clamp(28–42) / 1.32</span><span style="font:600 38px/1.32 var(--f-serif);color:var(--green)">위험만 찾지 않습니다</span></div>
+    <div class="type-row"><span class="tok">h3 · sans 600<br>22 / 1.35</span><span style="font:600 22px/1.35 var(--f-sans)">기업 경영자문</span></div>
+    <div class="type-row"><span class="tok">h4 · sans 600<br>18 / 1.4</span><span style="font:600 18px/1.4 var(--f-sans)">재무X레이 Scout</span></div>
+    <div class="type-row"><span class="tok">lede · sans 400<br>19 / 1.7</span><span style="font-size:19px">경영·재무·자본·기술 과제를 함께 정리하고 맞는 전문가와 연결합니다.</span></div>
+    <div class="type-row"><span class="tok">body · sans 400<br>17 / 1.7 (mobile 16)</span><span>베트남에서 16년을 살며 직접 사업을 꾸렸고, 10년 넘게 기업의 고객을 데려오는 마케팅을 해왔습니다.</span></div>
+    <div class="type-row"><span class="tok">article · sans 400<br>17.5 / 1.85</span><span style="font-size:17.5px;line-height:1.85">콘텐츠 상세 본문은 줄간격을 넓혀 오래 읽어도 편하게 합니다.</span></div>
+    <div class="type-row"><span class="tok">small · sans 400<br>14.5 / 1.6</span><span style="font-size:14.5px;color:var(--char-2)">보조 설명, 카드 본문, 캡션</span></div>
+    <div class="type-row"><span class="tok">eyebrow · sans 600<br>12.5 · tracking .16em</span><span class="eyebrow">Our approach</span></div>
+    <div class="type-row"><span class="tok">mono · Plex Mono 500<br>12–13</span><span style="font:500 13px var(--f-mono);color:var(--gold-ink)">01 · 작성 2026.11.20</span></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--char-2);margin-top:14px">최소 글자 크기: 본문 16px, 보조 13px, 법적 고지 12.5px. 서체 로딩: Pretendard dynamic-subset(필요한 글자만 내려받음), Noto Serif KR은 600·700 두 굵기만.</p>
+</section>
+
+<section class="ds-sec" id="space" data-screen-label="DS · Spacing">
+  <h2>Spacing · Grid</h2>
+  <p class="d">4px 단위 간격 체계. 섹션 간격은 데스크톱 112px, 모바일 72px. 콘텐츠 최대 폭 1240px, 좌우 여백 40px(모바일 20px).</p>
+  <div class="g g2">
+    <div class="specimen">
+      <div class="sp-row"><i style="width:4px"></i>s1 · 4</div><div class="sp-row"><i style="width:8px"></i>s2 · 8</div><div class="sp-row"><i style="width:12px"></i>s3 · 12</div><div class="sp-row"><i style="width:16px"></i>s4 · 16</div><div class="sp-row"><i style="width:24px"></i>s5 · 24</div><div class="sp-row"><i style="width:32px"></i>s6 · 32</div><div class="sp-row"><i style="width:48px"></i>s7 · 48</div><div class="sp-row"><i style="width:64px"></i>s8 · 64</div><div class="sp-row"><i style="width:96px"></i>s9 · 96</div><div class="sp-row"><i style="width:128px"></i>s10 · 128</div>
+    </div>
+    <div class="specimen">
+      <table class="spec"><thead><tr><th>Breakpoint</th><th>열</th><th>여백</th></tr></thead><tbody>
+        <tr><td>1440 desktop</td><td>12 · gutter 24</td><td>40</td></tr>
+        <tr><td>1280 laptop</td><td>12 · gutter 24</td><td>40</td></tr>
+        <tr><td>≤1100</td><td>헤더 → 햄버거 메뉴</td><td>40</td></tr>
+        <tr><td>768 tablet</td><td>6 · gutter 20</td><td>20</td></tr>
+        <tr><td>390 mobile</td><td>4 · gutter 16</td><td>20</td></tr>
+        <tr><td>360 small</td><td>4 · gutter 12</td><td>20</td></tr>
+      </tbody></table>
+      <p style="font-size:13.5px;color:var(--char-2);margin-top:12px">모바일(≤768)에서는 화면 하단에 '내 상황 점검 / 30분 첫 상담' 고정 바가 나타납니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ds-sec" id="shape" data-screen-label="DS · Shape">
+  <h2>Radius · Shadow</h2>
+  <p class="d">모서리는 작게, 그림자는 거의 쓰지 않습니다. 고급스러움은 그림자보다 여백과 선에서 나옵니다.</p>
+  <div class="g g4">
+    <div class="specimen" style="border-radius:4px"><span class="tok">--r-s 4px</span><p style="font-size:14px;margin-top:6px">버튼 · 입력창</p></div>
+    <div class="specimen" style="border-radius:8px"><span class="tok">--r-m 8px</span><p style="font-size:14px;margin-top:6px">카드 · 알림</p></div>
+    <div class="specimen" style="border-radius:14px"><span class="tok">--r-l 14px</span><p style="font-size:14px;margin-top:6px">모달 · 점검 위젯</p></div>
+    <div class="specimen" style="box-shadow:var(--shadow-1);border-color:transparent"><span class="tok">--shadow-1</span><p style="font-size:14px;margin-top:6px">떠 있는 요소에만</p></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--char-2);margin-top:14px">예외: 홈 Hero 인물 사진의 아치형 프레임(상단 반경 220px)은 브랜드 시그니처로 한 곳에서만 씁니다.</p>
+</section>
+
+<section class="ds-sec" id="icon" data-screen-label="DS · Icon">
+  <h2>Iconography</h2>
+  <p class="d">아이콘은 최소한으로. 서비스 소개에 아이콘을 붙이지 않고, 기능적인 곳(메뉴, 닫기, 화살표, 검색, 체크)에만 씁니다. 1.5px 선 굵기의 라인 아이콘(Lucide, ISC 라이선스)을 권장합니다.</p>
+  <div class="demo-row">
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></div>
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div>
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>
+    <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div>
+    <span style="font-size:14px;color:var(--char-2);margin-left:8px">메뉴 · 닫기 · 이동 · 검색 · 완료 · 일정</span>
+  </div>
+</section>
+
+<section class="ds-sec" id="photo" data-screen-label="DS · Photo">
+  <h2>Photography</h2>
+  <p class="d">자연광, 따뜻한 색온도, 낮은 채도. 얼굴은 안전영역(빨간 점선) 안에 두고, 화면 크기가 바뀌어도 이 영역이 잘리지 않게 <code>object-position</code>을 지정합니다.</p>
+  <div class="g g4">
+    <div><div class="photo" style="aspect-ratio:4/5"><img src="assets/portrait.webp" alt=""><span class="safe"></span><span class="cap">Hero desktop 4:5 · pos 50% 18%</span></div></div>
+    <div><div class="photo" style="aspect-ratio:1/1"><img src="assets/portrait.webp" alt=""><span class="safe" style="top:4%;height:58%"></span><span class="cap">Hero mobile 1:1</span></div></div>
+    <div><div class="photo" style="aspect-ratio:1/1;border-radius:50%;width:60%;margin:0 auto"><img src="assets/portrait.webp" alt="" style="object-position:50% 22%"></div><p class="tok" style="text-align:center;margin-top:10px">작성자 · 원형 48–96px</p></div>
+    <div><div class="ph" style="aspect-ratio:4/5;border-radius:var(--r-m)"><span class="ai-tag">AI 연출 이미지</span>브랜드 사진 5종 대기</div></div>
+  </div>
+  <div class="do-dont" style="margin-top:20px">
+    <div class="do"><b>이렇게</b><ul><li>실제 사진과 AI 연출 이미지를 구분하고, AI 이미지에는 오른쪽 위에 'AI 연출 이미지' 표시</li><li>배경 이미지는 산·숲·새벽빛 등 자연 (제작한 1920×800, 1200×630)</li><li>상담 장면은 실제 사진만 사용</li></ul></div>
+    <div class="dont"><b>이렇게 하지 않기</b><ul><li>AI로 만든 미팅·강의·행사 사진을 실적처럼 쓰기</li><li>고급 자동차, 금괴, 현금, 명품 이미지</li><li>악수하는 정장 스톡 사진</li></ul></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="button" data-screen-label="DS · Button">
+  <h2>Button · Link</h2>
+  <p class="d">최소 높이 48px(터치 영역 44px 이상). 한 화면에 Primary 버튼은 하나만 둡니다.</p>
+  <div class="specimen"><span class="comp-label">on ivory</span><div class="demo-row"><a class="btn btn-primary" href="#">30분 첫 상담 예약</a><a class="btn btn-secondary" href="#">개인·가족 재무상담</a><a class="link-arrow" href="#">자세히 알아보기</a><button class="btn btn-primary" disabled style="opacity:.45;cursor:not-allowed">비활성</button><button class="btn btn-primary"><span style="width:16px;height:16px;border:2px solid rgba(246,243,236,.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:sp .7s linear infinite"></span>보내는 중…</button></div></div>
+  <div class="specimen on-dark" style="background:var(--green)"><span class="comp-label" style="color:rgba(246,243,236,.7)">on green</span><div class="demo-row"><a class="btn btn-gold" href="#">회사 재무 점검하기</a><a class="btn btn-ghost-light" href="#">사업자주치의AI에 묻기</a></div></div>
+  <style>@keyframes sp{to{transform:rotate(360deg)}}</style>
+  <table class="spec" style="margin-top:20px"><thead><tr><th>CTA 문구</th><th>스타일</th><th>목적 → 이동</th></tr></thead><tbody>
+    <tr><td>30분 첫 상담 예약</td><td>Primary</td><td>적격 상담 전환 → Booking</td></tr>
+    <tr><td>기업자문 문의</td><td>Primary / Secondary</td><td>기업 상담 → Booking?type=corp</td></tr>
+    <tr><td>내 상황 점검하기</td><td>Secondary</td><td>자기발견 → Home#tools (3분 점검)</td></tr>
+    <tr><td>진단 시작하기</td><td>Gold (어두운 배경)</td><td>도구 실행 → 재무X레이 등</td></tr>
+    <tr><td>자세히 알아보기</td><td>Link</td><td>서비스 상세</td></tr>
+    <tr><td>관련 콘텐츠 보기</td><td>Link</td><td>Intelligence</td></tr>
+    <tr><td>전문가 협업 문의</td><td>Link / Secondary</td><td>Booking?type=partner</td></tr>
+  </tbody></table>
+</section>
+
+<section class="ds-sec" id="card" data-screen-label="DS · Card">
+  <h2>Card · Badge</h2>
+  <p class="d">카드는 진단 도구와 선택지에만 씁니다. 서비스 목록은 카드 대신 선으로 나눈 행(row)을 씁니다.</p>
+  <div class="g g3">
+    <div class="specimen" style="display:flex;flex-direction:column;gap:12px"><span class="comp-label">Tool card</span><span class="status st-live" style="align-self:start">이용 가능</span><h4 style="font:600 18px/1.4 var(--f-sans)">재무X레이 Scout</h4><p style="font-size:14.5px;color:var(--char-2)">공개 재무 데이터로 법인의 재무 흐름을 확인합니다.</p><a class="link-arrow" href="#" style="align-self:start">진단 시작하기</a></div>
+    <div class="specimen"><span class="comp-label">Service row</span><div style="border-top:1px solid var(--line-strong);padding-top:20px"><div style="font-size:12.5px;color:var(--char-2);margin-bottom:12px"><span style="padding:3px 8px;background:var(--ivory-2);border-radius:3px">직접 + 협업</span></div><h4 style="font:600 22px/1.35 var(--f-sans);color:var(--green);margin-bottom:8px">기업 경영자문</h4><p style="font-size:15px;color:var(--char-2);margin-bottom:14px">세무 리스크, 가지급금, 인증까지 경영과제를 함께 정리합니다.</p><a class="link-arrow" href="#">자세히 알아보기</a></div></div>
+    <div class="specimen"><span class="comp-label">Status badges</span><div style="display:grid;gap:10px;justify-items:start"><span class="status st-live">이용 가능</span><span class="status st-consult">상담 시 제공</span><span class="status st-soon">준비 중</span><span class="sample">예시 · 확인 필요</span></div><p style="font-size:13.5px;color:var(--char-2);margin-top:14px">'예시' 표시는 디자인 단계 전용이며 실서비스에선 제거합니다.</p></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="form" data-screen-label="DS · Form">
+  <h2>Form</h2>
+  <p class="d">라벨은 항상 입력창 위에 보이게. 오류는 빨간 테두리와 함께 무엇을 고치면 되는지 문장으로 알려 줍니다. 입력 글자 16px(iOS 확대 방지).</p>
+  <div class="g g4">
+    <div class="f"><label>이름</label><input placeholder="홍길동"><p class="m">기본</p></div>
+    <div class="f focus"><label>휴대전화</label><input value="010-1234"><p class="m">포커스</p></div>
+    <div class="f err"><label>휴대전화</label><input value="1234"><p class="m">연락 가능한 번호를 적어 주세요. 예) 010-1234-5678</p></div>
+    <div class="f dis"><label>상담 종류</label><input value="기업 경영자문 상담" disabled><p class="m">비활성</p></div>
+  </div>
+  <div class="specimen" style="margin-top:16px"><span class="comp-label">Choice chips · Checkbox</span>
+    <div class="demo-row"><button class="btn btn-secondary" style="border-radius:999px;min-height:44px">세무 리스크</button><button class="btn btn-primary" style="border-radius:999px;min-height:44px">가지급금 ✓</button><button class="btn btn-secondary" style="border-radius:999px;min-height:44px">가업승계</button>
+    <label style="display:flex;gap:10px;align-items:center;margin-left:16px;font-size:15px"><input type="checkbox" checked style="width:20px;height:20px;accent-color:var(--green)"> [필수] 개인정보 수집·이용 동의</label></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--char-2);margin-top:14px">공개 웹 폼에서 받지 않는 정보: 주민등록번호, 건강정보, 보험계약 상세, 계좌, 인증정보. 해당 내용은 상담 시 승인된 금융전산에서 처리합니다.</p>
+</section>
+
+<section class="ds-sec" id="nav" data-screen-label="DS · Navigation">
+  <h2>Navigation</h2>
+  <p class="d">상단 메뉴 6개 + 상담예약 버튼. 1100px 이하에서는 햄버거 메뉴로 바뀌고, 메뉴 항목마다 한 줄 설명을 붙입니다.</p>
+  <div class="specimen" style="padding:0;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:28px;padding:18px 28px;border-bottom:1px solid var(--line);flex-wrap:wrap"><div class="logo"><b>HUMAN MCP</b><small>FINANCIAL &amp; BUSINESS ADVISORY</small></div><div style="display:flex;gap:22px;margin-left:auto;font-size:15px;font-weight:500;flex-wrap:wrap"><span>기업 경영자문</span><span>개인·법인 종합금융</span><span>Growth &amp; Capital</span><span>디지털 진단</span><span>Intelligence</span><span>About</span></div><span class="btn btn-primary" style="min-height:42px">30분 첫 상담 예약</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+      <div style="padding:20px 28px;border-right:1px solid var(--line)"><span class="comp-label">Mobile drawer item</span><div style="display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);font-size:18px;font-weight:600">기업 경영자문 <small style="font-weight:400;font-size:13px;color:var(--char-2)">세무 · 승계 · 인증 · 노무</small></div></div>
+      <div style="padding:20px 28px"><span class="comp-label">Mobile sticky CTA</span><div style="display:flex;gap:8px"><span class="btn btn-secondary" style="flex:1;justify-content:center">내 상황 점검</span><span class="btn btn-primary" style="flex:1;justify-content:center">30분 첫 상담</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ds-sec" id="table" data-screen-label="DS · Table Chart">
+  <h2>Table · Chart</h2>
+  <p class="d">표는 세로선 없이 가로선만. 모바일에서는 가로 스크롤을 허용하고 첫 열을 강조합니다. 차트는 그린 → 블루 → 골드 순서로 색을 쓰고, 모든 차트 아래 캡션과 출처를 붙입니다.</p>
+  <div class="g g2">
+    <div class="specimen"><table class="spec"><thead><tr><th>수단</th><th>방식</th><th>고려할 점</th></tr></thead><tbody><tr><td style="font-family:var(--f-sans);font-weight:600">급여·상여</td><td>보수 인상</td><td>소득세·4대보험</td></tr><tr><td style="font-family:var(--f-sans);font-weight:600">배당</td><td>잉여금 배당</td><td>배당소득세</td></tr></tbody></table></div>
+    <div class="specimen"><div class="chartbox"><div style="height:70%;background:var(--green)"></div><div style="height:52%;background:var(--blue)"></div><div style="height:38%;background:var(--gold)"></div><div style="height:84%;background:var(--green)"></div><div style="height:60%;background:var(--blue)"></div></div><p class="tok" style="margin-top:10px">그림 1. 캡션 · 출처: 기관명, 연도</p></div>
+  </div>
+</section>
+
+<section class="ds-sec" id="feedback" data-screen-label="DS · Feedback">
+  <h2>Modal · Alert · Accordion</h2>
+  <div class="g g2">
+    <div class="modal-demo"><div class="modal" role="dialog" aria-label="예시"><h3>점검 결과를 상담 메모에 담을까요?</h3><p>선택하신 항목만 전달되며, 예약하지 않으면 저장되지 않습니다.</p><div class="demo-row"><span class="btn btn-primary">담아서 예약하기</span><span class="btn btn-secondary">빼고 예약하기</span></div></div></div>
+    <div class="g" style="align-content:start">
+      <div class="alert al-i"><b>안내</b><span>점검 결과는 일반적인 안내이며 상품 권유가 아닙니다.</span></div>
+      <div class="alert al-s"><b>완료</b><span>예약 요청이 접수되었습니다.</span></div>
+      <div class="alert al-w"><b>주의</b><span>정리 방법마다 세금이 다르게 생깁니다.</span></div>
+      <div class="alert al-e"><b>오류</b><span>예약을 보내지 못했습니다. 입력하신 내용은 그대로 있습니다.</span></div>
+    </div>
+  </div>
+  <div class="acc" style="margin-top:24px">
+    <details open><summary>상담 후 꼭 계약해야 하나요?</summary><p>아니요. 첫 상담은 상황을 듣고 도울 수 있는 일인지 확인하는 자리입니다.</p></details>
+    <details><summary>법인이 아닌 개인사업자도 상담할 수 있나요?</summary><p>네. 개인사업자와 예비 창업자도 상담할 수 있습니다.</p></details>
+  </div>
+</section>
+
+<section class="ds-sec" id="states" data-screen-label="DS · States">
+  <h2>Loading · Empty · Error · Success</h2>
+  <p class="d">모든 상태에 '다음에 무엇을 하면 되는지'를 함께 적습니다. 상담예약 화면에서 실제 동작을 확인할 수 있습니다(왼쪽 아래 '상태 미리보기').</p>
+  <div class="g g4">
+    <div class="state" style="text-align:left"><span class="comp-label">Loading (skeleton)</span><div class="skel" style="width:60%"></div><div class="skel"></div><div class="skel" style="width:80%"></div></div>
+    <div class="state"><div class="ic" style="background:var(--ivory-2)">○</div><b>예약 가능한 시간이 없습니다</b>다른 날을 고르시거나 이메일로 시간을 제안해 주세요.</div>
+    <div class="state"><div class="ic" style="background:rgba(162,59,46,.1);color:var(--err)">!</div><b>보내지 못했습니다</b>입력 내용은 그대로 있습니다. 잠시 후 다시 눌러 주세요.</div>
+    <div class="state"><div class="ic" style="background:var(--green-100);color:var(--green)">✓</div><b>예약 요청 접수</b>확인 문자를 보내 드렸습니다.</div>
+  </div>
+</section>
+
+<section class="ds-sec" id="tokens" data-screen-label="DS · Tokens">
+  <h2>토큰 (CSS 변수)</h2>
+  <p class="d">개발 인계용. <code>css/hmcp.css</code>의 <code>:root</code>에 정의되어 있으며, Tailwind를 쓸 경우 <code>theme.extend</code>로 옮기면 됩니다.</p>
+<pre style="background:var(--char);color:#E8E4DA;padding:24px;border-radius:var(--r-m);overflow:auto;font:13px/1.7 var(--f-mono)">:root{
+  --green:#143D30; --green-900:#0E2C23; --green-700:#1F5443; --green-100:#DCE6E0;
+  --ivory:#F6F3EC; --ivory-2:#EFEAE0; --paper:#FBF9F5;
+  --gold:#AC8B46; --gold-ink:#7D622A; --gold-light:#C9A862;
+  --char:#252C2B; --char-2:#5E6563; --blue:#527487; --blue-ink:#466577;
+  --ok:#2F6B4F; --warn:#8A5A12; --err:#A23B2E;
+  --f-sans:"Pretendard Variable",Pretendard,"Noto Sans KR",sans-serif;
+  --f-serif:"Noto Serif KR",serif; --f-mono:"IBM Plex Mono",monospace;
+  --s1:4px … --s10:128px;  --r-s:4px; --r-m:8px; --r-l:14px;  --max:1240px;
+}</pre>
+</section>
+
+<section class="ds-sec" id="a11y" style="border:0" data-screen-label="DS · A11y">
+  <h2>접근성 기준 (WCAG 2.2 AA)</h2>
+  <table class="spec"><thead><tr><th>항목</th><th>기준</th></tr></thead><tbody>
+    <tr><td>대비</td><td>본문 4.5:1 이상, 큰 글자(24px+) 3:1 이상. gold #AC8B46은 글자에 쓰지 않음</td></tr>
+    <tr><td>포커스</td><td>모든 상호작용 요소에 3px blue 포커스 링 (:focus-visible)</td></tr>
+    <tr><td>터치 영역</td><td>최소 44×44px (2.5.8 기준 24px 초과)</td></tr>
+    <tr><td>키보드</td><td>메뉴 열기/닫기(Esc), 점검 위젯, 예약 단계 모두 키보드로 조작 가능</td></tr>
+    <tr><td>상태 알림</td><td>점검·예약 패널은 aria-live="polite", 오류는 role="alert"</td></tr>
+    <tr><td>폼</td><td>라벨 항상 노출, 오류 메시지에 고치는 방법 포함, autocomplete 지정</td></tr>
+    <tr><td>움직임</td><td>장식 애니메이션 없음. prefers-reduced-motion 시 스켈레톤 애니메이션 중지 (구현 시 추가)</td></tr>
+    <tr><td>언어</td><td>lang="ko", 영어 라벨에는 한국어 설명 병기</td></tr>
+  </tbody></table>
+</section>
+</main>
+</div>
+</body></html>

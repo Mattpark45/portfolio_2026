@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /privacy/
+
+Sitemap: https://human-mcp.pages.dev/sitemap.xml

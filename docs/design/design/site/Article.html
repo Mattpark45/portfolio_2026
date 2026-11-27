@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>가지급금, 언제 문제가 되고 어떤 순서로 정리할까 | Human MCP Intelligence</title>
+<meta name="description" content="대표 가지급금이 문제가 되는 시점과 급여·배당·자산양수 등 정리 수단을 비교합니다.">
+<link rel="stylesheet" href="../css/hmcp.css">
+<style>
+body{background:var(--paper)}
+.ar-crumb{font-size:13.5px;color:var(--char-2);padding:28px 0 0}
+.ar-crumb a{text-decoration:none}.ar-crumb a:hover{text-decoration:underline}
+.ar-head{max-width:880px;padding:28px 0 36px}
+.ar-head .cat{font-size:14px;font-weight:700;color:var(--gold-ink)}
+.ar-head h1{font:600 clamp(28px,3.6vw,46px)/1.32 var(--f-serif);color:var(--char);margin:14px 0 18px;text-wrap:balance}
+.ar-head .dek{font-size:19px;color:var(--char-2);line-height:1.65;text-wrap:pretty}
+.ar-meta{display:flex;align-items:center;gap:16px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.ar-meta img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.ar-meta .who b{display:block;font-size:15px}
+.ar-meta .who span{font-size:13px;color:var(--char-2)}
+.ar-meta .dates{margin-left:auto;font:400 12.5px/1.7 var(--f-mono);color:var(--char-2);text-align:right}
+.ar-meta .dates b{color:var(--char);font-weight:500}
+
+.ar-grid{display:grid;grid-template-columns:220px minmax(0,680px) 1fr;gap:56px;padding:48px 0 96px}
+.ar-grid>*{min-width:0}
+.toc{position:sticky;top:96px;align-self:start;font-size:14px}
+.toc b{display:block;font-size:12px;letter-spacing:.14em;color:var(--char-2);margin-bottom:12px}
+.toc ol{list-style:none;padding:0;margin:0;border-left:1px solid var(--line-strong)}
+.toc a{display:block;padding:7px 0 7px 14px;margin-left:-1px;border-left:2px solid transparent;text-decoration:none;color:var(--char-2);line-height:1.5}
+.toc a.on{border-color:var(--green);color:var(--green);font-weight:600}
+
+.sum{background:var(--ivory);border-top:3px solid var(--green);padding:24px 26px;margin-bottom:44px}
+.sum b{font-size:12.5px;letter-spacing:.14em;color:var(--green)}
+.sum ol{margin:12px 0 0;padding-left:20px;display:grid;gap:8px;font-size:16px}
+.prose{font-size:17.5px;line-height:1.85}
+.prose h2{font:600 26px/1.4 var(--f-serif);color:var(--green);margin:56px 0 16px;scroll-margin-top:96px}
+.prose h2:first-child{margin-top:0}
+.prose p{margin:0 0 20px}
+.prose sup a{font:500 12px var(--f-mono);color:var(--blue-ink);text-decoration:none;padding:0 2px}
+.fi{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
+.fi div{padding:18px 20px;border:1px solid var(--line-strong);border-radius:var(--r-m);background:#fff;font-size:15.5px;line-height:1.7}
+.fi .lbl{display:inline-block;font:600 11.5px/1 var(--f-sans);letter-spacing:.08em;padding:5px 8px;border-radius:3px;margin-bottom:10px}
+.fi .f .lbl{background:var(--green-100);color:var(--green)}
+.fi .i .lbl{background:rgba(82,116,135,.13);color:var(--blue-ink)}
+table.cmp{width:100%;border-collapse:collapse;font-size:15px;margin:24px 0 8px;background:#fff}
+table.cmp caption{text-align:left;font-size:13.5px;color:var(--char-2);padding-bottom:10px}
+table.cmp th{text-align:left;font:600 13px var(--f-sans);padding:12px 14px;border-bottom:1.5px solid var(--char);background:var(--ivory)}
+table.cmp td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+table.cmp td:first-child{font-weight:600;color:var(--green)}
+.chart{margin:32px 0;padding:24px;border:1px solid var(--line);background:#fff;border-radius:var(--r-m)}
+.chart figcaption{font-size:13.5px;color:var(--char-2);margin-top:14px}
+.bars{display:grid;gap:12px}
+.bars div{display:grid;grid-template-columns:120px 1fr 56px;gap:12px;align-items:center;font-size:14px}
+.bars i{display:block;height:14px;background:var(--green);border-radius:2px}
+.bars i.b{background:var(--blue)}.bars i.g{background:var(--gold)}
+.bars span:last-child{font:500 13px var(--f-mono);text-align:right}
+.callout{display:flex;gap:16px;padding:20px 22px;background:rgba(138,90,18,.07);border:1px solid rgba(138,90,18,.22);border-radius:var(--r-m);font-size:15.5px;margin:28px 0}
+.callout b{color:var(--warn);flex:none}
+.src{margin-top:56px;padding-top:28px;border-top:1px solid var(--line-strong);font-size:14px;color:var(--char-2)}
+.src h3{font:600 14px var(--f-sans);letter-spacing:.1em;color:var(--char);margin-bottom:12px}
+.src ol{padding-left:20px;display:grid;gap:6px;margin:0}
+.author-box{display:grid;grid-template-columns:72px 1fr;gap:18px;margin-top:40px;padding:24px;background:var(--ivory);border-radius:var(--r-m)}
+.author-box img{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+.author-box b{font-size:16px}.author-box p{font-size:14.5px;color:var(--char-2);margin-top:6px}
+
+.rail{align-self:start;position:sticky;top:96px;display:grid;gap:20px}
+.rail .box{border:1px solid var(--line);border-radius:var(--r-m);padding:22px;background:#fff}
+.rail h4{font:600 12px/1 var(--f-sans);letter-spacing:.14em;color:var(--char-2);margin-bottom:14px}
+.rail .svc b{display:block;font-size:17px;color:var(--green);margin-bottom:6px}
+.rail .svc p{font-size:14px;color:var(--char-2);margin-bottom:14px}
+.rail .soft{background:var(--green);color:var(--ivory);border:0}
+.rail .soft h4{color:var(--gold-light)}
+.rail .soft p{font-size:14.5px;color:rgba(246,243,236,.82);margin-bottom:16px}
+.rail .soft .btn{width:100%;justify-content:center}
+
+.rel{background:var(--ivory);border-top:1px solid var(--line);padding:72px 0}
+.rel h2{font:600 26px/1.3 var(--f-serif);color:var(--green);margin-bottom:28px}
+.rel-g{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.rel-g a{text-decoration:none;border-top:1px solid var(--char);padding-top:16px}
+.rel-g .c{font-size:13px;font-weight:700;color:var(--gold-ink)}
+.rel-g h3{font:600 18px/1.45 var(--f-sans);margin-top:8px}
+.rel-g a:hover h3{color:var(--green);text-decoration:underline;text-underline-offset:4px}
+
+.m-toc{display:none}
+@media (max-width:1180px){
+  .ar-grid{grid-template-columns:minmax(0,1fr) 300px;gap:48px}
+  .toc{display:none}
+  .m-toc{display:block;margin-bottom:28px}
+}
+@media (max-width:900px){
+  .ar-grid{grid-template-columns:minmax(0,1fr);padding-top:32px}
+  .rail{position:static}
+  .rel-g{grid-template-columns:1fr}
+  .ar-meta .dates{margin-left:0;text-align:left;width:100%}
+}
+@media (max-width:560px){
+  .ar-head .dek{font-size:17px}
+  .prose{font-size:16.5px}
+  .prose h2{font-size:22px}
+  .fi{grid-template-columns:1fr}
+  .scroll-x{overflow-x:auto;margin:0 -20px;padding:0 20px}
+  table.cmp{min-width:520px}
+  .bars div{grid-template-columns:88px 1fr 48px}
+}
+.m-toc details{border:1px solid var(--line-strong);border-radius:var(--r-m);background:#fff}
+.m-toc summary{padding:14px 16px;font-weight:600;font-size:15px;cursor:pointer;min-height:48px}
+.m-toc ol{margin:0;padding:0 16px 14px 36px;display:grid;gap:8px;font-size:15px}
+.m-toc a{text-decoration:none;color:var(--char-2)}
+</style></head>
+<body id="top">
+<div data-hdr data-site></div>
+
+<main>
+<article>
+  <div class="wrap">
+    <nav class="ar-crumb" aria-label="현재 위치"><a href="Home.html">홈</a> › <a href="#">Intelligence</a> › <a href="#">기업경영</a></nav>
+    <header class="ar-head" data-screen-label="Article · 헤더">
+      <span class="cat">기업경영 · 세무</span>
+      <h1>가지급금, 언제 문제가 되고 어떤 순서로 정리할까</h1>
+      <p class="dek">대표 개인과 법인의 돈이 섞이면 이자, 세금, 대출 심사에서 차례로 부담이 생깁니다. 정리 수단별 장단점을 비교하고, 실행 전에 확인할 것을 정리했습니다.</p>
+    </header>
+    <div class="ar-meta">
+      <img src="../assets/portrait.webp" alt="">
+      <div class="who"><b>박동혁</b><span>Entrepreneurial Advisor · 중소기업경영연구소 전문위원</span></div>
+      <div class="dates">최초 작성 <b>2026.11.20</b> · 최근 검토 <b>2026.11.24</b><br>세무 검토: 협업 세무사 <span class="sample">검토자 표기 방식 확인 필요</span></div>
+    </div>
+  </div>
+
+  <div class="wrap ar-grid">
+    <nav class="toc" aria-label="목차"><b>목차</b><ol>
+      <li><a href="#s1" class="on">가지급금이란</a></li><li><a href="#s2">언제 문제가 되나</a></li><li><a href="#s3">정리 수단 비교</a></li><li><a href="#s4">실행 순서</a></li><li><a href="#s5">출처</a></li>
+    </ol></nav>
+
+    <div>
+      <div class="m-toc"><details><summary>목차 보기</summary><ol><li><a href="#s1">가지급금이란</a></li><li><a href="#s2">언제 문제가 되나</a></li><li><a href="#s3">정리 수단 비교</a></li><li><a href="#s4">실행 순서</a></li><li><a href="#s5">출처</a></li></ol></details></div>
+
+      <div class="sum" data-screen-label="Article · 핵심 요약"><b>핵심 요약</b><ol>
+        <li>가지급금은 회계상 '대표가 회사에서 빌려 간 돈'으로 처리됩니다.</li>
+        <li>금액과 기간이 커질수록 인정이자, 비용 불인정, 대출·신용평가에 영향을 줍니다.</li>
+        <li>정리 방법은 여러 가지이고 각각 세금 부담이 다르므로, 세무사와 함께 순서를 정해야 합니다.</li>
+      </ol></div>
+
+      <div class="prose">
+        <p style="font-size:14px;color:var(--char-2)"><span class="sample">아래 본문은 템플릿 구성을 보여 드리기 위한 예시입니다. 실제 게시 전 세무 전문가 검토가 필요합니다.</span></p>
+
+        <h2 id="s1">가지급금이란</h2>
+        <p>회사 통장에서 돈이 나갔는데 어디에 썼는지 증빙이 없거나, 대표가 개인 용도로 쓴 경우 장부에는 '가지급금'으로 남습니다.<sup><a href="#r1">[1]</a></sup> 작은 회사일수록 법인 돈과 대표 개인 돈의 경계가 흐려지기 쉬워서 자주 생깁니다.</p>
+
+        <div class="fi">
+          <div class="f"><span class="lbl">사실</span><br>법인세법은 특수관계인에게 빌려준 돈에 대해 이자 상당액을 익금에 산입하도록 정하고 있습니다.<sup><a href="#r1">[1]</a></sup></div>
+          <div class="i"><span class="lbl">해석</span><br>상담에서 보면 대부분의 대표님은 금액이 커진 뒤에야 문제를 알게 됩니다. 매년 결산 때 한 번씩 확인하는 습관이 가장 저렴한 대비입니다.</div>
+        </div>
+
+        <h2 id="s2">언제 문제가 되나</h2>
+        <p>가지급금 자체가 불법은 아닙니다. 다만 금액이 크고 오래 남아 있을수록 아래 세 가지가 함께 커집니다.</p>
+        <figure class="chart" aria-label="영향 정도 예시 차트">
+          <div class="bars">
+            <div><span>인정이자 부담</span><i style="width:72%"></i><span>높음</span></div>
+            <div><span>대출·신용평가</span><i class="b" style="width:58%"></i><span>중간</span></div>
+            <div><span>세무조사 위험</span><i class="g" style="width:46%"></i><span>중간</span></div>
+          </div>
+          <figcaption>그림 1. 가지급금이 오래 남을 때 영향 정도 (설명용 예시, 실제 수치 아님)</figcaption>
+        </figure>
+
+        <h2 id="s3">정리 수단 비교</h2>
+        <div class="scroll-x"><table class="cmp">
+          <caption>표 1. 주요 정리 수단 비교 (일반적인 경우 기준)</caption>
+          <thead><tr><th>수단</th><th>방식</th><th>고려할 점</th></tr></thead>
+          <tbody>
+            <tr><td>급여·상여</td><td>대표 보수를 올려 상환</td><td>소득세·4대보험 부담 증가</td></tr>
+            <tr><td>배당</td><td>이익잉여금을 배당해 상환</td><td>배당소득세, 다른 주주와의 형평</td></tr>
+            <tr><td>자산 양수도</td><td>대표 개인 자산을 법인에 매각</td><td>시가 평가, 양도소득세</td></tr>
+            <tr><td>개인 자금 상환</td><td>대표가 직접 갚음</td><td>개인 현금흐름 부담</td></tr>
+          </tbody>
+        </table></div>
+
+        <div class="callout"><b>주의</b><span>정리 방법마다 세금이 다르게 생깁니다. 여러 수단을 섞어 쓰는 경우가 많으므로 회사 상황에 맞춰 세무사와 함께 계획을 세우셔야 합니다.</span></div>
+
+        <h2 id="s4">실행 순서</h2>
+        <p>① 발생 원인과 금액을 정확히 확인합니다. ② 대표 개인의 현금흐름과 회사 이익 규모를 함께 봅니다. ③ 수단별 세금을 비교해 몇 년에 걸쳐 나눠 정리할지 정합니다. ④ 이후 다시 생기지 않도록 비용 처리 기준을 정합니다.</p>
+        <p>회사와 대표 개인의 재무를 함께 봐야 하는 일이라, Human MCP에서는 기업자문과 개인 재무상담을 한 번에 진행합니다.</p>
+
+        <section class="src" id="s5"><h3>출처</h3><ol>
+          <li id="r1">법인세법 제52조(부당행위계산의 부인) 및 시행령 제89조 — 국가법령정보센터 <span class="sample">링크·조항 게시 전 확인</span></li>
+          <li>국세청, 「법인세 신고안내」 <span class="sample">예시</span></li>
+        </ol></section>
+
+        <div class="author-box"><img src="../assets/portrait.webp" alt=""><div><b>박동혁 · Human MCP</b><p>베트남에서 16년간 사업했고 10년 넘게 퍼포먼스 마케팅을 해왔습니다. 지금은 중소기업경영연구소 전문위원으로 기업자문과 개인 종합금융을 함께 합니다. 세무 판단은 협업 세무사의 검토를 거칩니다.</p><a class="link-arrow" href="Home.html#about" style="display:inline-block;margin-top:10px;font-size:14px">자문가 소개</a></div></div>
+      </div>
+    </div>
+
+    <aside class="rail" aria-label="관련 서비스">
+      <div class="box svc"><h4>관련 서비스</h4><b>기업 경영자문</b><p>가지급금·명의신탁주식·법인전환을 세무 협업 전문가와 함께 정리합니다.</p><a class="link-arrow" href="Home.html#corp">서비스 알아보기</a></div>
+      <div class="box svc"><h4>관련 도구</h4><b>재무X레이 Scout</b><p>공개 재무 데이터로 우리 회사 가지급금 신호를 확인합니다.</p><a class="link-arrow" href="Home.html#tools">무료로 확인하기</a></div>
+      <div class="box soft on-dark"><h4>우리 회사 상황이 궁금하다면</h4><p>30분 동안 상황을 듣고 정리 방향을 말씀드립니다. 상담 후 계약을 권하지 않습니다.</p><a class="btn btn-gold" href="Booking.html?type=corp&topic=가지급금">30분 첫 상담 예약</a></div>
+    </aside>
+  </div>
+</article>
+
+<section class="rel" data-screen-label="Article · 관련 글"><div class="wrap">
+  <h2>함께 읽으면 좋은 글</h2>
+  <div class="rel-g">
+    <a href="#"><span class="c">기업경영</span><h3>명의신탁주식, 지금 정리해야 하는 이유</h3></a>
+    <a href="#"><span class="c">기업경영</span><h3>법인전환, 언제가 유리할까</h3></a>
+    <a href="#"><span class="c">개인재무</span><h3>대표 급여와 배당, 어떻게 나눌까</h3></a>
+  </div>
+</div></section>
+</main>
+
+<div data-ftr></div>
+<script src="../js/chrome.js"></script>
+<script>
+// TOC scroll-spy
+const links=[...document.querySelectorAll('.toc a')];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-20% 0px -70% 0px'});
+['s1','s2','s3','s4','s5'].forEach(id=>{const el=document.getElementById(id);el&&io.observe(el)});
+</script>
+</body></html>
