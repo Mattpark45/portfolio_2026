@@ -25,7 +25,7 @@ await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const base = `http://127.0.0.1:${server.address().port}`;
 
 const PAGES = ['/', '/corporate', '/personal', '/owner', '/growth', '/ax', '/network', '/diagnostics', '/intelligence', '/about', '/booking',
-  '/legal/privacy', '/legal/terms', '/legal/scope', '/intelligence/policy-fund-2027', '/intelligence/minimum-wage-2027', '/intelligence/first-meeting'];
+  '/talent', '/legal/privacy', '/legal/terms', '/legal/scope', '/intelligence/policy-fund-2027', '/intelligence/minimum-wage-2027', '/intelligence/first-meeting'];
 const VIEWPORTS = { mobile: { width: 390, height: 844 }, desktop: { width: 1280, height: 800 } };
 const results = [];
 const check = (name, cond, detail = '') => results.push({ name, pass: !!cond, detail });
@@ -107,7 +107,27 @@ try {
     await page.click('[data-a="next"]');
     const bk = await page.evaluate(() => window.__opened);
     check(`[${vp}] 상담 요청: 메일 작성으로 연결`, bk && decodeURIComponent(bk).includes('희망 일정'), String(bk).slice(0, 60));
+    check(`[${vp}] 상담 요청: 트랙 표시(기업자문)`, bk && decodeURIComponent(bk).includes('[기업자문]'));
     check(`[${vp}] 상담 요청: 확정·접수로 표시하지 않음`, !/접수되었습니다|확인 문자/.test(await page.textContent('main')));
+
+    // 인재 채용 트랙: 별도 경로 표시, 후보자 정보 수집 안내
+    await page.goto(base + '/booking');
+    await page.evaluate(() => sessionStorage.clear());
+    await page.reload();
+    await page.evaluate(() => { window.__opened = null; window.HMCP_OPEN = (u) => { window.__opened = u; }; });
+    await page.click('[data-type="talent"]');
+    await page.click('[data-a="next"]');
+    await page.click('[data-a="next"]');
+    await page.click('.day >> nth=0');
+    await page.click('.slot >> nth=0');
+    await page.click('[data-a="next"]');
+    await page.fill('#name', '시험');
+    await page.fill('#tel', '010-0000-0000');
+    await page.check('#c1');
+    await page.check('#c2');
+    await page.click('[data-a="next"]');
+    const tl = decodeURIComponent(String(await page.evaluate(() => window.__opened)));
+    check(`[${vp}] 인재 채용: 트랙·별도 계약·후보자 정보 안내`, tl.includes('[인재 채용]') && tl.includes('별도 계약') && tl.includes('후보자 이력서'), tl.slice(0, 80));
 
     // 3분 점검 → 결과
     await page.goto(base + '/');

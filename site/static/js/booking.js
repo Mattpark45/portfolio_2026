@@ -10,12 +10,22 @@
     personal: ['개인·가족 재무상담', '재무계획 · 보장 · 연금 · 은퇴'],
     corp: ['기업 경영자문 상담', '경영과제 · 세무 리스크 · 성장 · 자본'],
     ax: ['AI/AX 및 교육 문의', 'AX 진단 · PoC · 임직원 교육'],
+    talent: ['인재 채용 자문', '역할 정의 · 핵심 인재 채용 의뢰'],
     partner: ['전문가 협업 · 제휴', '전문서비스 · 투자자 · 기술기업'],
+  }
+  // 사업 트랙: 메일 제목에 붙여 접수함에서 경로를 나눈다. 계약 경로는 트랙마다 별도.
+  var TRACK = {
+    personal: ['개인·법인 재무', '금융 관련 업무는 소속 회사의 승인된 절차로만 진행합니다.'],
+    corp: ['기업자문', '자문 범위·비용은 첫 상담 후 견적으로 안내합니다.'],
+    ax: ['기업자문', '자문 범위·비용은 첫 상담 후 견적으로 안내합니다.'],
+    talent: ['인재 채용', '채용 의뢰는 별도 계약 후 진행합니다. 후보자 이력서·개인정보는 보내지 마세요.'],
+    partner: ['협업·제휴', '역할과 보수 구조는 건별로 확인합니다.'],
   }
   var TOPICS = {
     personal: ['재무계획 전반', '보장 점검', '연금·은퇴', '자녀·교육자금', '부동산·세금', '상속·증여'],
     corp: ['세무 리스크', '가지급금', '가업승계', '정책자금·인증', '노무', '투자유치·M&A', '해외진출', '비용절감'],
     ax: ['AX 진단', 'AI 도입 PoC', '임직원 교육', '기술 협업'],
+    talent: ['채용 계획·역할 정의', '해외영업·무역', '품질·생산', 'IT·개발', '임원·C-Level', '채용·육성·외주 비교'],
     partner: ['세무·법률 등 전문서비스', '투자·금융기관', '기술기업', '교육기관', '공동사업'],
   }
   var SLOTS = ['10:00', '11:00', '13:30', '15:00', '16:30', '19:00']
@@ -257,7 +267,7 @@
 
     if (S.step === 3) {
       T.textContent = '거의 다 됐습니다'
-      var corp = S.type === 'corp' || S.type === 'partner' || S.type === 'ax'
+      var corp = S.type === 'corp' || S.type === 'partner' || S.type === 'ax' || S.type === 'talent'
       P.innerHTML =
         '<h2>연락처</h2><p class="hint">상담 일정 안내에만 사용합니다. 입력 내용은 서버에 저장되지 않고 메일 본문으로만 옮겨집니다.</p>' +
         '<form id="fm" novalidate>' +
@@ -422,7 +432,9 @@
         // 서버 전송 없음: 요청 내용을 메일 본문으로 만들어 메일 앱을 연다
         var dd = DAYS.filter(function (x) { return x.k === S.day })[0]
         var lines = [
-          '[Human MCP 상담 요청]',
+          '[Human MCP 상담 요청 · ' + (TRACK[S.type || 'personal'] || TRACK.personal)[0] + ']',
+          (TRACK[S.type || 'personal'] || TRACK.personal)[1],
+          '',
           '희망 상담: ' + (TYPES[S.type || 'personal'] ? TYPES[S.type || 'personal'][0] : ''),
           '희망 일정: ' + (dd ? dd.m + '월 ' + dd.n + '일 (' + dd.w + ') ' : '') + (S.slot || '') + ' · 30분',
           '방식: ' + ({ online: '화상', phone: '전화', visit: '방문' }[S.mode] || ''),
@@ -437,7 +449,7 @@
           '(주민번호·계좌·건강정보·금융계약 상세는 적지 말아 주세요.)'
         ].filter(function (x, i, a) { return x !== '' || (a[i - 1] && a[i - 1] !== '') })
         open_(
-          'mailto:dhp.cfo@gmail.com?subject=' + encodeURIComponent('[상담 요청] ' + S.name) +
+          'mailto:dhp.cfo@gmail.com?subject=' + encodeURIComponent('[상담 요청][' + (TRACK[S.type || 'personal'] || TRACK.personal)[0] + '] ' + S.name) +
           '&body=' + encodeURIComponent(lines.join('\n')))
         S.step = 4
         render()

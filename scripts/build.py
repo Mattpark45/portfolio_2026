@@ -399,6 +399,7 @@ def main():
         f'- [대표·가족 통합자문]({BASE}/owner): 회사와 대표 개인 재무를 구분해 함께 보기',
         f'- [Growth & Capital]({BASE}/growth): 고객획득·GTM·자본',
         f'- [AI/AX 및 교육]({BASE}/ax)',
+        f'- [인재 채용 자문]({BASE}/talent): 역할 정의부터 채용 의뢰까지 (별도 계약)',
         f'- [디지털 진단]({BASE}/diagnostics)',
         f'- [About]({BASE}/about): 자문가 소개 (경력 원문: https://mattpark45.github.io/portfolio_2026/)',
         f'- [업무 범위 안내]({BASE}/legal/scope)', '',

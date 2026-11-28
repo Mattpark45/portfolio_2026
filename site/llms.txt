@@ -10,6 +10,7 @@
 - [대표·가족 통합자문](https://human-mcp.pages.dev/owner): 회사와 대표 개인 재무를 구분해 함께 보기
 - [Growth & Capital](https://human-mcp.pages.dev/growth): 고객획득·GTM·자본
 - [AI/AX 및 교육](https://human-mcp.pages.dev/ax)
+- [인재 채용 자문](https://human-mcp.pages.dev/talent): 역할 정의부터 채용 의뢰까지 (별도 계약)
 - [디지털 진단](https://human-mcp.pages.dev/diagnostics)
 - [About](https://human-mcp.pages.dev/about): 자문가 소개 (경력 원문: https://mattpark45.github.io/portfolio_2026/)
 - [업무 범위 안내](https://human-mcp.pages.dev/legal/scope)
